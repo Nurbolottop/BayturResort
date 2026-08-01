@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    {% url 'blog:list' as blog_url %}
+    {% with head_title=post.title head_image=post.cover parent_title=_("Блог") parent_url=blog_url %}
+        {% include 'include/page_head.html' %}
+    {% endwith %}
+
+    <section class="section">
+        <div class="container" style="max-width:840px;">
+            <time class="card__meta" datetime="{{ post.published_at|date:'c' }}">{{ post.published_at|date:'d.m.Y' }}</time>
+            <div class="prose">{{ post.content|safe }}</div>
+        </div>
+    </section>
+
+    {% if other_posts %}
+        <section class="section section--muted">
+            <div class="container">
+                <header class="section__head">
+                    <h2 class="section__title">{% translate "Читайте также" %}</h2>
+                </header>
+                <div class="grid grid--3">
+                    {% for post in other_posts %}
+                        <article class="card">
+                            <a class="card__media" href="{{ post.get_absolute_url }}">
+                                {% if post.cover %}
+                                    <img src="{{ post.cover.url }}" alt="{{ post.title }}" loading="lazy" width="600" height="400">
+                                {% endif %}
+                            </a>
+                            <div class="card__body">
+                                <h3 class="card__title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endif %}
+{% endblock %}

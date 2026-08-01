@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    {% translate "Конференц-залы и мероприятия" as head_title %}
+    {% translate "Конференции, семинары, банкеты и корпоративы на берегу Иссык-Куля." as head_text %}
+    {% include 'include/page_head.html' %}
+
+    <section class="section">
+        <div class="container">
+            {% if halls %}
+                <div class="grid grid--2">
+                    {% for hall in halls %}
+                        <article class="card">
+                            <a class="card__media" href="{{ hall.get_absolute_url }}">
+                                {% if hall.cover %}
+                                    <img src="{{ hall.cover.url }}" alt="{{ hall.name }}" loading="lazy" width="600" height="400">
+                                {% endif %}
+                            </a>
+                            <div class="card__body">
+                                <h3 class="card__title"><a href="{{ hall.get_absolute_url }}">{{ hall.name }}</a></h3>
+                                <ul class="specs">
+                                    {% if hall.area %}<li><span>{% translate "Площадь" %}</span><span>{{ hall.area }} м²</span></li>{% endif %}
+                                    {% if hall.capacity_theatre %}<li><span>{% translate "Театр" %}</span><span>{{ hall.capacity_theatre }}</span></li>{% endif %}
+                                    {% if hall.capacity_banquet %}<li><span>{% translate "Банкет" %}</span><span>{{ hall.capacity_banquet }}</span></li>{% endif %}
+                                    {% if hall.capacity_classroom %}<li><span>{% translate "Класс" %}</span><span>{{ hall.capacity_classroom }}</span></li>{% endif %}
+                                </ul>
+                                <div class="card__footer">
+                                    {% if hall.price_from %}
+                                        <span class="price">
+                                            <span class="price__from">{% translate "от" %}</span>
+                                            <span class="price__value">{{ hall.price_from }}</span>
+                                            <span class="price__unit">{% translate "сом" %}</span>
+                                        </span>
+                                    {% endif %}
+                                    <a class="btn btn--ghost btn--sm" href="{{ hall.get_absolute_url }}">{% translate "Подробнее" %}</a>
+                                </div>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="empty">{% translate "Информация о залах скоро появится." %}</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="section section--muted">
+        <div class="container" style="max-width:820px;">
+            <header class="section__head">
+                <div>
+                    <span class="section__eyebrow">{% translate "Заявка" %}</span>
+                    <h2 class="section__title">{% translate "Организуем мероприятие под ключ" %}</h2>
+                </div>
+            </header>
+
+            <form class="form-card" method="post" action="{% url 'contacts:event_request' %}" data-ajax-form>
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="field">
+                        <label for="{{ form.name.id_for_label }}">{{ form.name.label }}*</label>
+                        {{ form.name }}{{ form.name.errors }}
+                    </div>
+                    <div class="field">
+                        <label for="{{ form.company.id_for_label }}">{{ form.company.label }}</label>
+                        {{ form.company }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="field">
+                        <label for="{{ form.phone.id_for_label }}">{{ form.phone.label }}*</label>
+                        {{ form.phone }}{{ form.phone.errors }}
+                    </div>
+                    <div class="field">
+                        <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                        {{ form.email }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="field">
+                        <label for="{{ form.event_type.id_for_label }}">{{ form.event_type.label }}</label>
+                        {{ form.event_type }}
+                    </div>
+                    <div class="field">
+                        <label for="{{ form.hall.id_for_label }}">{{ form.hall.label }}</label>
+                        {{ form.hall }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="field">
+                        <label for="{{ form.event_date.id_for_label }}">{{ form.event_date.label }}</label>
+                        {{ form.event_date }}
+                    </div>
+                    <div class="field">
+                        <label for="{{ form.guests_count.id_for_label }}">{{ form.guests_count.label }}</label>
+                        {{ form.guests_count }}
+                    </div>
+                </div>
+                <label class="addon" style="margin-bottom:16px;">
+                    {{ form.need_accommodation }}
+                    <span>{{ form.need_accommodation.label }}</span>
+                </label>
+                <div class="field">
+                    <label for="{{ form.comment.id_for_label }}">{{ form.comment.label }}</label>
+                    {{ form.comment }}
+                </div>
+                {{ form.website }}
+                <button class="btn btn--primary btn--block" type="submit">{% translate "Отправить заявку" %}</button>
+                <span class="form__note" data-form-note></span>
+            </form>
+        </div>
+    </section>
+{% endblock %}

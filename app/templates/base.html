@@ -1,0 +1,63 @@
+{% load i18n static baitur %}<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}{{ meta.title|default:site.site_name }}{% endblock %}</title>
+    <meta name="description" content="{% block description %}{{ meta.description|default:site.seo_description }}{% endblock %}">
+    {% if meta.keywords %}<meta name="keywords" content="{{ meta.keywords }}">{% endif %}
+    <meta name="robots" content="{{ meta.robots|default:'index, follow' }}">
+    {% if meta.canonical %}<link rel="canonical" href="{{ meta.canonical }}">{% endif %}
+
+    {# Языковые версии для поисковиков (п. 9 ТЗ) #}
+    {% get_available_languages as LANGUAGES %}
+    {% for code, name in LANGUAGES %}
+        {% switch_lang_url code as lang_path %}
+        <link rel="alternate" hreflang="{{ code }}" href="{{ site_url }}{{ lang_path }}">
+    {% endfor %}
+
+    {# Open Graph #}
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{ site.site_name }}">
+    <meta property="og:title" content="{{ meta.title|default:site.site_name }}">
+    <meta property="og:description" content="{{ meta.description|default:site.seo_description }}">
+    <meta property="og:url" content="{{ meta.canonical }}">
+    {% if meta.image %}<meta property="og:image" content="{{ meta.image }}">{% endif %}
+    <meta name="twitter:card" content="summary_large_image">
+
+    {% if site.google_site_verification %}
+        <meta name="google-site-verification" content="{{ site.google_site_verification }}">
+    {% endif %}
+
+    {% if site.favicon %}<link rel="icon" href="{{ site.favicon.url }}">{% endif %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    {% block extra_css %}{% endblock %}
+
+    {% include 'seo/schema.html' %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+
+{% include 'include/header.html' %}
+
+<main class="main">
+    {% include 'include/messages.html' %}
+    {% block content %}{% endblock %}
+</main>
+
+{% include 'include/footer.html' %}
+
+<script src="{% static 'js/main.js' %}" defer></script>
+{% block extra_js %}{% endblock %}
+
+{% if site.google_analytics_id %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics_id }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '{{ site.google_analytics_id }}');
+    </script>
+{% endif %}
+</body>
+</html>

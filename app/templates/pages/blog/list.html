@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    {% translate "Новости и статьи" as head_title %}
+    {% include 'include/page_head.html' %}
+
+    <section class="section">
+        <div class="container">
+            {% if posts %}
+                <div class="grid grid--3">
+                    {% for post in posts %}
+                        <article class="card">
+                            <a class="card__media" href="{{ post.get_absolute_url }}">
+                                {% if post.cover %}
+                                    <img src="{{ post.cover.url }}" alt="{{ post.title }}" loading="lazy" width="600" height="400">
+                                {% endif %}
+                            </a>
+                            <div class="card__body">
+                                <time class="card__meta" datetime="{{ post.published_at|date:'c' }}">{{ post.published_at|date:'d.m.Y' }}</time>
+                                <h3 class="card__title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+                                <p class="card__text">{{ post.excerpt|truncatewords:22 }}</p>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
+                {% include 'include/pagination.html' %}
+            {% else %}
+                <p class="empty">{% translate "Публикаций пока нет." %}</p>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

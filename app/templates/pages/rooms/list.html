@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load i18n baitur %}
+
+{% block content %}
+    {% translate "Номера и жильё" as head_title %}
+    {% translate "Стандарты, полулюксы, люксы, коттеджи и виллы — выберите размещение по вкусу и бюджету." as head_text %}
+    {% include 'include/page_head.html' %}
+
+    <section class="section">
+        <div class="container">
+            <div class="section--tight">
+                {% include 'include/booking_widget.html' with widget_class='booking-widget--inline' %}
+            </div>
+
+            <div class="filters">
+                <a href="{% url 'rooms:list' %}" class="{% if not active_kind %}is-active{% endif %}">{% translate "Все" %}</a>
+                {% for value, label in kinds %}
+                    <a href="?kind={{ value }}" class="{% if active_kind == value %}is-active{% endif %}">{{ label }}</a>
+                {% endfor %}
+            </div>
+
+            {% if rooms %}
+                <div class="grid grid--3">
+                    {% for room in rooms %}
+                        {% include 'include/room_card.html' %}
+                    {% endfor %}
+                </div>
+                {% include 'include/pagination.html' %}
+            {% else %}
+                <p class="empty">{% translate "В этой категории пока нет номеров." %}</p>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

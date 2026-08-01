@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    {% url 'services:list' as services_url %}
+    {% with head_title=category.name head_text=category.description head_image=category.cover parent_title=_("Услуги") parent_url=services_url %}
+        {% include 'include/page_head.html' %}
+    {% endwith %}
+
+    <section class="section">
+        <div class="container">
+            {% if services %}
+                <div class="grid grid--3">
+                    {% for service in services %}
+                        <article class="card">
+                            <a class="card__media" href="{{ service.get_absolute_url }}">
+                                {% if service.cover %}
+                                    <img src="{{ service.cover.url }}" alt="{{ service.name }}"
+                                         loading="lazy" width="600" height="400">
+                                {% endif %}
+                            </a>
+                            <div class="card__body">
+                                <h3 class="card__title"><a href="{{ service.get_absolute_url }}">{{ service.name }}</a></h3>
+                                <p class="card__text">{{ service.short_description }}</p>
+                                <div class="card__footer">
+                                    {% if service.price %}
+                                        <span class="price">
+                                            <span class="price__value">{{ service.price }}</span>
+                                            <span class="price__unit">{% translate "сом" %}</span>
+                                        </span>
+                                    {% endif %}
+                                    <a class="btn btn--ghost btn--sm" href="{{ service.get_absolute_url }}">{% translate "Подробнее" %}</a>
+                                </div>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="empty">{% translate "Услуги этой категории скоро появятся." %}</p>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la ~/Downloads | grep -i -E \"тз|baitur|байтур|резорт|resort|\\\\.docx\")",
+      "Read(//Users/nurbo/Downloads/**)"
+    ]
+  }
+}

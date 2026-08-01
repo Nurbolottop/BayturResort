@@ -1,0 +1,78 @@
+{% load i18n %}
+<footer class="footer">
+    <div class="container footer__inner">
+        <div class="footer__col">
+            <a class="logo logo--footer" href="{% url 'base:home' %}">
+                {% if site.logo_light %}
+                    <img src="{{ site.logo_light.url }}" alt="{{ site.site_name }}" width="160" height="48">
+                {% else %}
+                    <span class="logo__text">{{ site.site_name }}</span>
+                {% endif %}
+            </a>
+            {% if site.tagline %}<p class="footer__tagline">{{ site.tagline }}</p>{% endif %}
+
+            <div class="socials">
+                {% if site.instagram %}<a href="{{ site.instagram }}" target="_blank" rel="noopener">Instagram</a>{% endif %}
+                {% if site.facebook %}<a href="{{ site.facebook }}" target="_blank" rel="noopener">Facebook</a>{% endif %}
+                {% if site.youtube %}<a href="{{ site.youtube }}" target="_blank" rel="noopener">YouTube</a>{% endif %}
+                {% if site.tiktok %}<a href="{{ site.tiktok }}" target="_blank" rel="noopener">TikTok</a>{% endif %}
+            </div>
+        </div>
+
+        <div class="footer__col">
+            <h4 class="footer__title">{% translate "Разделы" %}</h4>
+            <a class="footer__link" href="{% url 'base:about' %}">{% translate "О курорте" %}</a>
+            <a class="footer__link" href="{% url 'rooms:list' %}">{% translate "Номера и жильё" %}</a>
+            <a class="footer__link" href="{% url 'services:list' %}">{% translate "Услуги" %}</a>
+            <a class="footer__link" href="{% url 'services:halls' %}">{% translate "Конференц-залы" %}</a>
+            <a class="footer__link" href="{% url 'offers:list' %}">{% translate "Спецпредложения" %}</a>
+            <a class="footer__link" href="{% url 'gallery:index' %}">{% translate "Галерея и 3D-тур" %}</a>
+            <a class="footer__link" href="{% url 'blog:list' %}">{% translate "Блог" %}</a>
+        </div>
+
+        <div class="footer__col">
+            <h4 class="footer__title">{% translate "Контакты" %}</h4>
+            {% if site.phone %}<a class="footer__link" href="tel:{{ site.phone }}">{{ site.phone }}</a>{% endif %}
+            {% if site.phone_extra %}<a class="footer__link" href="tel:{{ site.phone_extra }}">{{ site.phone_extra }}</a>{% endif %}
+            {% if site.email %}<a class="footer__link" href="mailto:{{ site.email }}">{{ site.email }}</a>{% endif %}
+            {% if site.address %}<p class="footer__text">{{ site.address }}</p>{% endif %}
+            {% if site.working_hours %}<p class="footer__text">{{ site.working_hours }}</p>{% endif %}
+            {% if site.whatsapp %}
+                <a class="btn btn--ghost btn--sm" href="https://wa.me/{{ site.whatsapp|cut:'+'|cut:' '|cut:'-' }}"
+                   target="_blank" rel="noopener">WhatsApp</a>
+            {% endif %}
+        </div>
+
+        <div class="footer__col">
+            <h4 class="footer__title">{% translate "Спецпредложения на почту" %}</h4>
+            <p class="footer__text">{% translate "Подпишитесь — присылаем акции и сезонные тарифы." %}</p>
+            <form class="subscribe" action="{% url 'contacts:subscribe' %}" method="post" data-ajax-form>
+                {% csrf_token %}
+                <input type="email" name="email" class="field__input" placeholder="email@example.com" required>
+                <input type="text" name="website" class="honeypot" tabindex="-1" autocomplete="off">
+                <button class="btn btn--primary btn--sm" type="submit">{% translate "Подписаться" %}</button>
+                <span class="form__note" data-form-note></span>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer__bottom">
+        <div class="container footer__bottom-inner">
+            <span>© {% now "Y" %} {{ site.legal_name|default:site.site_name }}</span>
+            <div class="footer__legal">
+                {% for page in footer_pages %}
+                    <a href="{{ page.get_absolute_url }}">{{ page.title }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</footer>
+
+{% if site.whatsapp %}
+    <a class="float-whatsapp" href="https://wa.me/{{ site.whatsapp|cut:'+'|cut:' '|cut:'-' }}"
+       target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true">
+            <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.5 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.5-1.2-2.9s.7-2 1-2.3c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.3.5-.3.3c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1c.2-.2.3-.2.6-.1l2 .9c.3.1.4.2.5.3.1.2.1.7-.1 1.4Z"/>
+        </svg>
+    </a>
+{% endif %}

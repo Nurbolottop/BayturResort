@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load i18n baitur %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="status-card status-card--ok">
+            <div class="status-card__icon">✓</div>
+            <h1>{% translate "Спасибо! Оплата принята" %}</h1>
+            <p>
+                {% blocktranslate with email=booking.guest_email %}
+                    Подтверждение брони отправлено на {{ email }}. Если письма нет — проверьте папку «Спам».
+                {% endblocktranslate %}
+            </p>
+
+            <dl>
+                <dt>{% translate "Номер брони" %}</dt><dd>{{ booking.number }}</dd>
+                <dt>{% translate "Категория" %}</dt><dd>{{ booking.room_category_name }}</dd>
+                <dt>{% translate "Даты" %}</dt>
+                <dd>{{ booking.check_in|date:'d.m.Y' }} — {{ booking.check_out|date:'d.m.Y' }}</dd>
+                <dt>{% translate "Оплачено" %}</dt><dd>{{ booking.paid_amount|money }} {{ booking.currency }}</dd>
+                {% if booking.amount_due %}
+                    <dt>{% translate "При заселении" %}</dt><dd>{{ booking.amount_due|money }} {{ booking.currency }}</dd>
+                {% endif %}
+            </dl>
+
+            <a class="btn btn--primary" href="{% url 'base:home' %}">{% translate "На главную" %}</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

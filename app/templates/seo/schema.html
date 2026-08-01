@@ -1,0 +1,30 @@
+{% load i18n %}{% spaceless %}
+{# Микроразметка Schema.org — тип LodgingBusiness/Resort (п. 9 ТЗ) #}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Resort",
+  "name": "{{ site.site_name|escapejs }}",
+  "url": "{{ site_url }}",
+  {% if site.logo %}"logo": "{{ site_url }}{{ site.logo.url }}",{% endif %}
+  {% if meta.image %}"image": "{{ meta.image }}",{% endif %}
+  "description": "{{ meta.description|default:site.seo_description|escapejs }}",
+  {% if site.phone %}"telephone": "{{ site.phone|escapejs }}",{% endif %}
+  {% if site.email %}"email": "{{ site.email|escapejs }}",{% endif %}
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{ site.address|escapejs }}",
+    "addressRegion": "Issyk-Kul",
+    "addressCountry": "KG"
+  },
+  "checkinTime": "{{ site.check_in_time }}",
+  "checkoutTime": "{{ site.check_out_time }}",
+  "priceRange": "$$",
+  "sameAs": [
+    {% if site.instagram %}"{{ site.instagram }}"{% if site.facebook or site.youtube %},{% endif %}{% endif %}
+    {% if site.facebook %}"{{ site.facebook }}"{% if site.youtube %},{% endif %}{% endif %}
+    {% if site.youtube %}"{{ site.youtube }}"{% endif %}
+  ]
+}
+</script>
+{% endspaceless %}

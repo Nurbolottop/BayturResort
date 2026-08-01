@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    {% translate "Услуги курорта" as head_title %}
+    {% translate "SPA, бассейны, рестораны, спорткомплекс, детская зона и развлечения." as head_text %}
+    {% include 'include/page_head.html' %}
+
+    {% for category in categories %}
+        <section class="section {% if forloop.counter|divisibleby:2 %}section--muted{% endif %}">
+            <div class="container">
+                <header class="section__head">
+                    <div>
+                        <span class="section__eyebrow">{% translate "Услуги" %}</span>
+                        <h2 class="section__title">{{ category.name }}</h2>
+                        {% if category.description %}<p class="section__lead">{{ category.description }}</p>{% endif %}
+                    </div>
+                    <a class="link-more" href="{{ category.get_absolute_url }}">{% translate "Подробнее" %} →</a>
+                </header>
+
+                <div class="grid grid--3">
+                    {% for service in category.services.all|slice:':3' %}
+                        {% if service.is_active %}
+                            <article class="card">
+                                <a class="card__media" href="{{ service.get_absolute_url }}">
+                                    {% if service.cover %}
+                                        <img src="{{ service.cover.url }}" alt="{{ service.name }}"
+                                             loading="lazy" width="600" height="400">
+                                    {% endif %}
+                                </a>
+                                <div class="card__body">
+                                    <h3 class="card__title"><a href="{{ service.get_absolute_url }}">{{ service.name }}</a></h3>
+                                    <p class="card__text">{{ service.short_description }}</p>
+                                    <div class="card__footer">
+                                        {% if service.price %}
+                                            <span class="price">
+                                                <span class="price__value">{{ service.price }}</span>
+                                                <span class="price__unit">{% translate "сом" %} {{ service.price_note }}</span>
+                                            </span>
+                                        {% endif %}
+                                        <a class="btn btn--ghost btn--sm" href="{{ service.get_absolute_url }}">{% translate "Подробнее" %}</a>
+                                    </div>
+                                </div>
+                            </article>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% empty %}
+        <p class="empty">{% translate "Раздел наполняется." %}</p>
+    {% endfor %}
+{% endblock %}

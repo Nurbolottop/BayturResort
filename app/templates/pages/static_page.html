@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    {% with head_title=page.title head_image=page.cover %}
+        {% include 'include/page_head.html' %}
+    {% endwith %}
+
+    <section class="section">
+        <div class="container" style="max-width:840px;">
+            <div class="prose">{{ page.content|safe }}</div>
+        </div>
+    </section>
+{% endblock %}

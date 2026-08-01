@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load i18n baitur %}
+
+{% block content %}
+    {% translate "Спецпредложения" as head_title %}
+    {% translate "Пакеты, сезонные тарифы и акции курорта." as head_text %}
+    {% include 'include/page_head.html' %}
+
+    <section class="section">
+        <div class="container">
+            {% if offers %}
+                <div class="grid grid--3">
+                    {% for offer in offers %}
+                        <article class="card">
+                            <a class="card__media" href="{{ offer.get_absolute_url }}">
+                                {% if offer.cover %}
+                                    <img src="{{ offer.cover.url }}" alt="{{ offer.title }}" loading="lazy" width="600" height="400">
+                                {% endif %}
+                                {% if offer.discount_percent %}
+                                    <span class="card__badge card__badge--accent">−{{ offer.discount_percent }}%</span>
+                                {% endif %}
+                            </a>
+                            <div class="card__body">
+                                <h3 class="card__title"><a href="{{ offer.get_absolute_url }}">{{ offer.title }}</a></h3>
+                                {% if offer.subtitle %}<p class="card__text">{{ offer.subtitle }}</p>{% endif %}
+                                {% if offer.valid_to %}
+                                    <p class="card__meta">{% translate "Действует до" %} {{ offer.valid_to|date:'d.m.Y' }}</p>
+                                {% endif %}
+                                <div class="card__footer">
+                                    {% if offer.price %}
+                                        <span class="price">
+                                            {% if offer.old_price %}<s class="price__old">{{ offer.old_price|money }}</s>{% endif %}
+                                            <span class="price__value">{{ offer.price|money }}</span>
+                                            <span class="price__unit">{% translate "сом" %}</span>
+                                        </span>
+                                    {% endif %}
+                                    <a class="btn btn--ghost btn--sm" href="{{ offer.get_absolute_url }}">{% translate "Подробнее" %}</a>
+                                </div>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
+                {% include 'include/pagination.html' %}
+            {% else %}
+                <p class="empty">{% translate "Сейчас активных акций нет — загляните позже." %}</p>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

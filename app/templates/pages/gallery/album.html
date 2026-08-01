@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    {% url 'gallery:index' as gallery_url %}
+    {% with head_title=album.title head_text=album.description head_image=album.cover parent_title=_("Галерея") parent_url=gallery_url %}
+        {% include 'include/page_head.html' %}
+    {% endwith %}
+
+    <section class="section">
+        <div class="container">
+            {% if album.images.all %}
+                <div class="gallery-grid">
+                    {% for image in album.images.all %}
+                        {% if image.is_active %}
+                            <a href="{{ image.image.url }}" target="_blank" rel="noopener">
+                                <img src="{{ image.image.url }}" alt="{{ image.alt|default:album.title }}"
+                                     loading="lazy" width="600" height="600">
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="empty">{% translate "В альбоме пока нет фотографий." %}</p>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'emails/base_email.html' %}
+{% load i18n baitur %}
+
+{% block content %}
+    <h1 style="font-size:20px;margin:0 0 12px;">{% translate "Новая бронь с сайта" %}: {{ booking.number }}</h1>
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:14px;">
+        <tr><td style="padding:6px 0;color:#566360;">{% translate "Статус" %}</td>
+            <td style="padding:6px 0;text-align:right;"><strong>{{ booking.get_status_display }}</strong></td></tr>
+        <tr><td style="padding:6px 0;color:#566360;">{% translate "Категория" %}</td>
+            <td style="padding:6px 0;text-align:right;">{{ booking.room_category_name }} × {{ booking.rooms_count }}</td></tr>
+        <tr><td style="padding:6px 0;color:#566360;">{% translate "Даты" %}</td>
+            <td style="padding:6px 0;text-align:right;">{{ booking.check_in|date:'d.m.Y' }} — {{ booking.check_out|date:'d.m.Y' }} ({{ booking.nights }})</td></tr>
+        <tr><td style="padding:6px 0;color:#566360;">{% translate "Гость" %}</td>
+            <td style="padding:6px 0;text-align:right;">{{ booking.guest_full_name }}</td></tr>
+        <tr><td style="padding:6px 0;color:#566360;">{% translate "Телефон" %}</td>
+            <td style="padding:6px 0;text-align:right;">{{ booking.guest_phone }}</td></tr>
+        <tr><td style="padding:6px 0;color:#566360;">E-mail</td>
+            <td style="padding:6px 0;text-align:right;">{{ booking.guest_email }}</td></tr>
+        <tr><td style="padding:6px 0;color:#566360;">{% translate "Итого / оплачено" %}</td>
+            <td style="padding:6px 0;text-align:right;">{{ booking.total_amount|money }} / {{ booking.paid_amount|money }} {{ booking.currency }}</td></tr>
+        <tr><td style="padding:6px 0;color:#566360;">Shelter</td>
+            <td style="padding:6px 0;text-align:right;">
+                {% if booking.shelter_reservation_id %}{{ booking.shelter_reservation_id }}
+                {% else %}<span style="color:#b3261e;">{% translate "не записана" %}</span>{% endif %}
+            </td></tr>
+    </table>
+
+    {% if booking.comment %}
+        <p style="margin-top:18px;"><strong>{% translate "Пожелания гостя" %}:</strong><br>{{ booking.comment|linebreaksbr }}</p>
+    {% endif %}
+
+    <p style="margin:22px 0 0;">
+        <a href="{{ site_url }}/admin/booking/booking/{{ booking.pk }}/change/"
+           style="display:inline-block;background:#0d4f5c;color:#ffffff;padding:12px 24px;border-radius:999px;text-decoration:none;">
+            {% translate "Открыть в админке" %}
+        </a>
+    </p>
+{% endblock %}

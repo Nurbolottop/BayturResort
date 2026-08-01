@@ -1,0 +1,47 @@
+{% extends 'emails/base_email.html' %}
+{% load i18n baitur %}
+
+{% block content %}
+    <h1 style="font-size:22px;margin:0 0 12px;">
+        {% blocktranslate with name=booking.guest_first_name %}{{ name }}, спасибо за бронирование!{% endblocktranslate %}
+    </h1>
+    <p style="margin:0 0 20px;color:#566360;">
+        {% blocktranslate with number=booking.number %}
+            Ваша бронь № {{ number }} принята. Ниже — детали. Сохраните это письмо.
+        {% endblocktranslate %}
+    </p>
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:14px;border-collapse:collapse;">
+        <tr><td style="padding:8px 0;color:#566360;">{% translate "Номер брони" %}</td>
+            <td style="padding:8px 0;text-align:right;"><strong>{{ booking.number }}</strong></td></tr>
+        <tr><td style="padding:8px 0;color:#566360;">{% translate "Категория" %}</td>
+            <td style="padding:8px 0;text-align:right;">{{ booking.room_category_name }} × {{ booking.rooms_count }}</td></tr>
+        <tr><td style="padding:8px 0;color:#566360;">{% translate "Заезд" %}</td>
+            <td style="padding:8px 0;text-align:right;">{{ booking.check_in|date:'d.m.Y' }}, {% translate "с" %} {{ site.check_in_time }}</td></tr>
+        <tr><td style="padding:8px 0;color:#566360;">{% translate "Выезд" %}</td>
+            <td style="padding:8px 0;text-align:right;">{{ booking.check_out|date:'d.m.Y' }}, {% translate "до" %} {{ site.check_out_time }}</td></tr>
+        <tr><td style="padding:8px 0;color:#566360;">{% translate "Ночей" %}</td>
+            <td style="padding:8px 0;text-align:right;">{{ booking.nights }}</td></tr>
+        <tr><td style="padding:8px 0;color:#566360;">{% translate "Гостей" %}</td>
+            <td style="padding:8px 0;text-align:right;">{{ booking.adults }} + {{ booking.children }}</td></tr>
+        <tr><td style="padding:12px 0;border-top:1px solid #e3e1dc;color:#566360;">{% translate "Итого" %}</td>
+            <td style="padding:12px 0;border-top:1px solid #e3e1dc;text-align:right;"><strong>{{ booking.total_amount|money }} {{ booking.currency }}</strong></td></tr>
+        <tr><td style="padding:8px 0;color:#566360;">{% translate "Оплачено онлайн" %}</td>
+            <td style="padding:8px 0;text-align:right;">{{ booking.paid_amount|money }} {{ booking.currency }}</td></tr>
+        {% if booking.amount_due %}
+            <tr><td style="padding:8px 0;color:#566360;">{% translate "К оплате при заселении" %}</td>
+                <td style="padding:8px 0;text-align:right;">{{ booking.amount_due|money }} {{ booking.currency }}</td></tr>
+        {% endif %}
+    </table>
+
+    <p style="margin:24px 0 0;">
+        <a href="{{ site_url }}/booking/{{ booking.number }}/"
+           style="display:inline-block;background:#0d4f5c;color:#ffffff;padding:13px 26px;border-radius:999px;text-decoration:none;">
+            {% translate "Посмотреть бронь" %}
+        </a>
+    </p>
+
+    {% if site.booking_rules %}
+        <div style="margin-top:24px;font-size:13px;color:#566360;">{{ site.booking_rules|safe }}</div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+{% load i18n baitur %}
+
+{% block content %}
+    {% translate "Оформление брони" as head_title %}
+    {% include 'include/page_head.html' %}
+
+    <section class="section">
+        <div class="container checkout">
+
+            <div class="checkout__main">
+                {% if error %}<div class="alert">{{ error }}</div>{% endif %}
+                {% if quote.promo_error %}<div class="alert">{{ quote.promo_error }}</div>{% endif %}
+
+                {# --- Пересчёт: доп. услуги и промокод. GET, бронь не создаётся --- #}
+                <form class="form-card" method="get" data-autosubmit>
+                    <input type="hidden" name="check_in" value="{{ quote.check_in|date:'Y-m-d' }}">
+                    <input type="hidden" name="check_out" value="{{ quote.check_out|date:'Y-m-d' }}">
+                    <input type="hidden" name="adults" value="{{ quote.adults }}">
+                    <input type="hidden" name="children" value="{{ quote.children }}">
+                    <input type="hidden" name="rooms_count" value="{{ quote.rooms_count }}">
+
+                    <h2>{% translate "Дополнительно к проживанию" %}</h2>
+                    {% if addons %}
+                        <div class="addons">
+                            {% for addon in addons %}
+                                <label class="addon">
+                                    <input type="checkbox" name="addons" value="{{ addon.pk }}"
+                                           {% for item in quote.addon_items %}{% if item.addon.pk == addon.pk %}checked{% endif %}{% endfor %}>
+                                    <span>
+                                        <span class="addon__name">{{ addon.name }}</span>
+                                        {% if addon.description %}<br><small>{{ addon.description }}</small>{% endif %}
+                                    </span>
+                                    <span class="addon__price">
+                                        {{ addon.price|money }} {% translate "сом" %}
+                                        <small>/ {{ addon.get_price_type_display|lower }}</small>
+                                    </span>
+                                </label>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="card__text">{% translate "Дополнительные услуги можно заказать на ресепшене." %}</p>
+                    {% endif %}
+
+                    <div class="field">
+                        <label for="id_promo">{% translate "Промокод" %}</label>
+                        <div class="form-row">
+                            <input type="text" id="id_promo" name="promo_code" class="field__input"
+                                   value="{{ quote.promo_code.code|default:'' }}"
+                                   placeholder="{% translate 'Введите промокод' %}">
+                            <button class="btn btn--ghost" type="submit">{% translate "Применить" %}</button>
+                        </div>
+                    </div>
+                </form>
+
+                {# --------------------- Данные гостя и переход к оплате --------------------- #}
+                <form class="form-card" method="post" style="margin-top:28px;">
+                    {% csrf_token %}
+                    <input type="hidden" name="check_in" value="{{ quote.check_in|date:'Y-m-d' }}">
+                    <input type="hidden" name="check_out" value="{{ quote.check_out|date:'Y-m-d' }}">
+                    <input type="hidden" name="adults" value="{{ quote.adults }}">
+                    <input type="hidden" name="children" value="{{ quote.children }}">
+                    <input type="hidden" name="rooms_count" value="{{ quote.rooms_count }}">
+                    {% if quote.promo_code %}
+                        <input type="hidden" name="promo_code" value="{{ quote.promo_code.code }}">
+                    {% endif %}
+                    {% for item in quote.addon_items %}
+                        <input type="hidden" name="addons" value="{{ item.addon.pk }}">
+                    {% endfor %}
+
+                    <h2>{% translate "Данные гостя" %}</h2>
+
+                    {% if form.non_field_errors %}
+                        <div class="alert">{{ form.non_field_errors }}</div>
+                    {% endif %}
+
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="{{ form.guest_first_name.id_for_label }}">{{ form.guest_first_name.label }}*</label>
+                            {{ form.guest_first_name }}{{ form.guest_first_name.errors }}
+                        </div>
+                        <div class="field">
+                            <label for="{{ form.guest_last_name.id_for_label }}">{{ form.guest_last_name.label }}</label>
+                            {{ form.guest_last_name }}{{ form.guest_last_name.errors }}
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="{{ form.guest_phone.id_for_label }}">{{ form.guest_phone.label }}*</label>
+                            {{ form.guest_phone }}{{ form.guest_phone.errors }}
+                        </div>
+                        <div class="field">
+                            <label for="{{ form.guest_email.id_for_label }}">{{ form.guest_email.label }}*</label>
+                            {{ form.guest_email }}{{ form.guest_email.errors }}
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="{{ form.guest_country.id_for_label }}">{{ form.guest_country.label }}</label>
+                            {{ form.guest_country }}
+                        </div>
+                        {% if quote.children %}
+                            <div class="field">
+                                <label for="{{ form.children_ages.id_for_label }}">{{ form.children_ages.label }}</label>
+                                {{ form.children_ages }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="field">
+                        <label for="{{ form.comment.id_for_label }}">{{ form.comment.label }}</label>
+                        {{ form.comment }}
+                    </div>
+
+                    {{ form.website }}
+
+                    <label class="addon" style="margin-bottom:18px;">
+                        {{ form.agree }}
+                        <span>{{ form.agree.label }}</span>
+                    </label>
+                    {{ form.agree.errors }}
+
+                    <button class="btn btn--primary btn--lg btn--block" type="submit">
+                        {% translate "Перейти к оплате" %}
+                    </button>
+                    <p class="summary__note">
+                        {% translate "Оплата проходит на защищённой странице FreedomPay. Данные карты на сайте не сохраняются." %}
+                    </p>
+                </form>
+            </div>
+
+            {# ------------------------------ Итог ------------------------------ #}
+            <aside class="summary">
+                <h3>{{ category.name }}</h3>
+                <div class="summary__row">
+                    <span>{% translate "Заезд" %}</span>
+                    <strong>{{ quote.check_in|date:'d.m.Y' }}, {{ site.check_in_time }}</strong>
+                </div>
+                <div class="summary__row">
+                    <span>{% translate "Выезд" %}</span>
+                    <strong>{{ quote.check_out|date:'d.m.Y' }}, {{ site.check_out_time }}</strong>
+                </div>
+                <div class="summary__row">
+                    <span>{% translate "Гостей" %}</span>
+                    <strong>{{ quote.adults }} + {{ quote.children }}</strong>
+                </div>
+                <div class="summary__row">
+                    <span>{{ quote.nights }} {{ quote.nights|nights_label }} × {{ quote.rooms_count }}</span>
+                    <strong>{{ quote.room_total|money }} {% translate "сом" %}</strong>
+                </div>
+
+                {% for item in quote.addon_items %}
+                    <div class="summary__row">
+                        <span>{{ item.addon.name }}</span>
+                        <strong>{{ item.total|money }} {% translate "сом" %}</strong>
+                    </div>
+                {% endfor %}
+
+                {% if quote.discount_amount %}
+                    <div class="summary__row summary__row--discount">
+                        <span>{% translate "Скидка" %} {{ quote.promo_code.code }}</span>
+                        <strong>−{{ quote.discount_amount|money }} {% translate "сом" %}</strong>
+                    </div>
+                {% endif %}
+
+                <div class="summary__row summary__row--total">
+                    <span>{% translate "Итого" %}</span>
+                    <span>{{ quote.total_amount|money }} {% translate "сом" %}</span>
+                </div>
+
+                {% if quote.prepay_amount < quote.total_amount %}
+                    <p class="summary__note">
+                        {% blocktranslate with amount=quote.prepay_amount|money %}
+                            Сейчас к оплате: {{ amount }} сом, остальное — при заселении.
+                        {% endblocktranslate %}
+                    </p>
+                {% endif %}
+            </aside>
+        </div>
+    </section>
+{% endblock %}

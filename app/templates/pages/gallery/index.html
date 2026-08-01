@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    {% translate "Галерея и 3D-тур" as head_title %}
+    {% translate "Фото, видео и виртуальная прогулка по курорту." as head_text %}
+    {% include 'include/page_head.html' %}
+
+    {% if tours %}
+        <section class="section">
+            <div class="container">
+                <header class="section__head">
+                    <h2 class="section__title">{% translate "Виртуальный 3D-тур" %}</h2>
+                </header>
+                {% for tour in tours %}
+                    <div class="embed" style="margin-bottom:24px;">
+                        <iframe src="{{ tour.embed_url }}" loading="lazy" allowfullscreen title="{{ tour.title }}"></iframe>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    {% endif %}
+
+    <section class="section {% if tours %}section--muted{% endif %}">
+        <div class="container">
+            <header class="section__head">
+                <h2 class="section__title">{% translate "Фотоальбомы" %}</h2>
+            </header>
+            {% if albums %}
+                <div class="grid grid--3">
+                    {% for album in albums %}
+                        <a class="tile" href="{{ album.get_absolute_url }}">
+                            {% if album.cover %}
+                                <img class="tile__img" src="{{ album.cover.url }}" alt="{{ album.title }}"
+                                     loading="lazy" width="600" height="400">
+                            {% endif %}
+                            <span class="tile__overlay"></span>
+                            <span class="tile__title">{{ album.title }}</span>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="empty">{% translate "Фотографии скоро появятся." %}</p>
+            {% endif %}
+        </div>
+    </section>
+
+    {% if videos %}
+        <section class="section">
+            <div class="container">
+                <header class="section__head">
+                    <h2 class="section__title">{% translate "Видео" %}</h2>
+                </header>
+                <div class="grid grid--2">
+                    {% for video in videos %}
+                        <div class="embed">
+                            <iframe src="{{ video.url }}" loading="lazy" allowfullscreen title="{{ video.title }}"></iframe>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% translate "Страница не найдена" %} — {{ site.site_name }}{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="status-card">
+            <div class="status-card__icon">404</div>
+            <h1>{% translate "Страница не найдена" %}</h1>
+            <p>{% translate "Возможно, страница была удалена или адрес указан неверно." %}</p>
+            <a class="btn btn--primary" href="{% url 'base:home' %}">{% translate "На главную" %}</a>
+            <a class="btn btn--ghost" href="{% url 'rooms:list' %}">{% translate "Посмотреть номера" %}</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

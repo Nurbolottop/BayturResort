@@ -1,0 +1,258 @@
+{% extends 'base.html' %}
+{% load i18n baitur %}
+
+{% block body_class %}page-home{% endblock %}
+
+{% block content %}
+
+{# ============================ ПЕРВЫЙ ЭКРАН ============================ #}
+<section class="hero" data-slider>
+    <div class="hero__slides">
+        {% for slide in slides %}
+            <div class="hero__slide {% if forloop.first %}is-active{% endif %}" data-slide>
+                {% if slide.image %}
+                    <img class="hero__img" src="{{ slide.image.url }}" alt="{{ slide.title }}"
+                         {% if not forloop.first %}loading="lazy"{% endif %} width="1920" height="1080">
+                {% endif %}
+                <div class="hero__overlay"></div>
+                <div class="container hero__content">
+                    <span class="hero__eyebrow">{% translate "Иссык-Куль · с. Бостери" %}</span>
+                    <h1 class="hero__title">{{ slide.title }}</h1>
+                    {% if slide.subtitle %}<p class="hero__subtitle">{{ slide.subtitle }}</p>{% endif %}
+                    {% if slide.button_text and slide.button_url %}
+                        <a class="btn btn--primary btn--lg" href="{{ slide.button_url }}">{{ slide.button_text }}</a>
+                    {% endif %}
+                </div>
+            </div>
+        {% empty %}
+            <div class="hero__slide is-active">
+                <div class="hero__overlay"></div>
+                <div class="container hero__content">
+                    <span class="hero__eyebrow">{% translate "Иссык-Куль · с. Бостери" %}</span>
+                    <h1 class="hero__title">{{ site.site_name }}</h1>
+                    {% translate "Курорт на берегу Иссык-Куля" as default_tagline %}
+                    <p class="hero__subtitle">{{ site.tagline|default:default_tagline }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% if slides|length > 1 %}
+        <div class="hero__dots" data-slider-dots>
+            {% for slide in slides %}
+                <button type="button" class="hero__dot {% if forloop.first %}is-active{% endif %}"
+                        data-slide-to="{{ forloop.counter0 }}" aria-label="{{ forloop.counter }}"></button>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="container hero__booking">
+        {% include 'include/booking_widget.html' %}
+    </div>
+</section>
+
+{# ============================ ПРЕИМУЩЕСТВА ============================ #}
+{% if advantages %}
+<section class="section">
+    <div class="container">
+        <div class="advantages">
+            {% for item in advantages %}
+                <div class="advantage">
+                    {% if item.icon %}<img class="advantage__icon" src="{{ item.icon.url }}" alt="" loading="lazy" width="48" height="48">{% endif %}
+                    <h3 class="advantage__title">{{ item.title }}</h3>
+                    {% if item.description %}<p class="advantage__text">{{ item.description }}</p>{% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{# ============================== НОМЕРА =============================== #}
+{% if rooms %}
+<section class="section section--muted">
+    <div class="container">
+        <header class="section__head">
+            <div>
+                <span class="section__eyebrow">{% translate "Размещение" %}</span>
+                <h2 class="section__title">{% translate "Номера и жильё" %}</h2>
+            </div>
+            <a class="link-more" href="{% url 'rooms:list' %}">{% translate "Все категории" %} →</a>
+        </header>
+        <div class="grid grid--3">
+            {% for room in rooms %}
+                {% include 'include/room_card.html' %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{# ============================== УСЛУГИ =============================== #}
+{% if service_categories %}
+<section class="section">
+    <div class="container">
+        <header class="section__head">
+            <div>
+                <span class="section__eyebrow">{% translate "Инфраструктура" %}</span>
+                <h2 class="section__title">{% translate "Услуги курорта" %}</h2>
+            </div>
+            <a class="link-more" href="{% url 'services:list' %}">{% translate "Все услуги" %} →</a>
+        </header>
+        <div class="grid grid--3">
+            {% for category in service_categories %}
+                <a class="tile" href="{{ category.get_absolute_url }}">
+                    {% if category.cover %}
+                        <img class="tile__img" src="{{ category.cover.url }}" alt="{{ category.name }}"
+                             loading="lazy" width="600" height="400">
+                    {% endif %}
+                    <span class="tile__overlay"></span>
+                    <span class="tile__title">{{ category.name }}</span>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{# ========================= СПЕЦПРЕДЛОЖЕНИЯ ========================== #}
+{% if offers %}
+<section class="section section--muted">
+    <div class="container">
+        <header class="section__head">
+            <div>
+                <span class="section__eyebrow">{% translate "Выгодно" %}</span>
+                <h2 class="section__title">{% translate "Спецпредложения" %}</h2>
+            </div>
+            <a class="link-more" href="{% url 'offers:list' %}">{% translate "Все акции" %} →</a>
+        </header>
+        <div class="grid grid--3">
+            {% for offer in offers %}
+                <article class="card">
+                    <a class="card__media" href="{{ offer.get_absolute_url }}">
+                        {% if offer.cover %}
+                            <img src="{{ offer.cover.url }}" alt="{{ offer.title }}" loading="lazy" width="600" height="400">
+                        {% endif %}
+                        {% if offer.discount_percent %}
+                            <span class="card__badge card__badge--accent">−{{ offer.discount_percent }}%</span>
+                        {% endif %}
+                    </a>
+                    <div class="card__body">
+                        <h3 class="card__title"><a href="{{ offer.get_absolute_url }}">{{ offer.title }}</a></h3>
+                        {% if offer.subtitle %}<p class="card__text">{{ offer.subtitle }}</p>{% endif %}
+                        <div class="card__footer">
+                            {% if offer.price %}
+                                <span class="price">
+                                    {% if offer.old_price %}<s class="price__old">{{ offer.old_price|money }}</s>{% endif %}
+                                    <span class="price__value">{{ offer.price|money }}</span>
+                                    <span class="price__unit">{% translate "сом" %}</span>
+                                </span>
+                            {% endif %}
+                            <a class="btn btn--ghost btn--sm" href="{{ offer.get_absolute_url }}">{% translate "Подробнее" %}</a>
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{# ============================= 3D-ТУР ================================ #}
+{% if virtual_tour %}
+<section class="section">
+    <div class="container">
+        <header class="section__head">
+            <div>
+                <span class="section__eyebrow">{% translate "Виртуальная прогулка" %}</span>
+                <h2 class="section__title">{{ virtual_tour.title }}</h2>
+            </div>
+            <a class="link-more" href="{% url 'gallery:index' %}">{% translate "Галерея" %} →</a>
+        </header>
+        <div class="embed">
+            <iframe src="{{ virtual_tour.embed_url }}" loading="lazy" allowfullscreen
+                    title="{{ virtual_tour.title }}"></iframe>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{# ============================== ОТЗЫВЫ =============================== #}
+{% if reviews %}
+<section class="section section--muted">
+    <div class="container">
+        <header class="section__head">
+            <div>
+                <span class="section__eyebrow">{% translate "Гости о нас" %}</span>
+                <h2 class="section__title">{% translate "Отзывы" %}</h2>
+            </div>
+            <a class="link-more" href="{% url 'blog:reviews' %}">{% translate "Все отзывы" %} →</a>
+        </header>
+        <div class="grid grid--3">
+            {% for review in reviews %}
+                <article class="review">
+                    <div class="review__rating" aria-label="{{ review.rating }}/5">
+                        {% for i in "12345"|make_list %}
+                            <span class="star {% if forloop.counter <= review.rating %}is-on{% endif %}">★</span>
+                        {% endfor %}
+                    </div>
+                    <p class="review__text">{{ review.text|truncatewords:40 }}</p>
+                    <div class="review__author">
+                        {% if review.avatar %}
+                            <img src="{{ review.avatar.url }}" alt="{{ review.author_name }}" loading="lazy" width="44" height="44">
+                        {% endif %}
+                        <div>
+                            <strong>{{ review.author_name }}</strong>
+                            {% if review.author_city %}<span>{{ review.author_city }}</span>{% endif %}
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{# =============================== БЛОГ ================================ #}
+{% if posts %}
+<section class="section">
+    <div class="container">
+        <header class="section__head">
+            <div>
+                <span class="section__eyebrow">{% translate "Журнал" %}</span>
+                <h2 class="section__title">{% translate "Новости и статьи" %}</h2>
+            </div>
+            <a class="link-more" href="{% url 'blog:list' %}">{% translate "Все материалы" %} →</a>
+        </header>
+        <div class="grid grid--3">
+            {% for post in posts %}
+                <article class="card">
+                    <a class="card__media" href="{{ post.get_absolute_url }}">
+                        {% if post.cover %}
+                            <img src="{{ post.cover.url }}" alt="{{ post.title }}" loading="lazy" width="600" height="400">
+                        {% endif %}
+                    </a>
+                    <div class="card__body">
+                        <time class="card__meta" datetime="{{ post.published_at|date:'c' }}">{{ post.published_at|date:'d.m.Y' }}</time>
+                        <h3 class="card__title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+                        <p class="card__text">{{ post.excerpt|truncatewords:20 }}</p>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{# ============================== CTA ================================== #}
+<section class="cta">
+    <div class="container cta__inner">
+        <div>
+            <h2 class="cta__title">{% translate "Готовы отдохнуть на Иссык-Куле?" %}</h2>
+            <p class="cta__text">{% translate "Забронируйте номер онлайн — подтверждение придёт на e-mail сразу после оплаты." %}</p>
+        </div>
+        <a class="btn btn--primary btn--lg" href="{% url 'booking:search' %}">{% translate "Забронировать" %}</a>
+    </div>
+</section>
+
+{% endblock %}

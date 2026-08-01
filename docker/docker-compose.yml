@@ -1,0 +1,58 @@
+name: baitur
+
+services:
+  db_baitur:
+    image: postgres:14
+    container_name: postgres_db_baitur
+    env_file:
+      - ../.env
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres_data_baitur:/var/lib/postgresql/data
+    networks:
+      - baitur_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis_baitur:
+    image: redis:6
+    container_name: redis_baitur
+    ports:
+      - "6390:6379"
+    networks:
+      - baitur_network
+
+  web_baitur:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: django_web_baitur
+    command: sh -c "/entrypoint.sh && python manage.py runserver 0.0.0.0:8082"
+    volumes:
+      - ../app:/app
+      - ../app/static:/app/static
+      - ../app/media:/app/media
+    env_file:
+      - ../.env
+    environment:
+      - DJANGO_SETTINGS_MODULE=core.settings.dev
+    depends_on:
+      db_baitur:
+        condition: service_healthy
+      redis_baitur:
+        condition: service_started
+    ports:
+      - "127.0.0.1:8085:8082"
+    networks:
+      - baitur_network
+
+networks:
+  baitur_network:
+    driver: bridge
+
+volumes:
+  postgres_data_baitur:

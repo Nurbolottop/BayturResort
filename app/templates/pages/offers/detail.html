@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load i18n baitur %}
+
+{% block content %}
+    {% url 'offers:list' as offers_url %}
+    {% with head_title=offer.title head_text=offer.subtitle head_image=offer.cover parent_title=_("Спецпредложения") parent_url=offers_url %}
+        {% include 'include/page_head.html' %}
+    {% endwith %}
+
+    <section class="section">
+        <div class="container detail">
+            <div class="detail__main prose">
+                {{ offer.description|safe }}
+            </div>
+
+            <aside class="detail__aside">
+                {% if offer.price %}
+                    <span class="price">
+                        {% if offer.old_price %}<s class="price__old">{{ offer.old_price|money }}</s>{% endif %}
+                        <span class="price__value">{{ offer.price|money }}</span>
+                        <span class="price__unit">{% translate "сом" %}</span>
+                    </span>
+                {% endif %}
+
+                <ul class="specs">
+                    {% if offer.valid_from %}<li><span>{% translate "Действует с" %}</span><span>{{ offer.valid_from|date:'d.m.Y' }}</span></li>{% endif %}
+                    {% if offer.valid_to %}<li><span>{% translate "Действует до" %}</span><span>{{ offer.valid_to|date:'d.m.Y' }}</span></li>{% endif %}
+                    {% if offer.promo_code %}<li><span>{% translate "Промокод" %}</span><strong>{{ offer.promo_code.code }}</strong></li>{% endif %}
+                </ul>
+
+                <a class="btn btn--primary btn--block" href="{% url 'booking:search' %}">{% translate "Забронировать" %}</a>
+            </aside>
+        </div>
+    </section>
+
+    {% if offer.room_categories.all %}
+        <section class="section section--muted">
+            <div class="container">
+                <header class="section__head">
+                    <h2 class="section__title">{% translate "Подходящие номера" %}</h2>
+                </header>
+                <div class="grid grid--3">
+                    {% for room in offer.room_categories.all %}
+                        {% include 'include/room_card.html' %}
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endif %}
+{% endblock %}

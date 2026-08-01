@@ -1,0 +1,56 @@
+{% load i18n baitur %}
+<header class="header" data-header>
+    <div class="header__top">
+        <div class="container header__top-inner">
+            {% if site.phone %}
+                <a class="header__contact" href="tel:{{ site.phone }}">{{ site.phone }}</a>
+            {% endif %}
+            {% if site.email %}
+                <a class="header__contact header__contact--hide-sm" href="mailto:{{ site.email }}">{{ site.email }}</a>
+            {% endif %}
+            <span class="header__contact header__contact--hide-sm">{{ site.address }}</span>
+
+            <div class="lang" data-lang>
+                {% get_available_languages as LANGUAGES %}
+                {% for code, name in LANGUAGES %}
+                    {% switch_lang_url code as lang_path %}
+                    <a class="lang__item {% if code == LANGUAGE_CODE %}is-active{% endif %}"
+                       href="{{ lang_path }}" hreflang="{{ code }}"
+                       title="{{ name }}">{{ code|upper }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="header__main">
+        <div class="container header__inner">
+            <a class="logo" href="{% url 'base:home' %}">
+                {% if site.logo %}
+                    <img src="{{ site.logo.url }}" alt="{{ site.site_name }}" width="160" height="48">
+                {% else %}
+                    <span class="logo__text">{{ site.site_name }}</span>
+                {% endif %}
+            </a>
+
+            <nav class="nav" data-nav>
+                <a class="nav__link" href="{% url 'base:about' %}">{% translate "О курорте" %}</a>
+                <a class="nav__link" href="{% url 'rooms:list' %}">{% translate "Номера" %}</a>
+                <a class="nav__link" href="{% url 'services:list' %}">{% translate "Услуги" %}</a>
+                <a class="nav__link" href="{% url 'services:halls' %}">{% translate "Конференц-залы" %}</a>
+                <a class="nav__link" href="{% url 'offers:list' %}">{% translate "Спецпредложения" %}</a>
+                <a class="nav__link" href="{% url 'gallery:index' %}">{% translate "Галерея" %}</a>
+                <a class="nav__link" href="{% url 'blog:reviews' %}">{% translate "Отзывы" %}</a>
+                <a class="nav__link" href="{% url 'contacts:index' %}">{% translate "Контакты" %}</a>
+                {% for page in menu_pages %}
+                    <a class="nav__link" href="{{ page.get_absolute_url }}">{{ page.title }}</a>
+                {% endfor %}
+            </nav>
+
+            <a class="btn btn--primary header__cta" href="{% url 'booking:search' %}">{% translate "Забронировать" %}</a>
+
+            <button class="burger" type="button" data-burger aria-label="{% translate 'Меню' %}">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</header>

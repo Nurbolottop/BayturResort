@@ -1,0 +1,26 @@
+{% load i18n %}<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head><meta charset="UTF-8"><title>{% block subject %}{{ site.site_name }}{% endblock %}</title></head>
+<body style="margin:0;padding:24px;background:#f4f2ed;font-family:Arial,Helvetica,sans-serif;color:#1b2422;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:620px;margin:0 auto;background:#ffffff;border-radius:12px;overflow:hidden;">
+        <tr>
+            <td style="background:#0a3d4a;padding:24px 28px;color:#ffffff;">
+                <div style="font-size:20px;font-weight:bold;">{{ site.site_name }}</div>
+                {% if site.address %}<div style="font-size:13px;opacity:.8;">{{ site.address }}</div>{% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td style="padding:28px;">
+                {% block content %}{% endblock %}
+            </td>
+        </tr>
+        <tr>
+            <td style="background:#f4f2ed;padding:20px 28px;font-size:13px;color:#566360;">
+                {% if site.phone %}{% translate "Телефон" %}: <a href="tel:{{ site.phone }}" style="color:#0d4f5c;">{{ site.phone }}</a><br>{% endif %}
+                {% if site.email %}E-mail: <a href="mailto:{{ site.email }}" style="color:#0d4f5c;">{{ site.email }}</a><br>{% endif %}
+                <a href="{{ site_url }}" style="color:#0d4f5c;">{{ site_url }}</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

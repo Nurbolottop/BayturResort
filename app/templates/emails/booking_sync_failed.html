@@ -1,0 +1,35 @@
+{% extends 'emails/base_email.html' %}
+{% load i18n baitur %}
+
+{% block content %}
+    <h1 style="font-size:20px;margin:0 0 12px;color:#b3261e;">
+        {% translate "Бронь оплачена, но НЕ записана в Shelter" %}
+    </h1>
+    <p style="margin:0 0 18px;color:#566360;">
+        {% translate "Деньги гостя приняты. Заведите бронь в PMS вручную, чтобы номер не продали повторно." %}
+    </p>
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:14px;">
+        <tr><td style="padding:6px 0;color:#566360;">{% translate "Номер брони" %}</td>
+            <td style="padding:6px 0;text-align:right;"><strong>{{ booking.number }}</strong></td></tr>
+        <tr><td style="padding:6px 0;color:#566360;">{% translate "Категория" %}</td>
+            <td style="padding:6px 0;text-align:right;">{{ booking.room_category_name }} × {{ booking.rooms_count }}</td></tr>
+        <tr><td style="padding:6px 0;color:#566360;">{% translate "Даты" %}</td>
+            <td style="padding:6px 0;text-align:right;">{{ booking.check_in|date:'d.m.Y' }} — {{ booking.check_out|date:'d.m.Y' }}</td></tr>
+        <tr><td style="padding:6px 0;color:#566360;">{% translate "Гость" %}</td>
+            <td style="padding:6px 0;text-align:right;">{{ booking.guest_full_name }}, {{ booking.guest_phone }}</td></tr>
+        <tr><td style="padding:6px 0;color:#566360;">{% translate "Оплачено" %}</td>
+            <td style="padding:6px 0;text-align:right;">{{ booking.paid_amount|money }} {{ booking.currency }}</td></tr>
+    </table>
+
+    <p style="margin-top:18px;padding:14px;background:#fdeceb;border-radius:8px;font-size:13px;color:#b3261e;">
+        {{ booking.shelter_error }}
+    </p>
+
+    <p style="margin:22px 0 0;">
+        <a href="{{ site_url }}/admin/booking/booking/{{ booking.pk }}/change/"
+           style="display:inline-block;background:#b3261e;color:#ffffff;padding:12px 24px;border-radius:999px;text-decoration:none;">
+            {% translate "Открыть бронь" %}
+        </a>
+    </p>
+{% endblock %}

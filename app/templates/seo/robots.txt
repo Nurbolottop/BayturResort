@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin/
+Disallow: /ckeditor/
+Disallow: /booking/checkout/
+Disallow: /booking/payment/
+Disallow: /media/uploads/
+
+Sitemap: {{ site_url }}/sitemap.xml

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    {% with head_title=service.name head_image=service.cover parent_title=service.category.name parent_url=service.category.get_absolute_url %}
+        {% include 'include/page_head.html' %}
+    {% endwith %}
+
+    <section class="section">
+        <div class="container detail">
+            <div class="detail__main">
+                {% if service.images.all %}
+                    <div class="detail__gallery">
+                        {% for image in service.images.all %}
+                            {% if image.is_active %}
+                                <a href="{{ image.image.url }}" target="_blank" rel="noopener">
+                                    <img src="{{ image.image.url }}" alt="{{ image.alt|default:service.name }}"
+                                         loading="lazy" width="800" height="533">
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div class="prose">{{ service.description|safe }}</div>
+            </div>
+
+            <aside class="detail__aside">
+                {% if service.price %}
+                    <span class="price">
+                        <span class="price__value">{{ service.price }}</span>
+                        <span class="price__unit">{% translate "сом" %} {{ service.price_note }}</span>
+                    </span>
+                {% endif %}
+                <ul class="specs">
+                    {% if service.duration %}<li><span>{% translate "Длительность" %}</span><span>{{ service.duration }}</span></li>{% endif %}
+                    <li><span>{% translate "Категория" %}</span><span>{{ service.category.name }}</span></li>
+                </ul>
+                {% if site.phone %}
+                    <a class="btn btn--primary btn--block" href="tel:{{ site.phone }}">{% translate "Записаться" %}</a>
+                {% endif %}
+                <a class="btn btn--ghost btn--block" href="{% url 'booking:search' %}" style="margin-top:12px;">
+                    {% translate "Забронировать номер" %}
+                </a>
+            </aside>
+        </div>
+    </section>
+{% endblock %}

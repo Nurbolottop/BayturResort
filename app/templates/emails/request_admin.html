@@ -1,0 +1,36 @@
+{% extends 'emails/base_email.html' %}
+{% load i18n %}
+
+{% block content %}
+    <h1 style="font-size:20px;margin:0 0 12px;">{{ title }}</h1>
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:14px;">
+        <tr><td style="padding:6px 0;color:#566360;">{% translate "Имя" %}</td>
+            <td style="padding:6px 0;text-align:right;">{{ obj.name }}</td></tr>
+        <tr><td style="padding:6px 0;color:#566360;">{% translate "Телефон" %}</td>
+            <td style="padding:6px 0;text-align:right;">{{ obj.phone }}</td></tr>
+        {% if obj.email %}
+            <tr><td style="padding:6px 0;color:#566360;">E-mail</td>
+                <td style="padding:6px 0;text-align:right;">{{ obj.email }}</td></tr>
+        {% endif %}
+        {% if obj.company %}
+            <tr><td style="padding:6px 0;color:#566360;">{% translate "Компания" %}</td>
+                <td style="padding:6px 0;text-align:right;">{{ obj.company }}</td></tr>
+        {% endif %}
+        {% if obj.event_date %}
+            <tr><td style="padding:6px 0;color:#566360;">{% translate "Дата мероприятия" %}</td>
+                <td style="padding:6px 0;text-align:right;">{{ obj.event_date|date:'d.m.Y' }}</td></tr>
+        {% endif %}
+        {% if obj.guests_count %}
+            <tr><td style="padding:6px 0;color:#566360;">{% translate "Гостей" %}</td>
+                <td style="padding:6px 0;text-align:right;">{{ obj.guests_count }}</td></tr>
+        {% endif %}
+    </table>
+
+    {% if obj.message %}
+        <p style="margin-top:18px;">{{ obj.message|linebreaksbr }}</p>
+    {% endif %}
+    {% if obj.comment %}
+        <p style="margin-top:18px;">{{ obj.comment|linebreaksbr }}</p>
+    {% endif %}
+{% endblock %}

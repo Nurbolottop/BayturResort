@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="status-card status-card--fail">
+            <div class="status-card__icon">✕</div>
+            <h1>{% translate "Оплата не прошла" %}</h1>
+            <p>
+                {% translate "Номер остался свободным, деньги не списаны. Попробуйте оплатить ещё раз или свяжитесь с нами." %}
+            </p>
+
+            <dl>
+                <dt>{% translate "Номер брони" %}</dt><dd>{{ booking.number }}</dd>
+                <dt>{% translate "Категория" %}</dt><dd>{{ booking.room_category_name }}</dd>
+                <dt>{% translate "Даты" %}</dt>
+                <dd>{{ booking.check_in|date:'d.m.Y' }} — {{ booking.check_out|date:'d.m.Y' }}</dd>
+            </dl>
+
+            <a class="btn btn--primary" href="{% url 'booking:search' %}">{% translate "Попробовать снова" %}</a>
+            {% if site.phone %}
+                <a class="btn btn--ghost" href="tel:{{ site.phone }}">{{ site.phone }}</a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

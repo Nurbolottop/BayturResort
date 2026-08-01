@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    {% translate "Контакты" as head_title %}
+    {% include 'include/page_head.html' %}
+
+    <section class="section">
+        <div class="container grid grid--2">
+            <div>
+                <h2>{% translate "Как с нами связаться" %}</h2>
+                <ul class="specs">
+                    {% if site.phone %}<li><span>{% translate "Телефон" %}</span><a href="tel:{{ site.phone }}">{{ site.phone }}</a></li>{% endif %}
+                    {% if site.phone_extra %}<li><span>{% translate "Доп. телефон" %}</span><a href="tel:{{ site.phone_extra }}">{{ site.phone_extra }}</a></li>{% endif %}
+                    {% if site.email %}<li><span>E-mail</span><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>{% endif %}
+                    {% if site.address %}<li><span>{% translate "Адрес" %}</span><span>{{ site.address }}</span></li>{% endif %}
+                    {% if site.working_hours %}<li><span>{% translate "Ресепшен" %}</span><span>{{ site.working_hours }}</span></li>{% endif %}
+                    <li><span>{% translate "Заезд / выезд" %}</span><span>{{ site.check_in_time }} / {{ site.check_out_time }}</span></li>
+                </ul>
+
+                {% if site.whatsapp %}
+                    <a class="btn btn--ghost" target="_blank" rel="noopener"
+                       href="https://wa.me/{{ site.whatsapp|cut:'+'|cut:' '|cut:'-' }}">WhatsApp</a>
+                {% endif %}
+
+                {% if site.requisites %}
+                    <h3 style="margin-top:32px;">{% translate "Реквизиты" %}</h3>
+                    <p class="card__text">{{ site.requisites|linebreaksbr }}</p>
+                {% endif %}
+            </div>
+
+            <div class="form-card">
+                <h2>{% translate "Напишите нам" %}</h2>
+                <form method="post" data-ajax-form action="{% url 'contacts:index' %}">
+                    {% csrf_token %}
+                    <div class="field">
+                        <label for="{{ form.name.id_for_label }}">{{ form.name.label }}*</label>
+                        {{ form.name }}{{ form.name.errors }}
+                    </div>
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="{{ form.phone.id_for_label }}">{{ form.phone.label }}*</label>
+                            {{ form.phone }}{{ form.phone.errors }}
+                        </div>
+                        <div class="field">
+                            <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                            {{ form.email }}{{ form.email.errors }}
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="{{ form.message.id_for_label }}">{{ form.message.label }}</label>
+                        {{ form.message }}{{ form.message.errors }}
+                    </div>
+                    {{ form.website }}
+                    <button class="btn btn--primary btn--block" type="submit">{% translate "Отправить" %}</button>
+                    <span class="form__note" data-form-note></span>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    {% if site.map_embed %}
+        <section class="section--tight">
+            <div class="embed">{{ site.map_embed|safe }}</div>
+        </section>
+    {% endif %}
+{% endblock %}

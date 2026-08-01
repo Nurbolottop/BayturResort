@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load i18n baitur %}
+
+{% block content %}
+    {% translate "Бронирование" as head_title %}
+    {% translate "Выберите даты — мы покажем свободные категории и актуальные цены." as head_text %}
+    {% include 'include/page_head.html' %}
+
+    <section class="section">
+        <div class="container">
+            {% include 'include/booking_widget.html' with widget_class='booking-widget--inline' %}
+
+            {% if search_error %}
+                <div class="alert" style="margin-top:28px;">{{ search_error }}</div>
+            {% endif %}
+
+            {% if params %}
+                <header class="section__head" style="margin-top:40px;">
+                    <div>
+                        <span class="section__eyebrow">
+                            {{ params.check_in|date:'d.m.Y' }} — {{ params.check_out|date:'d.m.Y' }}
+                        </span>
+                        <h2 class="section__title">{% translate "Свободные категории" %}</h2>
+                    </div>
+                </header>
+
+                {% if results %}
+                    <div class="results">
+                        {% for item in results %}
+                            <article class="result">
+                                <div class="result__media">
+                                    {% if item.category.cover %}
+                                        <img src="{{ item.category.cover.url }}" alt="{{ item.category.name }}"
+                                             loading="lazy" width="560" height="373">
+                                    {% endif %}
+                                </div>
+
+                                <div class="result__body">
+                                    <h3><a href="{{ item.category.get_absolute_url }}">{{ item.category.name }}</a></h3>
+                                    <p class="card__meta">
+                                        {% blocktranslate with n=item.category.max_guests %}до {{ n }} гостей{% endblocktranslate %}
+                                        {% if item.category.area %} · {{ item.category.area }} м²{% endif %}
+                                        {% if item.category.beds %} · {{ item.category.beds }}{% endif %}
+                                    </p>
+                                    {% if item.category.short_description %}
+                                        <p class="card__text">{{ item.category.short_description }}</p>
+                                    {% endif %}
+                                    {% if item.available_rooms <= 3 and item.available_rooms > 0 %}
+                                        <p class="result__left">
+                                            {% blocktranslate with n=item.available_rooms %}Осталось номеров: {{ n }}{% endblocktranslate %}
+                                        </p>
+                                    {% endif %}
+                                </div>
+
+                                <div class="result__side">
+                                    <span class="result__total">{{ item.total_price|money }} {% translate "сом" %}</span>
+                                    <span class="result__note">
+                                        {{ item.price_per_night|money }} {% translate "сом за ночь" %}
+                                    </span>
+                                    {% if item.available_rooms > 0 %}
+                                        <a class="btn btn--primary"
+                                           href="{% url 'booking:checkout' item.category.slug %}?check_in={{ params.check_in|date:'Y-m-d' }}&check_out={{ params.check_out|date:'Y-m-d' }}&adults={{ params.adults }}&children={{ params.children }}">
+                                            {% translate "Забронировать" %}
+                                        </a>
+                                    {% else %}
+                                        <span class="result__note">{% translate "Нет свободных номеров" %}</span>
+                                    {% endif %}
+                                </div>
+                            </article>
+                        {% endfor %}
+                    </div>
+                {% elif not search_error %}
+                    <p class="empty">
+                        {% translate "На выбранные даты свободных номеров не найдено. Попробуйте другие даты или позвоните нам." %}
+                        {% if site.phone %}<br><a class="link-more" href="tel:{{ site.phone }}">{{ site.phone }}</a>{% endif %}
+                    </p>
+                {% endif %}
+            {% else %}
+                <p class="empty">{% translate "Укажите даты заезда и выезда, чтобы увидеть свободные номера и цены." %}</p>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

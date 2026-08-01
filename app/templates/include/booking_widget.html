@@ -1,0 +1,27 @@
+{% load i18n %}
+{# Блок поиска номеров. Отправляет параметры в /booking/, где цены берутся из Shelter. #}
+<form class="booking-widget {{ widget_class }}" action="{% url 'booking:search' %}" method="get">
+    <div class="booking-widget__field">
+        <label for="id_check_in">{% translate "Заезд" %}</label>
+        <input type="date" id="id_check_in" name="check_in" class="field__input"
+               value="{{ params.check_in|date:'Y-m-d' }}" required data-check-in>
+    </div>
+    <div class="booking-widget__field">
+        <label for="id_check_out">{% translate "Выезд" %}</label>
+        <input type="date" id="id_check_out" name="check_out" class="field__input"
+               value="{{ params.check_out|date:'Y-m-d' }}" required data-check-out>
+    </div>
+    <div class="booking-widget__field booking-widget__field--sm">
+        <label for="id_adults">{% translate "Взрослых" %}</label>
+        <input type="number" id="id_adults" name="adults" class="field__input"
+               min="1" max="20" value="{{ params.adults|default:2 }}" required>
+    </div>
+    <div class="booking-widget__field booking-widget__field--sm">
+        <label for="id_children">{% translate "Детей" %}</label>
+        <input type="number" id="id_children" name="children" class="field__input"
+               min="0" max="10" value="{{ params.children|default:0 }}">
+    </div>
+    <button class="btn btn--primary booking-widget__submit" type="submit">
+        {% translate "Найти номер" %}
+    </button>
+</form>

@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load i18n baitur %}
+
+{% block content %}
+    {% url 'rooms:list' as rooms_url %}
+    {% with head_title=room.name parent_title=_("Номера") parent_url=rooms_url head_image=room.cover %}
+        {% include 'include/page_head.html' %}
+    {% endwith %}
+
+    <section class="section">
+        <div class="container detail">
+            <div class="detail__main">
+                {% if room.images.all %}
+                    <div class="detail__gallery">
+                        {% for image in room.images.all %}
+                            {% if image.is_active %}
+                                <a href="{{ image.image.url }}" target="_blank" rel="noopener">
+                                    <img src="{{ image.image.url }}" alt="{{ image.alt|default:room.name }}"
+                                         loading="lazy" width="800" height="533">
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% if room.amenities.all %}
+                    <h2>{% translate "Удобства" %}</h2>
+                    <ul class="amenities">
+                        {% for amenity in room.amenities.all %}
+                            <li>
+                                {% if amenity.icon %}<img src="{{ amenity.icon.url }}" alt="" loading="lazy">{% endif %}
+                                {{ amenity.name }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                {% if room.description %}
+                    <div class="prose">{{ room.description|safe }}</div>
+                {% endif %}
+            </div>
+
+            <aside class="detail__aside">
+                <span class="price">
+                    <span class="price__from">{% translate "от" %}</span>
+                    <span class="price__value">{{ room.base_price|money }}</span>
+                    <span class="price__unit">{% translate "сом / ночь" %}</span>
+                </span>
+
+                <ul class="specs">
+                    <li><span>{% translate "Вместимость" %}</span>
+                        <span>{{ room.max_guests }} {{ room.max_guests|guests_label }}</span></li>
+                    {% if room.area %}<li><span>{% translate "Площадь" %}</span><span>{{ room.area }} м²</span></li>{% endif %}
+                    {% if room.beds %}<li><span>{% translate "Кровати" %}</span><span>{{ room.beds }}</span></li>{% endif %}
+                    <li><span>{% translate "Комнат" %}</span><span>{{ room.rooms_count }}</span></li>
+                    <li><span>{% translate "Заезд / выезд" %}</span>
+                        <span>{{ site.check_in_time }} / {{ site.check_out_time }}</span></li>
+                </ul>
+
+                {% if room.is_bookable %}
+                    <a class="btn btn--primary btn--block" href="{% url 'booking:search' %}">
+                        {% translate "Проверить даты и забронировать" %}
+                    </a>
+                {% else %}
+                    <p class="alert alert--info">{% translate "Онлайн-бронирование этой категории временно недоступно. Позвоните нам." %}</p>
+                {% endif %}
+
+                {% if site.phone %}
+                    <a class="btn btn--ghost btn--block" href="tel:{{ site.phone }}" style="margin-top:12px;">
+                        {{ site.phone }}
+                    </a>
+                {% endif %}
+            </aside>
+        </div>
+    </section>
+
+    {% if similar_rooms %}
+        <section class="section section--muted">
+            <div class="container">
+                <header class="section__head">
+                    <h2 class="section__title">{% translate "Похожие варианты" %}</h2>
+                </header>
+                <div class="grid grid--3">
+                    {% for room in similar_rooms %}
+                        {% include 'include/room_card.html' %}
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endif %}
+{% endblock %}

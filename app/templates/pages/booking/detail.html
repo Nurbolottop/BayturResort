@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load i18n baitur %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="status-card">
+            <div class="status-card__icon">
+                {% if booking.status == 'confirmed' %}✓{% elif booking.status == 'paid' %}✓{% elif booking.status == 'awaiting_payment' %}⏳{% else %}•{% endif %}
+            </div>
+            <h1>{% translate "Бронь" %} {{ booking.number }}</h1>
+            <p>{{ booking.get_status_display }}</p>
+
+            <dl>
+                <dt>{% translate "Категория" %}</dt><dd>{{ booking.room_category_name }} × {{ booking.rooms_count }}</dd>
+                <dt>{% translate "Заезд" %}</dt><dd>{{ booking.check_in|date:'d.m.Y' }}, {{ site.check_in_time }}</dd>
+                <dt>{% translate "Выезд" %}</dt><dd>{{ booking.check_out|date:'d.m.Y' }}, {{ site.check_out_time }}</dd>
+                <dt>{% translate "Ночей" %}</dt><dd>{{ booking.nights }}</dd>
+                <dt>{% translate "Гостей" %}</dt><dd>{{ booking.adults }} + {{ booking.children }}</dd>
+                <dt>{% translate "Гость" %}</dt><dd>{{ booking.guest_full_name }}</dd>
+                <dt>{% translate "Итого" %}</dt><dd>{{ booking.total_amount|money }} {{ booking.currency }}</dd>
+                <dt>{% translate "Оплачено" %}</dt><dd>{{ booking.paid_amount|money }} {{ booking.currency }}</dd>
+                {% if booking.amount_due %}
+                    <dt>{% translate "К оплате при заселении" %}</dt><dd>{{ booking.amount_due|money }} {{ booking.currency }}</dd>
+                {% endif %}
+            </dl>
+
+            {% if booking.status == 'awaiting_payment' %}
+                <p class="alert alert--info">
+                    {% translate "Бронь ожидает оплаты. Если оплата не прошла, свяжитесь с нами — мы поможем." %}
+                </p>
+            {% endif %}
+
+            <a class="btn btn--ghost" href="{% url 'base:home' %}">{% translate "На главную" %}</a>
+            {% if site.phone %}
+                <a class="btn btn--primary" href="tel:{{ site.phone }}">{{ site.phone }}</a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

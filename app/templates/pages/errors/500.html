@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% translate "Ошибка сервера" %}{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="status-card status-card--fail">
+            <div class="status-card__icon">500</div>
+            <h1>{% translate "Что-то пошло не так" %}</h1>
+            <p>{% translate "Мы уже знаем о проблеме и чиним её. Попробуйте обновить страницу чуть позже." %}</p>
+            <a class="btn btn--primary" href="/">{% translate "На главную" %}</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% load i18n %}
+<section class="page-head">
+    {% if head_image %}<img class="page-head__img" src="{{ head_image.url }}" alt="" width="1920" height="600">{% endif %}
+    <div class="container page-head__inner">
+        <nav class="breadcrumbs">
+            <a href="{% url 'base:home' %}">{% translate "Главная" %}</a>
+            {% if parent_title %} / <a href="{{ parent_url }}">{{ parent_title }}</a>{% endif %}
+            / <span>{{ head_title }}</span>
+        </nav>
+        <h1>{{ head_title }}</h1>
+        {% if head_text %}<p>{{ head_text }}</p>{% endif %}
+    </div>
+</section>

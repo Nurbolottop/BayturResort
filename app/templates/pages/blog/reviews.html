@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    {% translate "Отзывы гостей" as head_title %}
+    {% include 'include/page_head.html' %}
+
+    <section class="section">
+        <div class="container">
+            {% if reviews %}
+                <div class="grid grid--3">
+                    {% for review in reviews %}
+                        <article class="review">
+                            <div class="review__rating" aria-label="{{ review.rating }}/5">
+                                {% for i in "12345"|make_list %}
+                                    <span class="star {% if forloop.counter <= review.rating %}is-on{% endif %}">★</span>
+                                {% endfor %}
+                            </div>
+                            <p class="review__text">{{ review.text }}</p>
+                            <div class="review__author">
+                                {% if review.avatar %}
+                                    <img src="{{ review.avatar.url }}" alt="{{ review.author_name }}" loading="lazy" width="44" height="44">
+                                {% endif %}
+                                <div>
+                                    <strong>{{ review.author_name }}</strong>
+                                    {% if review.author_city %}<span>{{ review.author_city }}</span>{% endif %}
+                                </div>
+                            </div>
+                            {% if review.source_url %}
+                                <a class="link-more" href="{{ review.source_url }}" target="_blank" rel="noopener nofollow">
+                                    {{ review.get_source_display }} →
+                                </a>
+                            {% endif %}
+                        </article>
+                    {% endfor %}
+                </div>
+                {% include 'include/pagination.html' %}
+            {% else %}
+                <p class="empty">{% translate "Отзывы скоро появятся." %}</p>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

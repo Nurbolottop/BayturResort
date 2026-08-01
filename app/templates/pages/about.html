@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    {% translate "О курорте" as head_title %}
+    {% translate "Baytur Resort & Spa — территория отдыха на северном берегу Иссык-Куля, с. Бостери." as head_text %}
+    {% include 'include/page_head.html' %}
+
+    {% for section in sections %}
+        <section class="section {% if not forloop.counter|divisibleby:2 %}{% else %}section--muted{% endif %}">
+            <div class="container grid grid--2" style="align-items:center;">
+                {% if section.image and section.image_position == 'left' %}
+                    <img src="{{ section.image.url }}" alt="{{ section.title }}" loading="lazy"
+                         style="border-radius:var(--radius);" width="800" height="533">
+                {% endif %}
+                <div>
+                    {% if section.subtitle %}<span class="section__eyebrow">{{ section.subtitle }}</span>{% endif %}
+                    <h2 class="section__title">{{ section.title }}</h2>
+                    <div class="prose">{{ section.content|safe }}</div>
+                </div>
+                {% if section.image and section.image_position != 'left' %}
+                    <img src="{{ section.image.url }}" alt="{{ section.title }}" loading="lazy"
+                         style="border-radius:var(--radius);" width="800" height="533">
+                {% endif %}
+            </div>
+        </section>
+    {% endfor %}
+
+    {% if advantages %}
+        <section class="section section--muted">
+            <div class="container">
+                <div class="advantages">
+                    {% for item in advantages %}
+                        <div class="advantage">
+                            {% if item.icon %}<img class="advantage__icon" src="{{ item.icon.url }}" alt="" loading="lazy" width="48" height="48">{% endif %}
+                            <h3 class="advantage__title">{{ item.title }}</h3>
+                            <p class="advantage__text">{{ item.description }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+    {% if albums %}
+        <section class="section">
+            <div class="container">
+                <header class="section__head">
+                    <h2 class="section__title">{% translate "Территория курорта" %}</h2>
+                    <a class="link-more" href="{% url 'gallery:index' %}">{% translate "Вся галерея" %} →</a>
+                </header>
+                <div class="grid grid--3">
+                    {% for album in albums %}
+                        <a class="tile" href="{{ album.get_absolute_url }}">
+                            {% if album.cover %}
+                                <img class="tile__img" src="{{ album.cover.url }}" alt="{{ album.title }}"
+                                     loading="lazy" width="600" height="400">
+                            {% endif %}
+                            <span class="tile__overlay"></span>
+                            <span class="tile__title">{{ album.title }}</span>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endif %}
+{% endblock %}
