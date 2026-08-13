@@ -5,26 +5,29 @@
    ========================================================================= */
 
 :root {
-    /* Фирменное золото */
-    --gold: #d4ad70;
-    --gold-light: #f0d9a8;
-    --gold-deep: #a67c42;
-    --gold-grad: linear-gradient(135deg, #f0d9a8 0%, #d4ad70 45%, #b18a4c 100%);
-    --gold-glow: rgba(212, 173, 112, .3);
+    /* Фирменное золото. Было бежевым и с бликами читалось как пластик —
+       здесь металлический градиент с тёмными краями: широкий разбег
+       светлого и тёмного и есть то, что глаз считывает как металл. */
+    --gold: #d2a556;
+    --gold-light: #f3e3bb;
+    --gold-deep: #8c6527;
+    --gold-grad: linear-gradient(135deg, #f7ead0 0%, #e9cb8a 26%, #d2a556 55%, #a5793a 82%, #8c6527 100%);
+    --gold-glow: rgba(210, 165, 86, .34);
 
-    /* Тёмная основа */
-    --bg: #0b0b0d;
-    --bg-soft: #101014;
-    --surface: rgba(255, 255, 255, .035);
-    --surface-2: rgba(255, 255, 255, .06);
-    --stroke: rgba(255, 255, 255, .09);
-    --stroke-gold: rgba(212, 173, 112, .34);
+    /* Тёмная основа глубже прежней: дорогой контраст — это почти чёрный
+       фон, на котором золото горит, а не тонет в серости. */
+    --bg: #080809;
+    --bg-soft: #0e0d0f;
+    --surface: rgba(255, 255, 255, .04);
+    --surface-2: rgba(255, 255, 255, .07);
+    --stroke: rgba(255, 255, 255, .1);
+    --stroke-gold: rgba(210, 165, 86, .42);
 
     /* Текст */
-    --text: #f2ede6;
-    --text-soft: #a8a29a;
-    --text-dim: #6f6a64;
-    --on-gold: #16120b;
+    --text: #f4efe5;
+    --text-soft: #a9a299;
+    --text-dim: #6f6a63;
+    --on-gold: #201607;
 
     --danger: #ef8b80;
     --success: #86cf94;
@@ -38,7 +41,7 @@
     --shadow-sm: 0 4px 18px rgba(0, 0, 0, .35);
     --shadow: 0 18px 50px rgba(0, 0, 0, .5);
     --shadow-lg: 0 34px 90px rgba(0, 0, 0, .62);
-    --shadow-gold: 0 20px 60px rgba(212, 173, 112, .22);
+    --shadow-gold: 0 20px 60px rgba(210, 165, 86, .22);
 
     --container: 1300px;
     --gap: 30px;
@@ -78,8 +81,8 @@ body::before {
     pointer-events: none;
     z-index: 0;
     background:
-        radial-gradient(1000px 620px at 82% -8%, rgba(212, 173, 112, .11), transparent 62%),
-        radial-gradient(760px 520px at 6% 42%, rgba(212, 173, 112, .055), transparent 60%);
+        radial-gradient(1000px 620px at 82% -8%, rgba(210, 165, 86, .11), transparent 62%),
+        radial-gradient(760px 520px at 6% 42%, rgba(210, 165, 86, .055), transparent 60%);
 }
 .header, .main, .footer { position: relative; z-index: 1; }
 
@@ -115,8 +118,8 @@ p { margin: 0 0 1em; }
 
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: #0b0b0d; }
-::-webkit-scrollbar-thumb { background: rgba(212, 173, 112, .3); border-radius: var(--r-full); }
-::-webkit-scrollbar-thumb:hover { background: rgba(212, 173, 112, .55); }
+::-webkit-scrollbar-thumb { background: rgba(210, 165, 86, .3); border-radius: var(--r-full); }
+::-webkit-scrollbar-thumb:hover { background: rgba(210, 165, 86, .55); }
 
 /* ========================== ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ ====================== */
 
@@ -162,7 +165,7 @@ p { margin: 0 0 1em; }
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, .35) 50%, transparent 80%);
+    background: linear-gradient(110deg, transparent 18%, rgba(255, 255, 255, .5) 50%, transparent 82%);
     transform: translateX(-130%);
     transition: transform .8s var(--ease);
 }
@@ -170,11 +173,37 @@ p { margin: 0 0 1em; }
 .btn:hover { transform: translateY(-2px); }
 .btn:active { transform: translateY(0); }
 
-.btn--primary { background: var(--gold-grad); color: var(--on-gold); box-shadow: 0 10px 30px rgba(212, 173, 112, .26); }
-.btn--primary:hover { box-shadow: 0 18px 44px rgba(212, 173, 112, .4); }
+/* Металл: светлая кромка сверху ловит свет, тень тёплая и глубокая.
+   Именно кромка + постоянный вертикальный глянец заставляют пробегающий
+   блик выглядеть отражением на металле, а не эффектом поверх краски. */
+.btn--primary {
+    background: var(--gold-grad);
+    color: var(--on-gold);
+    border-color: rgba(255, 240, 205, .5);
+    box-shadow:
+        0 12px 34px rgba(140, 101, 39, .38),
+        inset 0 1px 0 rgba(255, 255, 255, .55),
+        inset 0 -1px 0 rgba(90, 62, 20, .35);
+}
+.btn--primary:hover {
+    box-shadow:
+        0 20px 50px rgba(140, 101, 39, .5),
+        inset 0 1px 0 rgba(255, 255, 255, .55),
+        inset 0 -1px 0 rgba(90, 62, 20, .35);
+}
+.btn--primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: linear-gradient(180deg, rgba(255, 255, 255, .42) 0%, rgba(255, 255, 255, .06) 48%,
+                                        rgba(90, 62, 20, .16) 100%);
+    pointer-events: none;
+}
 
 .btn--accent { background: transparent; color: var(--gold); border-color: var(--stroke-gold); }
-.btn--accent:hover { background: rgba(212, 173, 112, .12); border-color: var(--gold); }
+.btn--accent:hover { background: rgba(210, 165, 86, .12); border-color: var(--gold); }
 
 .btn--ghost {
     background: var(--surface);
@@ -391,7 +420,7 @@ p { margin: 0 0 1em; }
     padding: 9px 20px 9px 16px;
     border: 1px solid var(--stroke-gold);
     border-radius: var(--r-full);
-    background: rgba(212, 173, 112, .09);
+    background: rgba(210, 165, 86, .09);
     backdrop-filter: blur(12px);
     font-size: .78rem;
     font-weight: 600;
@@ -410,9 +439,9 @@ p { margin: 0 0 1em; }
     animation: pulse 2.6s infinite;
 }
 @keyframes pulse {
-    0%   { box-shadow: 0 0 0 0 rgba(212, 173, 112, .55); }
-    70%  { box-shadow: 0 0 0 11px rgba(212, 173, 112, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(212, 173, 112, 0); }
+    0%   { box-shadow: 0 0 0 0 rgba(210, 165, 86, .55); }
+    70%  { box-shadow: 0 0 0 11px rgba(210, 165, 86, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(210, 165, 86, 0); }
 }
 
 @keyframes fadeUp {
@@ -511,7 +540,7 @@ p { margin: 0 0 1em; }
     outline: none;
     border-color: var(--stroke-gold);
     background: rgba(255, 255, 255, .05);
-    box-shadow: 0 0 0 4px rgba(212, 173, 112, .13);
+    box-shadow: 0 0 0 4px rgba(210, 165, 86, .13);
 }
 .field__input::placeholder { color: var(--text-dim); }
 .field__input option { background: #16161a; }
@@ -637,7 +666,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover { opacity: 1; }
 .card:hover {
     transform: translateY(-8px);
     border-color: var(--stroke-gold);
-    box-shadow: var(--shadow), 0 0 0 1px rgba(212, 173, 112, .12);
+    box-shadow: var(--shadow), 0 0 0 1px rgba(210, 165, 86, .12);
 }
 
 .card__media { position: relative; display: block; aspect-ratio: 4 / 3; background: #131317; overflow: hidden; }
@@ -745,7 +774,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover { opacity: 1; }
     font-family: var(--font-display);
     font-size: 5.5rem;
     line-height: 1;
-    color: rgba(212, 173, 112, .16);
+    color: rgba(210, 165, 86, .16);
 }
 .review__rating { color: rgba(255, 255, 255, .14); margin-bottom: 16px; letter-spacing: 3px; }
 .review__rating .star.is-on { color: var(--gold); }
@@ -960,7 +989,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover { opacity: 1; }
     display: flex; align-items: center; justify-content: center;
     border-radius: 50%;
     font-size: 2.4rem;
-    background: rgba(212, 173, 112, .12);
+    background: rgba(210, 165, 86, .12);
     border: 1px solid var(--stroke-gold);
     color: var(--gold);
 }
@@ -990,7 +1019,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover { opacity: 1; }
     padding: 16px 22px;
     border-radius: var(--r-sm);
     border: 1px solid var(--stroke-gold);
-    background: rgba(212, 173, 112, .07);
+    background: rgba(210, 165, 86, .07);
     color: var(--text);
     font-size: .93rem;
     animation: fadeUp .7s var(--ease) both;
@@ -1006,7 +1035,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover { opacity: 1; }
     color: var(--danger);
     margin-bottom: 28px;
 }
-.alert--info { border-color: var(--stroke-gold); background: rgba(212, 173, 112, .07); color: var(--text-soft); }
+.alert--info { border-color: var(--stroke-gold); background: rgba(210, 165, 86, .07); color: var(--text-soft); }
 
 .empty { text-align: center; padding: 84px 20px; color: var(--text-dim); }
 
@@ -1047,7 +1076,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover { opacity: 1; }
     border-radius: var(--r-lg);
     border: 1px solid var(--stroke-gold);
     background:
-        radial-gradient(720px 340px at 88% 12%, rgba(212, 173, 112, .16), transparent 62%),
+        radial-gradient(720px 340px at 88% 12%, rgba(210, 165, 86, .16), transparent 62%),
         rgba(22, 22, 26, .6);
     backdrop-filter: blur(16px);
     box-shadow: var(--shadow);
