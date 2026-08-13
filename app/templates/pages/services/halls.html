@@ -9,8 +9,10 @@
     <section class="section">
         <div class="container">
             {% if halls %}
-                {# Сетка и наполнение — как у карточек номеров, чтобы залы
-                   не выглядели крупнее остального каталога #}
+                {% comment %}
+                    Сетка и наполнение — как у карточек номеров, чтобы залы
+                    не выглядели крупнее остального каталога.
+                {% endcomment %}
                 <div class="grid grid--3">
                     {% for hall in halls %}
                         <article class="card">

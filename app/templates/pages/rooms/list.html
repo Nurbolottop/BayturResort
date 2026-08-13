@@ -12,14 +12,85 @@
                 {% include 'include/booking_widget.html' with widget_class='booking-widget--inline' %}
             </div>
 
+            {% comment %}
+                Тип — быстрые кнопки. Остальное собрано в форму ниже:
+                так гость задаёт несколько условий за один переход.
+            {% endcomment %}
             <div class="filters">
                 <a href="{% url 'rooms:list' %}" class="{% if not active_kind %}is-active{% endif %}">{% translate "Все" %}</a>
                 {% for value, label in kinds %}
-                    <a href="?kind={{ value }}" class="{% if active_kind == value %}is-active{% endif %}">{{ label }}</a>
+                    <a href="?{% query_replace kind=value page='' %}"
+                       class="{% if active_kind == value %}is-active{% endif %}">{{ label }}</a>
                 {% endfor %}
             </div>
 
+            <form class="roomfilter" method="get" data-roomfilter>
+                {% if active_kind %}<input type="hidden" name="kind" value="{{ active_kind }}">{% endif %}
+
+                <div class="roomfilter__row">
+                    <div class="roomfilter__field">
+                        <label for="f-guests">{% translate "Гостей" %}</label>
+                        <select class="field__input" id="f-guests" name="guests">
+                            <option value="">{% translate "Любое" %}</option>
+                            {% for n in "123456"|make_list %}
+                                <option value="{{ n }}" {% if active_guests == n %}selected{% endif %}>
+                                    {% blocktranslate %}от {{ n }}{% endblocktranslate %}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="roomfilter__field">
+                        <label for="f-price-min">{% translate "Цена от, сом" %}</label>
+                        <input class="field__input" id="f-price-min" type="number" name="price_min"
+                               inputmode="numeric" min="0" step="500"
+                               placeholder="{{ price_low|floatformat:0 }}" value="{{ active_price_min }}">
+                    </div>
+
+                    <div class="roomfilter__field">
+                        <label for="f-price-max">{% translate "Цена до, сом" %}</label>
+                        <input class="field__input" id="f-price-max" type="number" name="price_max"
+                               inputmode="numeric" min="0" step="500"
+                               placeholder="{{ price_high|floatformat:0 }}" value="{{ active_price_max }}">
+                    </div>
+
+                    <div class="roomfilter__field">
+                        <label for="f-sort">{% translate "Сортировка" %}</label>
+                        <select class="field__input" id="f-sort" name="sort">
+                            <option value="">{% translate "По умолчанию" %}</option>
+                            <option value="price" {% if active_sort == 'price' %}selected{% endif %}>{% translate "Сначала дешевле" %}</option>
+                            <option value="-price" {% if active_sort == '-price' %}selected{% endif %}>{% translate "Сначала дороже" %}</option>
+                            <option value="area" {% if active_sort == 'area' %}selected{% endif %}>{% translate "Больше площадь" %}</option>
+                            <option value="guests" {% if active_sort == 'guests' %}selected{% endif %}>{% translate "Больше гостей" %}</option>
+                        </select>
+                    </div>
+                </div>
+
+                {% if amenities %}
+                    <fieldset class="roomfilter__amenities">
+                        <legend>{% translate "Удобства" %}</legend>
+                        {% for amenity in amenities %}
+                            <label class="roomfilter__check">
+                                <input type="checkbox" name="amenity" value="{{ amenity.pk }}"
+                                       {% if amenity.pk in selected_amenities %}checked{% endif %}>
+                                <span>{{ amenity.name }}</span>
+                            </label>
+                        {% endfor %}
+                    </fieldset>
+                {% endif %}
+
+                <div class="roomfilter__actions">
+                    <button class="btn btn--primary btn--sm" type="submit">{% translate "Показать" %}</button>
+                    {% if has_filters %}
+                        <a class="btn btn--ghost btn--sm" href="{% url 'rooms:list' %}">{% translate "Сбросить" %}</a>
+                    {% endif %}
+                </div>
+            </form>
+
             {% if rooms %}
+                <p class="roomfilter__count">
+                    {% blocktranslate count counter=paginator.count %}Найден {{ counter }} вариант{% plural %}Найдено вариантов: {{ counter }}{% endblocktranslate %}
+                </p>
                 <div class="grid grid--3">
                     {% for room in rooms %}
                         {% include 'include/room_card.html' %}
@@ -27,7 +98,13 @@
                 </div>
                 {% include 'include/pagination.html' %}
             {% else %}
-                <p class="empty">{% translate "В этой категории пока нет номеров." %}</p>
+                <p class="empty">
+                    {% if has_filters %}
+                        {% translate "По выбранным условиям ничего не нашлось. Попробуйте смягчить фильтры." %}
+                    {% else %}
+                        {% translate "В этой категории пока нет номеров." %}
+                    {% endif %}
+                </p>
             {% endif %}
         </div>
     </section>

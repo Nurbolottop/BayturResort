@@ -1044,6 +1044,86 @@ a.review__source:hover { color: var(--gold); border-color: var(--stroke-gold); b
 .filters a:hover { border-color: var(--stroke-gold); color: var(--text); transform: translateY(-2px); }
 .filters a.is-active { background: var(--gold-grad); color: var(--on-gold); border-color: transparent; }
 
+/* ========================= ФИЛЬТР НОМЕРОВ ============================== */
+
+.roomfilter {
+    padding: 26px 28px;
+    margin-bottom: 34px;
+    border-radius: var(--r);
+    border: 1px solid var(--stroke);
+    background: var(--surface);
+}
+
+.roomfilter__row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 16px;
+}
+
+.roomfilter__field { display: flex; flex-direction: column; gap: 7px; }
+.roomfilter__field label {
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--gold);
+}
+
+.roomfilter__amenities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 22px 0 0;
+    padding: 20px 0 0;
+    border: 0;
+    border-top: 1px solid var(--stroke);
+}
+.roomfilter__amenities legend {
+    display: block;
+    float: left;
+    width: 100%;
+    padding: 0 0 14px;
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--gold);
+}
+
+.roomfilter__check {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 16px;
+    border-radius: var(--r-full);
+    border: 1px solid var(--stroke);
+    font-size: .85rem;
+    color: var(--text-soft);
+    cursor: pointer;
+    transition: border-color .3s var(--ease), color .3s, background .3s;
+}
+.roomfilter__check:hover { border-color: var(--stroke-gold); color: var(--text); }
+.roomfilter__check input { width: 15px; height: 15px; accent-color: var(--gold); }
+/* Отмеченное удобство должно читаться без разглядывания галочки */
+.roomfilter__check:has(input:checked) {
+    border-color: var(--stroke-gold);
+    background: var(--surface-2);
+    color: var(--text);
+}
+
+.roomfilter__actions { display: flex; gap: 12px; margin-top: 22px; flex-wrap: wrap; }
+
+.roomfilter__count {
+    color: var(--text-dim);
+    font-size: .88rem;
+    margin: 0 0 22px;
+}
+
+@media (max-width: 540px) {
+    .roomfilter { padding: 22px 20px; }
+    .roomfilter__actions .btn { flex: 1; }
+}
+
 .pagination { display: flex; justify-content: center; gap: 10px; margin-top: 58px; }
 .pagination a, .pagination span {
     min-width: 46px; height: 46px;

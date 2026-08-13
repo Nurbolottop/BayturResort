@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-13 17:45+0600\n"
+"POT-Creation-Date: 2026-08-13 18:48+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -406,15 +406,26 @@ msgstr ""
 "Ысык-Көлдөгү Baytur Resort & Spa курортунун тарыхы, инфраструктурасы жана "
 "аймагы."
 
-#: apps/blog/admin.py:22
+#: apps/blog/admin.py:22 apps/blog/admin.py:53
 msgid "Публикация"
 msgstr ""
 
-#: apps/blog/admin.py:40
+#: apps/blog/admin.py:47 apps/blog/models.py:67 apps/booking/models.py:150
+msgid "Источник"
+msgstr ""
+
+#: apps/blog/admin.py:49
+msgid ""
+"Отзывы из Google подтягиваются командой import_reviews. Отзывы 2ГИС "
+"добавляются вручную — укажите ссылку на оригинал, чтобы гость мог его "
+"проверить."
+msgstr ""
+
+#: apps/blog/admin.py:58
 msgid "Одобрить выбранные отзывы"
 msgstr ""
 
-#: apps/blog/admin.py:43
+#: apps/blog/admin.py:61
 #, python-format
 msgid "Одобрено отзывов: %(n)s"
 msgstr ""
@@ -503,19 +514,24 @@ msgstr ""
 msgid "Текст отзыва"
 msgstr ""
 
-#: apps/blog/models.py:67 apps/booking/models.py:150
-msgid "Источник"
-msgstr ""
-
 #: apps/blog/models.py:68
 msgid "Ссылка на отзыв"
 msgstr ""
 
-#: apps/blog/models.py:70
+#: apps/blog/models.py:73
+msgid "ID во внешнем сервисе"
+msgstr "Тышкы кызматтагы ID"
+
+#: apps/blog/models.py:75
+#| msgid "Все отзывы"
+msgid "Дата отзыва"
+msgstr "Пикирдин күнү"
+
+#: apps/blog/models.py:77
 msgid "Одобрен к публикации"
 msgstr ""
 
-#: apps/blog/models.py:71 apps/gallery/models.py:78 apps/offers/models.py:45
+#: apps/blog/models.py:78 apps/gallery/models.py:78 apps/offers/models.py:45
 #: apps/rooms/models.py:88 apps/services/models.py:54
 msgid "Показывать на главной"
 msgstr ""
@@ -1539,7 +1555,7 @@ msgid "Удобство"
 msgstr ""
 
 #: apps/rooms/models.py:15 apps/rooms/models.py:75
-#: templates/pages/rooms/detail.html:27
+#: templates/pages/rooms/detail.html:27 templates/pages/rooms/list.html:72
 msgid "Удобства"
 msgstr "Ыңгайлуулуктар"
 
@@ -1649,11 +1665,11 @@ msgstr ""
 msgid "Категория"
 msgstr "Категория"
 
-#: apps/rooms/views.py:16
+#: apps/rooms/views.py:17
 msgid "Номера и жильё — Baytur Resort & Spa"
 msgstr "Бөлмөлөр жана жашоо жайы — Baytur Resort & Spa"
 
-#: apps/rooms/views.py:17
+#: apps/rooms/views.py:18
 msgid ""
 "Стандарты, полулюксы, люксы, коттеджи и виллы Baytur Resort & Spa. Фото, "
 "вместимость, удобства и цены."
@@ -1724,9 +1740,9 @@ msgstr ""
 msgid "Оборудование"
 msgstr "Жабдуулар"
 
-#: apps/services/models.py:102
+#: apps/services/models.py:102 templates/pages/rooms/list.html:45
 msgid "Цена от, сом"
-msgstr ""
+msgstr "Баасы, сомдон"
 
 #: apps/services/views.py:15
 msgid "Услуги курорта — Baytur Resort & Spa"
@@ -1810,7 +1826,7 @@ msgstr "чейин"
 #: templates/emails/booking_confirmed.html:25
 #: templates/emails/request_admin.html:25
 #: templates/pages/booking/checkout.html:146
-#: templates/pages/booking/detail.html:19
+#: templates/pages/booking/detail.html:19 templates/pages/rooms/list.html:33
 msgid "Гостей"
 msgstr "Конок"
 
@@ -1917,7 +1933,7 @@ msgid "Специальные предложения"
 msgstr "Атайын сунуштар"
 
 #: templates/include/offers_popup.html:56 templates/include/room_card.html:21
-#: templates/pages/rooms/detail.html:45 templates/pages/services/halls.html:32
+#: templates/pages/rooms/detail.html:45 templates/pages/services/halls.html:35
 msgid "от"
 msgstr "баштап"
 
@@ -1932,7 +1948,7 @@ msgstr "баштап"
 #: templates/pages/services/category.html:29
 #: templates/pages/services/detail.html:31
 #: templates/pages/services/hall_detail.html:27
-#: templates/pages/services/halls.html:34 templates/pages/services/list.html:38
+#: templates/pages/services/halls.html:37 templates/pages/services/list.html:38
 msgid "сом"
 msgstr "сом"
 
@@ -1946,7 +1962,6 @@ msgstr "Башкы бет"
 
 #: templates/include/review_card.html:38
 #, python-format
-#| msgid "Открыть в Google Maps"
 msgid "Открыть на %(name)s"
 msgstr "%(name)s ичинде ачуу"
 
@@ -1962,7 +1977,7 @@ msgstr "сом / түн"
 #: templates/include/room_card.html:25 templates/pages/home.html:151
 #: templates/pages/offers/list.html:37
 #: templates/pages/services/category.html:32
-#: templates/pages/services/halls.html:37 templates/pages/services/list.html:18
+#: templates/pages/services/halls.html:40 templates/pages/services/list.html:18
 #: templates/pages/services/list.html:41
 msgid "Подробнее"
 msgstr "Толугураак"
@@ -2307,11 +2322,75 @@ msgstr ""
 "Стандарт, жарым люкс, люкс, коттедж жана виллалар — өзүңүзгө ылайыгын "
 "тандаңыз."
 
-#: templates/pages/rooms/list.html:16
+#: templates/pages/rooms/list.html:21
 msgid "Все"
 msgstr "Баары"
 
-#: templates/pages/rooms/list.html:30
+#: templates/pages/rooms/list.html:35
+msgid "Любое"
+msgstr "Каалаган"
+
+#: templates/pages/rooms/list.html:38
+#, python-format
+msgid "от %(n)s"
+msgstr "%(n)s+"
+
+#: templates/pages/rooms/list.html:52
+#| msgid "Цена от"
+msgid "Цена до, сом"
+msgstr "Баасы, сомго чейин"
+
+#: templates/pages/rooms/list.html:59
+#| msgid "Забронировать"
+msgid "Сортировка"
+msgstr "Иреттөө"
+
+#: templates/pages/rooms/list.html:61
+msgid "По умолчанию"
+msgstr "Демейки"
+
+#: templates/pages/rooms/list.html:62
+msgid "Сначала дешевле"
+msgstr "Арзаныраагы биринчи"
+
+#: templates/pages/rooms/list.html:63
+msgid "Сначала дороже"
+msgstr "Кымбатыраагы биринчи"
+
+#: templates/pages/rooms/list.html:64
+#| msgid "Площадь"
+msgid "Больше площадь"
+msgstr "Аянты чоңураак"
+
+#: templates/pages/rooms/list.html:65
+#| msgid "Количество гостей"
+msgid "Больше гостей"
+msgstr "Конок көбүрөөк"
+
+#: templates/pages/rooms/list.html:84
+#| msgid "Новая бронь с сайта"
+msgid "Показать"
+msgstr "Көрсөтүү"
+
+#: templates/pages/rooms/list.html:86
+msgid "Сбросить"
+msgstr "Тазалоо"
+
+#: templates/pages/rooms/list.html:93
+#, fuzzy, python-format
+#| msgid "Похожие варианты"
+msgid "Найден %(counter)s вариант"
+msgid_plural "Найдено вариантов: %(counter)s"
+msgstr[0] "Окшош варианттар"
+
+#: templates/pages/rooms/list.html:104
+#| msgid ""
+#| "На выбранные даты свободных номеров не найдено. Попробуйте другие даты "
+#| "или позвоните нам."
+msgid "По выбранным условиям ничего не нашлось. Попробуйте смягчить фильтры."
+msgstr "Тандалган шарттар боюнча эч нерсе табылган жок. Чыпкаларды жумшартып көрүңүз."
+
+#: templates/pages/rooms/list.html:106
 msgid "В этой категории пока нет номеров."
 msgstr "Бул категорияда азырынча бөлмө жок."
 
@@ -2357,29 +2436,27 @@ msgstr ""
 "Ысык-Көлдүн жээгинде конференциялар, семинарлар, банкеттер жана "
 "корпоративдер."
 
-#: templates/pages/services/halls.html:26
-#| msgid "Театр"
+#: templates/pages/services/halls.html:29
 msgid "театр"
 msgstr "театр"
 
-#: templates/pages/services/halls.html:27
-#| msgid "Банкет"
+#: templates/pages/services/halls.html:30
 msgid "банкет"
 msgstr "банкет"
 
-#: templates/pages/services/halls.html:44
+#: templates/pages/services/halls.html:47
 msgid "Информация о залах скоро появится."
 msgstr "Залдар жөнүндө маалымат жакында."
 
-#: templates/pages/services/halls.html:53
+#: templates/pages/services/halls.html:56
 msgid "Заявка"
 msgstr "Арыз"
 
-#: templates/pages/services/halls.html:54
+#: templates/pages/services/halls.html:57
 msgid "Организуем мероприятие под ключ"
 msgstr "Иш-чараны толук уюштурабыз"
 
-#: templates/pages/services/halls.html:109
+#: templates/pages/services/halls.html:112
 msgid "Отправить заявку"
 msgstr "Арыз жөнөтүү"
 
