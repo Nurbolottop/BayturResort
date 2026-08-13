@@ -31,11 +31,29 @@ class PostAdmin(TabbedTranslationAdmin):
 
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ('author_name', 'rating', 'source', 'is_approved', 'show_on_home', 'created_at')
+    list_display = ('author_name', 'rating', 'source', 'is_approved', 'show_on_home', 'published_at')
     list_editable = ('is_approved', 'show_on_home')
     list_filter = ('is_approved', 'show_on_home', 'source', 'rating')
     search_fields = ('author_name', 'text')
     actions = ('approve_selected',)
+    # Поля заполняет импорт — руками их менять нечего, иначе повторный
+    # импорт создаст дубликат.
+    readonly_fields = ('external_id',)
+
+    fieldsets = (
+        (None, {
+            'fields': ('author_name', 'author_city', 'avatar', 'rating', 'text'),
+        }),
+        (_('Источник'), {
+            'fields': ('source', 'source_url', 'published_at', 'external_id'),
+            'description': _('Отзывы из Google подтягиваются командой import_reviews. '
+                             'Отзывы 2ГИС добавляются вручную — укажите ссылку на '
+                             'оригинал, чтобы гость мог его проверить.'),
+        }),
+        (_('Публикация'), {
+            'fields': ('is_approved', 'show_on_home', 'order', 'is_active'),
+        }),
+    )
 
     @admin.action(description=_('Одобрить выбранные отзывы'))
     def approve_selected(self, request, queryset):

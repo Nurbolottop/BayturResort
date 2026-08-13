@@ -67,6 +67,13 @@ class Review(SortableModel, TimeStampedModel):
     source = models.CharField(_('Источник'), max_length=20, choices=Source.choices, default=Source.SITE)
     source_url = models.URLField(_('Ссылка на отзыв'), blank=True)
 
+    # Идентификатор отзыва во внешнем сервисе. Нужен, чтобы повторный импорт
+    # обновлял существующую запись, а не создавал дубль.
+    external_id = models.CharField(
+        _('ID во внешнем сервисе'), max_length=255, blank=True, db_index=True,
+    )
+    published_at = models.DateTimeField(_('Дата отзыва'), blank=True, null=True)
+
     is_approved = models.BooleanField(_('Одобрен к публикации'), default=False, db_index=True)
     show_on_home = models.BooleanField(_('Показывать на главной'), default=False)
 
