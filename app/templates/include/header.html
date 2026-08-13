@@ -14,9 +14,13 @@
                 {% get_available_languages as LANGUAGES %}
                 {% for code, name in LANGUAGES %}
                     {% switch_lang_url code as lang_path %}
+                    {% comment %}
+                        Код языка остаётся ky (стандарт ISO и hreflang),
+                        но в переключателе Заказчик просил показывать KG.
+                    {% endcomment %}
                     <a class="lang__item {% if code == LANGUAGE_CODE %}is-active{% endif %}"
                        href="{{ lang_path }}" hreflang="{{ code }}"
-                       title="{{ name }}">{{ code|upper }}</a>
+                       title="{{ name }}">{% if code == 'ky' %}KG{% else %}{{ code|upper }}{% endif %}</a>
                 {% endfor %}
             </div>
         </div>
@@ -44,6 +48,10 @@
                 {% for page in menu_pages %}
                     <a class="nav__link" href="{{ page.get_absolute_url }}">{{ page.title }}</a>
                 {% endfor %}
+                {% if site.tour_url %}
+                    <a class="nav__link nav__link--tour" href="{{ site.tour_url }}"
+                       target="_blank" rel="noopener">{% translate "3D-тур" %}</a>
+                {% endif %}
             </nav>
 
             <a class="btn btn--primary header__cta" href="{% url 'booking:search' %}">{% translate "Забронировать" %}</a>

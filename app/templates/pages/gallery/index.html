@@ -6,6 +6,22 @@
     {% translate "Фото, видео и виртуальная прогулка по курорту." as head_text %}
     {% include 'include/page_head.html' %}
 
+    {% if site.tour_url %}
+        <section class="section">
+            <div class="container">
+                <div class="cta__inner">
+                    <div>
+                        <h2 class="cta__title">{% translate "Виртуальный 3D-тур" %}</h2>
+                        <p class="cta__text">{% translate "Пройдитесь по территории курорта, номерам и бассейнам, не выходя из дома." %}</p>
+                    </div>
+                    <a class="btn btn--primary btn--lg" href="{{ site.tour_url }}" target="_blank" rel="noopener">
+                        {% translate "Открыть 3D-тур" %}
+                    </a>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
     {% if tours %}
         <section class="section">
             <div class="container">
@@ -21,7 +37,7 @@
         </section>
     {% endif %}
 
-    <section class="section {% if tours %}section--muted{% endif %}">
+    <section class="section {% if tours or site.tour_url %}section--muted{% endif %}">
         <div class="container">
             <header class="section__head">
                 <h2 class="section__title">{% translate "Фотоальбомы" %}</h2>

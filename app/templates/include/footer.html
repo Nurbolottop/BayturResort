@@ -27,6 +27,11 @@
             <a class="footer__link" href="{% url 'services:halls' %}">{% translate "Конференц-залы" %}</a>
             <a class="footer__link" href="{% url 'offers:list' %}">{% translate "Спецпредложения" %}</a>
             <a class="footer__link" href="{% url 'gallery:index' %}">{% translate "Галерея и 3D-тур" %}</a>
+            {% if site.tour_url %}
+                <a class="footer__link" href="{{ site.tour_url }}" target="_blank" rel="noopener">
+                    {% translate "3D-тур" %}
+                </a>
+            {% endif %}
             <a class="footer__link" href="{% url 'blog:list' %}">{% translate "Блог" %}</a>
         </div>
 

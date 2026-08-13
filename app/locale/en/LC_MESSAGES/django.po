@@ -1,0 +1,2166 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-13 11:20+0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps/base/admin.py:10
+msgid "Управление сайтом"
+msgstr ""
+
+#: apps/base/admin.py:14 apps/gallery/models.py:75
+msgid "Превью"
+msgstr ""
+
+#: apps/base/admin.py:25
+msgid "Идентичность"
+msgstr ""
+
+#: apps/base/admin.py:28 templates/include/footer.html:39
+#: templates/include/header.html:45 templates/pages/contacts.html:5
+msgid "Контакты"
+msgstr "Contacts"
+
+#: apps/base/admin.py:31
+msgid "Соцсети и мессенджеры"
+msgstr ""
+
+#: apps/base/admin.py:34 templates/pages/booking/search.html:5
+msgid "Бронирование"
+msgstr "Booking"
+
+#: apps/base/admin.py:37 apps/base/models.py:92
+#: templates/pages/contacts.html:27
+msgid "Реквизиты"
+msgstr "Legal details"
+
+#: apps/base/admin.py:41
+msgid "Аналитика"
+msgstr ""
+
+#: apps/base/admin.py:45 apps/blog/admin.py:25 apps/cms/admin.py:22
+#: apps/offers/admin.py:30 apps/rooms/admin.py:49 apps/services/admin.py:41
+#: apps/services/admin.py:68
+msgid "SEO"
+msgstr ""
+
+#: apps/base/models.py:13
+msgid "Создано"
+msgstr ""
+
+#: apps/base/models.py:14
+msgid "Обновлено"
+msgstr ""
+
+#: apps/base/models.py:21
+msgid "Порядок"
+msgstr ""
+
+#: apps/base/models.py:22
+msgid "Активно"
+msgstr ""
+
+#: apps/base/models.py:31
+msgid "SEO: title"
+msgstr ""
+
+#: apps/base/models.py:32
+msgid "SEO: description"
+msgstr ""
+
+#: apps/base/models.py:33
+msgid "SEO: keywords"
+msgstr ""
+
+#: apps/base/models.py:35
+msgid "Изображение для соцсетей (OG)"
+msgstr ""
+
+#: apps/base/models.py:56 apps/base/models.py:57
+msgid "Настройки сайта"
+msgstr ""
+
+#: apps/base/models.py:60
+msgid "Название сайта"
+msgstr ""
+
+#: apps/base/models.py:61
+msgid "Слоган"
+msgstr ""
+
+#: apps/base/models.py:62
+msgid "Логотип"
+msgstr ""
+
+#: apps/base/models.py:63
+msgid "Логотип (светлый)"
+msgstr ""
+
+#: apps/base/models.py:64
+msgid "Favicon"
+msgstr ""
+
+#: apps/base/models.py:67 apps/booking/models.py:112 apps/contacts/models.py:23
+#: apps/contacts/models.py:57 templates/emails/base_email.html:19
+#: templates/emails/booking_admin.html:16
+#: templates/emails/request_admin.html:10 templates/pages/contacts.html:13
+msgid "Телефон"
+msgstr "Phone"
+
+#: apps/base/models.py:68
+msgid "Дополнительный телефон"
+msgstr ""
+
+#: apps/base/models.py:69 apps/booking/models.py:113 apps/contacts/models.py:24
+#: apps/contacts/models.py:58 apps/contacts/models.py:90
+msgid "E-mail"
+msgstr "E-mail"
+
+#: apps/base/models.py:70 templates/pages/contacts.html:16
+msgid "Адрес"
+msgstr "Address"
+
+#: apps/base/models.py:71
+msgid "Часы работы ресепшена"
+msgstr ""
+
+#: apps/base/models.py:76
+#| msgid "Галерея и 3D-тур"
+msgid "Ссылка на 3D-тур"
+msgstr "3D tour link"
+
+#: apps/base/models.py:77
+msgid ""
+"Внешняя ссылка на виртуальный тур. Кнопка «3D-тур» появляется в шапке, "
+"подвале и в галерее, если поле заполнено."
+msgstr "External link to the virtual tour. The 3D Tour button appears in the header, footer and gallery when this field is filled in."
+
+#: apps/base/models.py:82
+msgid "Карта (iframe Google Maps / 2GIS)"
+msgstr ""
+
+#: apps/base/models.py:83
+msgid "WhatsApp (номер или ссылка)"
+msgstr ""
+
+#: apps/base/models.py:84
+msgid "Telegram"
+msgstr ""
+
+#: apps/base/models.py:85
+msgid "Instagram"
+msgstr ""
+
+#: apps/base/models.py:86
+msgid "Facebook"
+msgstr ""
+
+#: apps/base/models.py:87
+msgid "YouTube"
+msgstr ""
+
+#: apps/base/models.py:88
+msgid "TikTok"
+msgstr ""
+
+#: apps/base/models.py:91
+msgid "Юридическое лицо"
+msgstr ""
+
+#: apps/base/models.py:95
+msgid "Google Analytics ID"
+msgstr ""
+
+#: apps/base/models.py:96
+msgid "Google Search Console"
+msgstr ""
+
+#: apps/base/models.py:97
+msgid "Яндекс.Метрика ID"
+msgstr ""
+
+#: apps/base/models.py:100
+msgid "Правила бронирования"
+msgstr ""
+
+#: apps/base/models.py:101
+msgid "Время заезда"
+msgstr ""
+
+#: apps/base/models.py:102
+msgid "Время выезда"
+msgstr ""
+
+#: apps/base/models.py:112
+msgid "Настройки сайта удалять нельзя."
+msgstr ""
+
+#: apps/base/models.py:128
+msgid "Слайд на главной"
+msgstr ""
+
+#: apps/base/models.py:129
+msgid "Слайды на главной"
+msgstr ""
+
+#: apps/base/models.py:132 apps/base/models.py:153 apps/blog/models.py:24
+#: apps/cms/models.py:21 apps/cms/models.py:47
+msgid "Заголовок"
+msgstr ""
+
+#: apps/base/models.py:133 apps/cms/models.py:48 apps/offers/models.py:24
+msgid "Подзаголовок"
+msgstr ""
+
+#: apps/base/models.py:135 apps/cms/models.py:51
+msgid "Изображение"
+msgstr ""
+
+#: apps/base/models.py:137
+msgid "Ссылка на видео (mp4/YouTube)"
+msgstr ""
+
+#: apps/base/models.py:138
+msgid "Текст кнопки"
+msgstr ""
+
+#: apps/base/models.py:139
+msgid "Ссылка кнопки"
+msgstr ""
+
+#: apps/base/models.py:149
+msgid "Преимущество"
+msgstr ""
+
+#: apps/base/models.py:150
+msgid "Преимущества"
+msgstr ""
+
+#: apps/base/models.py:154 apps/booking/models.py:26 apps/gallery/models.py:17
+#: apps/offers/models.py:25 apps/rooms/models.py:55 apps/services/models.py:20
+#: apps/services/models.py:46 apps/services/models.py:89
+msgid "Описание"
+msgstr ""
+
+#: apps/base/models.py:155
+msgid "Иконка (SVG/PNG)"
+msgstr ""
+
+#: apps/base/templatetags/baitur.py:43 apps/base/templatetags/baitur.py:49
+msgid "ночей"
+msgstr "nights"
+
+#: apps/base/templatetags/baitur.py:46
+msgid "ночь"
+msgstr "night"
+
+#: apps/base/templatetags/baitur.py:48
+msgid "ночи"
+msgstr "nights"
+
+#: apps/base/templatetags/baitur.py:60 apps/base/templatetags/baitur.py:66
+msgid "гостей"
+msgstr "guests"
+
+#: apps/base/templatetags/baitur.py:63
+msgid "гость"
+msgstr "guest"
+
+#: apps/base/templatetags/baitur.py:65
+msgid "гостя"
+msgstr "guests"
+
+#: apps/base/views.py:19
+msgid "Baytur Resort & Spa — отдых на Иссык-Куле, с. Бостери"
+msgstr "Baytur Resort & Spa — holidays at Issyk-Kul, Bosteri"
+
+#: apps/base/views.py:21
+msgid ""
+"Курорт Baytur Resort & Spa на берегу Иссык-Куля: номера и коттеджи, SPA, "
+"бассейны, рестораны, конференц-залы. Онлайн-бронирование с подтверждением на "
+"e-mail."
+msgstr "Baytur Resort & Spa on the shore of Issyk-Kul: rooms and cottages, spa, pools, restaurants, conference halls. Book online with e-mail confirmation."
+
+#: apps/base/views.py:48
+msgid "О курорте — Baytur Resort & Spa"
+msgstr "About — Baytur Resort & Spa"
+
+#: apps/base/views.py:49
+msgid ""
+"История, инфраструктура и территория курорта Baytur Resort & Spa на Иссык-"
+"Куле."
+msgstr "History, facilities and grounds of Baytur Resort & Spa at Issyk-Kul."
+
+#: apps/blog/admin.py:22
+msgid "Публикация"
+msgstr ""
+
+#: apps/blog/admin.py:40
+msgid "Одобрить выбранные отзывы"
+msgstr ""
+
+#: apps/blog/admin.py:43
+#, python-format
+msgid "Одобрено отзывов: %(n)s"
+msgstr ""
+
+#: apps/blog/models.py:20
+msgid "Статья"
+msgstr ""
+
+#: apps/blog/models.py:21
+msgid "Блог и новости"
+msgstr ""
+
+#: apps/blog/models.py:25 apps/cms/models.py:22 apps/gallery/models.py:16
+#: apps/offers/models.py:23 apps/rooms/models.py:51 apps/services/models.py:19
+#: apps/services/models.py:44 apps/services/models.py:88
+msgid "URL"
+msgstr ""
+
+#: apps/blog/models.py:26 apps/rooms/models.py:54 apps/services/models.py:45
+msgid "Краткое описание"
+msgstr ""
+
+#: apps/blog/models.py:27 apps/cms/models.py:49
+msgid "Текст"
+msgstr ""
+
+#: apps/blog/models.py:29 apps/cms/models.py:25 apps/gallery/admin.py:24
+#: apps/gallery/models.py:19 apps/rooms/models.py:58 apps/services/models.py:23
+msgid "Обложка"
+msgstr ""
+
+#: apps/blog/models.py:32
+msgid "Дата публикации"
+msgstr ""
+
+#: apps/blog/models.py:33
+msgid "Просмотры"
+msgstr ""
+
+#: apps/blog/models.py:48
+msgid "Форма на сайте"
+msgstr ""
+
+#: apps/blog/models.py:49
+msgid "Booking.com"
+msgstr ""
+
+#: apps/blog/models.py:50
+msgid "Google"
+msgstr ""
+
+#: apps/blog/models.py:51
+msgid "2GIS"
+msgstr ""
+
+#: apps/blog/models.py:52
+msgid "Добавлен вручную"
+msgstr ""
+
+#: apps/blog/models.py:55
+msgid "Отзыв"
+msgstr ""
+
+#: apps/blog/models.py:56 templates/include/header.html:44
+#: templates/pages/home.html:187
+msgid "Отзывы"
+msgstr "Reviews"
+
+#: apps/blog/models.py:59
+msgid "Имя автора"
+msgstr ""
+
+#: apps/blog/models.py:60
+msgid "Город / страна"
+msgstr ""
+
+#: apps/blog/models.py:62
+msgid "Фото автора"
+msgstr ""
+
+#: apps/blog/models.py:65
+msgid "Оценка (1–5)"
+msgstr ""
+
+#: apps/blog/models.py:66
+msgid "Текст отзыва"
+msgstr ""
+
+#: apps/blog/models.py:67 apps/booking/models.py:150
+msgid "Источник"
+msgstr ""
+
+#: apps/blog/models.py:68
+msgid "Ссылка на отзыв"
+msgstr ""
+
+#: apps/blog/models.py:70
+msgid "Одобрен к публикации"
+msgstr ""
+
+#: apps/blog/models.py:71 apps/gallery/models.py:78 apps/offers/models.py:45
+#: apps/rooms/models.py:88 apps/services/models.py:54
+msgid "Показывать на главной"
+msgstr ""
+
+#: apps/blog/views.py:14
+msgid "Новости и статьи — Baytur Resort & Spa"
+msgstr "News & Articles — Baytur Resort & Spa"
+
+#: apps/blog/views.py:15
+msgid ""
+"Новости курорта, гид по отдыху на Иссык-Куле и полезные статьи от Baytur "
+"Resort & Spa."
+msgstr "Resort news, an Issyk-Kul holiday guide and useful articles from Baytur Resort & Spa."
+
+#: apps/blog/views.py:46
+msgid "Отзывы гостей — Baytur Resort & Spa"
+msgstr "Guest Reviews — Baytur Resort & Spa"
+
+#: apps/blog/views.py:47
+msgid "Отзывы гостей курорта Baytur Resort & Spa на Иссык-Куле."
+msgstr "Reviews from guests of Baytur Resort & Spa at Issyk-Kul."
+
+#: apps/booking/admin.py:67
+msgid "Проживание"
+msgstr ""
+
+#: apps/booking/admin.py:71
+msgid "Гости"
+msgstr ""
+
+#: apps/booking/admin.py:75
+msgid "Деньги"
+msgstr ""
+
+#: apps/booking/admin.py:80
+msgid "PMS Shelter"
+msgstr ""
+
+#: apps/booking/admin.py:83 apps/offers/admin.py:63
+msgid "Служебное"
+msgstr ""
+
+#: apps/booking/admin.py:94 templates/emails/booking_confirmed.html:23
+#: templates/pages/booking/detail.html:18
+msgid "Ночей"
+msgstr "Nights"
+
+#: apps/booking/admin.py:98 apps/booking/models.py:85
+#: apps/booking/models.py:258 apps/contacts/models.py:28
+#: apps/contacts/models.py:73 templates/emails/booking_admin.html:8
+msgid "Статус"
+msgstr "Status"
+
+#: apps/booking/admin.py:123
+msgid "Повторить запись брони в Shelter"
+msgstr ""
+
+#: apps/booking/admin.py:138
+#, python-format
+msgid "Записано в Shelter: %(ok)s, с ошибкой: %(failed)s"
+msgstr ""
+
+#: apps/booking/admin.py:142
+msgid "Выгрузить брони в CSV"
+msgstr ""
+
+#: apps/booking/forms.py:11 apps/booking/models.py:101
+#: templates/emails/booking_confirmed.html:19
+#: templates/include/booking_widget.html:5
+#: templates/pages/booking/checkout.html:138
+#: templates/pages/booking/detail.html:16
+msgid "Заезд"
+msgstr "Check-in"
+
+#: apps/booking/forms.py:15 apps/booking/models.py:102
+#: templates/emails/booking_confirmed.html:21
+#: templates/include/booking_widget.html:10
+#: templates/pages/booking/checkout.html:142
+#: templates/pages/booking/detail.html:17
+msgid "Выезд"
+msgstr "Check-out"
+
+#: apps/booking/forms.py:19 apps/booking/models.py:103
+#: templates/include/booking_widget.html:15
+msgid "Взрослых"
+msgstr "Adults"
+
+#: apps/booking/forms.py:23 apps/booking/models.py:104
+#: templates/include/booking_widget.html:20
+msgid "Детей"
+msgstr "Children"
+
+#: apps/booking/forms.py:34 apps/booking/services.py:64
+msgid "Дата выезда должна быть позже даты заезда."
+msgstr "Check-out must be after check-in."
+
+#: apps/booking/forms.py:42 apps/booking/forms.py:43 apps/booking/models.py:130
+#: apps/offers/models.py:41 apps/offers/models.py:77
+#: templates/pages/booking/checkout.html:46
+#: templates/pages/offers/detail.html:28
+msgid "Промокод"
+msgstr "Promo code"
+
+#: apps/booking/forms.py:46
+msgid "Я согласен с правилами проживания и политикой конфиденциальности"
+msgstr "I agree to the house rules and the privacy policy"
+
+#: apps/booking/forms.py:70 apps/contacts/forms.py:14
+msgid "Заявка отклонена."
+msgstr "Request rejected."
+
+#: apps/booking/integrations/freedompay.py:62
+msgid "Не заданы FREEDOMPAY_MERCHANT_ID / FREEDOMPAY_SECRET_KEY."
+msgstr ""
+
+#: apps/booking/integrations/freedompay.py:95
+msgid "Платёжный сервис недоступен. Попробуйте позже."
+msgstr "The payment service is unavailable. Please try later."
+
+#: apps/booking/integrations/freedompay.py:100
+msgid "Не удалось создать платёж."
+msgstr "Could not create the payment."
+
+#: apps/booking/integrations/freedompay.py:117
+msgid "Некорректный ответ платёжного сервиса."
+msgstr "Invalid response from the payment service."
+
+#: apps/booking/integrations/shelter.py:80
+msgid "Не заданы SHELTER_BASE_URL / SHELTER_API_KEY."
+msgstr ""
+
+#: apps/booking/integrations/shelter.py:99
+msgid "PMS Shelter недоступна. Попробуйте позже."
+msgstr "The booking system is unavailable. Please try later."
+
+#: apps/booking/integrations/shelter.py:103
+#, python-format
+msgid "PMS Shelter вернула ошибку %(code)s."
+msgstr "The booking system returned error %(code)s."
+
+#: apps/booking/integrations/shelter.py:109
+msgid "Некорректный ответ PMS Shelter."
+msgstr "Invalid response from the booking system."
+
+#: apps/booking/integrations/shelter.py:173
+msgid "Shelter не вернула идентификатор брони."
+msgstr "The booking system did not return a reservation ID."
+
+#: apps/booking/models.py:15
+msgid "За бронь"
+msgstr "per booking"
+
+#: apps/booking/models.py:16
+msgid "За ночь"
+msgstr "per night"
+
+#: apps/booking/models.py:17
+msgid "За гостя"
+msgstr "per guest"
+
+#: apps/booking/models.py:18
+msgid "За гостя за ночь"
+msgstr "per guest per night"
+
+#: apps/booking/models.py:21
+msgid "Дополнительная услуга"
+msgstr ""
+
+#: apps/booking/models.py:22
+msgid "Дополнительные услуги (при брони)"
+msgstr ""
+
+#: apps/booking/models.py:25 apps/gallery/models.py:15
+#: apps/gallery/models.py:53 apps/gallery/models.py:72 apps/offers/models.py:22
+#: apps/rooms/models.py:18 apps/rooms/models.py:50 apps/services/models.py:18
+#: apps/services/models.py:43 apps/services/models.py:87
+msgid "Название"
+msgstr ""
+
+#: apps/booking/models.py:27 apps/rooms/models.py:19 apps/services/models.py:21
+msgid "Иконка"
+msgstr ""
+
+#: apps/booking/models.py:29 apps/gallery/admin.py:30 apps/gallery/models.py:32
+#: apps/gallery/models.py:33 apps/gallery/models.py:39 apps/offers/models.py:27
+#: apps/rooms/admin.py:55 apps/rooms/models.py:111 apps/services/models.py:48
+#: apps/services/models.py:72 apps/services/models.py:91
+msgid "Фото"
+msgstr ""
+
+#: apps/booking/models.py:33 apps/services/models.py:51
+msgid "Цена, сом"
+msgstr ""
+
+#: apps/booking/models.py:35
+msgid "Тип расчёта"
+msgstr ""
+
+#: apps/booking/models.py:37
+msgid "Код услуги в Shelter"
+msgstr ""
+
+#: apps/booking/models.py:66
+msgid "Черновик"
+msgstr "Draft"
+
+#: apps/booking/models.py:67
+msgid "Ожидает оплаты"
+msgstr "Awaiting payment"
+
+#: apps/booking/models.py:68
+msgid "Оплачена"
+msgstr "Paid"
+
+#: apps/booking/models.py:69
+msgid "Подтверждена (записана в Shelter)"
+msgstr "Confirmed"
+
+#: apps/booking/models.py:70 templates/pages/booking/failure.html:9
+msgid "Оплата не прошла"
+msgstr "Payment failed"
+
+#: apps/booking/models.py:71 apps/booking/models.py:153
+msgid "Отменена"
+msgstr "Cancelled"
+
+#: apps/booking/models.py:72
+msgid "Истекла"
+msgstr "Expired"
+
+#: apps/booking/models.py:75 apps/booking/models.py:213
+#: apps/booking/models.py:249 templates/pages/booking/detail.html:11
+msgid "Бронь"
+msgstr "Booking"
+
+#: apps/booking/models.py:76
+msgid "Брони"
+msgstr ""
+
+#: apps/booking/models.py:83 templates/emails/booking_confirmed.html:15
+#: templates/emails/booking_sync_failed.html:13
+#: templates/pages/booking/failure.html:15
+#: templates/pages/booking/success.html:17
+msgid "Номер брони"
+msgstr "Booking number"
+
+#: apps/booking/models.py:90 apps/rooms/models.py:46
+msgid "Категория номера"
+msgstr ""
+
+#: apps/booking/models.py:94
+msgid "Название категории (снимок)"
+msgstr ""
+
+#: apps/booking/models.py:95
+msgid ""
+"Фиксируется на момент брони, чтобы переименование категории не искажало "
+"историю."
+msgstr ""
+
+#: apps/booking/models.py:97 apps/rooms/models.py:79
+msgid "Код категории в Shelter"
+msgstr ""
+
+#: apps/booking/models.py:98
+msgid "Количество номеров"
+msgstr ""
+
+#: apps/booking/models.py:106
+msgid "Возраст детей"
+msgstr "Children's ages"
+
+#: apps/booking/models.py:106
+msgid "Через запятую, например: 4, 9"
+msgstr "Comma separated, e.g. 4, 9"
+
+#: apps/booking/models.py:110 apps/contacts/forms.py:57
+#: apps/contacts/models.py:22 apps/contacts/models.py:91
+#: templates/emails/request_admin.html:8
+msgid "Имя"
+msgstr "First name"
+
+#: apps/booking/models.py:111
+msgid "Фамилия"
+msgstr "Last name"
+
+#: apps/booking/models.py:114
+msgid "Страна"
+msgstr "Country"
+
+#: apps/booking/models.py:115 templates/emails/booking_admin.html:30
+msgid "Пожелания гостя"
+msgstr "Guest requests"
+
+#: apps/booking/models.py:118 apps/booking/models.py:256
+msgid "Валюта"
+msgstr ""
+
+#: apps/booking/models.py:119
+msgid "Стоимость проживания"
+msgstr ""
+
+#: apps/booking/models.py:120
+msgid "Стоимость доп. услуг"
+msgstr ""
+
+#: apps/booking/models.py:121 apps/offers/admin.py:57
+#: templates/pages/booking/checkout.html:163
+msgid "Скидка"
+msgstr "Discount"
+
+#: apps/booking/models.py:122
+msgid "Итого к оплате"
+msgstr ""
+
+#: apps/booking/models.py:124
+msgid "Сумма предоплаты"
+msgstr ""
+
+#: apps/booking/models.py:125
+msgid "Сколько списывается онлайн. Может быть частью суммы брони."
+msgstr ""
+
+#: apps/booking/models.py:127 templates/emails/booking_sync_failed.html:21
+#: templates/pages/booking/detail.html:22
+#: templates/pages/booking/success.html:21
+msgid "Оплачено"
+msgstr "Paid"
+
+#: apps/booking/models.py:134 apps/offers/models.py:18
+msgid "Спецпредложение"
+msgstr ""
+
+#: apps/booking/models.py:140
+msgid "ID брони в Shelter"
+msgstr ""
+
+#: apps/booking/models.py:142
+msgid "Записана в Shelter"
+msgstr ""
+
+#: apps/booking/models.py:144
+msgid "Ошибка синхронизации с Shelter"
+msgstr ""
+
+#: apps/booking/models.py:145
+msgid ""
+"Если заполнено — бронь оплачена, но не попала в PMS. Требует ручной "
+"обработки."
+msgstr ""
+
+#: apps/booking/models.py:149
+msgid "Язык оформления"
+msgstr ""
+
+#: apps/booking/models.py:151 apps/contacts/models.py:34
+msgid "IP"
+msgstr ""
+
+#: apps/booking/models.py:152
+msgid "Подтверждена"
+msgstr ""
+
+#: apps/booking/models.py:154 apps/contacts/models.py:30
+#: apps/contacts/models.py:75
+msgid "Комментарий администратора"
+msgstr ""
+
+#: apps/booking/models.py:209
+msgid "Доп. услуга в брони"
+msgstr ""
+
+#: apps/booking/models.py:210
+msgid "Доп. услуги в брони"
+msgstr ""
+
+#: apps/booking/models.py:216 apps/services/models.py:36
+#: apps/services/models.py:70
+msgid "Услуга"
+msgstr ""
+
+#: apps/booking/models.py:218
+msgid "Название (снимок)"
+msgstr ""
+
+#: apps/booking/models.py:219
+msgid "Количество"
+msgstr ""
+
+#: apps/booking/models.py:220
+msgid "Цена за единицу"
+msgstr ""
+
+#: apps/booking/models.py:221 apps/booking/models.py:255
+msgid "Сумма"
+msgstr ""
+
+#: apps/booking/models.py:236
+msgid "Создан"
+msgstr ""
+
+#: apps/booking/models.py:237
+msgid "Ожидает подтверждения"
+msgstr ""
+
+#: apps/booking/models.py:238
+msgid "Успешно"
+msgstr ""
+
+#: apps/booking/models.py:239
+msgid "Ошибка"
+msgstr ""
+
+#: apps/booking/models.py:240
+msgid "Отменён"
+msgstr ""
+
+#: apps/booking/models.py:241
+msgid "Возвращён"
+msgstr ""
+
+#: apps/booking/models.py:244
+msgid "Платёж"
+msgstr ""
+
+#: apps/booking/models.py:245
+msgid "Платежи"
+msgstr ""
+
+#: apps/booking/models.py:251
+msgid "Провайдер"
+msgstr ""
+
+#: apps/booking/models.py:252
+msgid "Order ID"
+msgstr ""
+
+#: apps/booking/models.py:253
+msgid "ID платежа у провайдера"
+msgstr ""
+
+#: apps/booking/models.py:261
+msgid "Ссылка на оплату"
+msgstr ""
+
+#: apps/booking/models.py:262
+msgid "Текст ошибки"
+msgstr ""
+
+#: apps/booking/models.py:264
+msgid "Запрос"
+msgstr ""
+
+#: apps/booking/models.py:265
+msgid "Ответ"
+msgstr ""
+
+#: apps/booking/models.py:266
+msgid "Колбэк"
+msgstr ""
+
+#: apps/booking/models.py:268
+msgid "Оплачен"
+msgstr ""
+
+#: apps/booking/notifications.py:55
+#, python-format
+msgid "Бронирование %(number)s подтверждено — Baytur Resort & Spa"
+msgstr "Booking %(number)s confirmed — Baytur Resort & Spa"
+
+#: apps/booking/notifications.py:61
+#, python-format
+msgid "Новая бронь %(number)s (%(category)s)"
+msgstr "New booking %(number)s (%(category)s)"
+
+#: apps/booking/notifications.py:85
+#, python-format
+msgid "⚠️ Бронь %(number)s оплачена, но НЕ записана в Shelter"
+msgstr "⚠️ Booking %(number)s is paid but NOT recorded in Shelter"
+
+#: apps/booking/services.py:60
+msgid "Укажите даты заезда и выезда."
+msgstr "Please enter check-in and check-out dates."
+
+#: apps/booking/services.py:62
+msgid "Дата заезда не может быть в прошлом."
+msgstr "Check-in date cannot be in the past."
+
+#: apps/booking/services.py:66
+#, python-format
+msgid "Максимальный срок бронирования — %(n)s ночей."
+msgstr "Maximum stay is %(n)s nights."
+
+#: apps/booking/services.py:68
+msgid "Бронирование открыто не более чем на 18 месяцев вперёд."
+msgstr "Bookings open up to 18 months ahead."
+
+#: apps/booking/services.py:70
+msgid "Укажите хотя бы одного взрослого гостя."
+msgstr "At least one adult guest is required."
+
+#: apps/booking/services.py:72
+msgid "Некорректное количество детей."
+msgstr "Invalid number of children."
+
+#: apps/booking/services.py:123
+msgid "На выбранные даты этот номер недоступен."
+msgstr "This room is not available for the selected dates."
+
+#: apps/booking/services.py:157
+msgid "Укажите количество номеров."
+msgstr "Please specify the number of rooms."
+
+#: apps/booking/services.py:160
+#, python-format
+msgid "На выбранные даты свободно номеров: %(n)s."
+msgstr "Rooms available for these dates: %(n)s."
+
+#: apps/booking/services.py:298
+#, python-format
+msgid "Бронирование %(number)s, Baytur Resort & Spa"
+msgstr "Booking %(number)s, Baytur Resort & Spa"
+
+#: apps/booking/views.py:53
+msgid "Бронирование номера — Baytur Resort & Spa"
+msgstr "Room booking — Baytur Resort & Spa"
+
+#: apps/booking/views.py:54
+msgid ""
+"Онлайн-бронирование номеров Baytur Resort & Spa: выберите даты, категорию и "
+"оплатите картой. Подтверждение приходит на e-mail."
+msgstr "Book a room at Baytur Resort & Spa online: pick dates, choose a category and pay by card. Confirmation arrives by e-mail."
+
+#: apps/booking/views.py:90
+msgid "Проверьте даты и количество гостей."
+msgstr "Please check the dates and number of guests."
+
+#: apps/booking/views.py:122
+#, python-format
+msgid "Оформление брони — %(name)s"
+msgstr "Checkout — %(name)s"
+
+#: apps/booking/views.py:167
+msgid "Бронь принята. Менеджер свяжется с вами для подтверждения оплаты."
+msgstr "Booking received. Our manager will contact you to confirm payment."
+
+#: apps/cms/admin.py:19 apps/offers/admin.py:27 apps/rooms/admin.py:46
+#: apps/services/admin.py:38 apps/services/admin.py:65
+msgid "Отображение"
+msgstr ""
+
+#: apps/cms/models.py:17
+msgid "Страница"
+msgstr ""
+
+#: apps/cms/models.py:18
+msgid "Страницы сайта"
+msgstr ""
+
+#: apps/cms/models.py:23
+msgid "Содержимое"
+msgstr ""
+
+#: apps/cms/models.py:29
+msgid "Показывать в подвале"
+msgstr ""
+
+#: apps/cms/models.py:30
+msgid "Показывать в меню"
+msgstr ""
+
+#: apps/cms/models.py:43
+msgid "Блок «О курорте»"
+msgstr ""
+
+#: apps/cms/models.py:44
+msgid "Страница «О курорте»"
+msgstr ""
+
+#: apps/cms/models.py:55
+msgid "Положение изображения"
+msgstr ""
+
+#: apps/cms/models.py:56
+msgid "Слева"
+msgstr ""
+
+#: apps/cms/models.py:56
+msgid "Справа"
+msgstr ""
+
+#: apps/contacts/admin.py:13
+msgid "Выгрузить выбранное в CSV"
+msgstr ""
+
+#: apps/contacts/forms.py:23
+msgid "Ваше имя"
+msgstr "Your name"
+
+#: apps/contacts/forms.py:27
+msgid "Ваш вопрос"
+msgstr "Your question"
+
+#: apps/contacts/models.py:8
+msgid "Новая"
+msgstr ""
+
+#: apps/contacts/models.py:9
+msgid "В работе"
+msgstr ""
+
+#: apps/contacts/models.py:10
+msgid "Обработана"
+msgstr ""
+
+#: apps/contacts/models.py:11
+msgid "Спам"
+msgstr ""
+
+#: apps/contacts/models.py:18
+msgid "Обращение"
+msgstr ""
+
+#: apps/contacts/models.py:19
+msgid "Обращения"
+msgstr ""
+
+#: apps/contacts/models.py:25
+msgid "Сообщение"
+msgstr "Message"
+
+#: apps/contacts/models.py:32
+msgid "Страница отправки"
+msgstr ""
+
+#: apps/contacts/models.py:33 apps/contacts/models.py:76
+#: apps/contacts/models.py:92
+msgid "Язык"
+msgstr ""
+
+#: apps/contacts/models.py:44
+msgid "Конференция / семинар"
+msgstr "Conference / seminar"
+
+#: apps/contacts/models.py:45 templates/pages/services/hall_detail.html:24
+#: templates/pages/services/halls.html:25
+msgid "Банкет"
+msgstr "Banquet"
+
+#: apps/contacts/models.py:46
+msgid "Свадьба"
+msgstr "Wedding"
+
+#: apps/contacts/models.py:47
+msgid "Корпоратив"
+msgstr "Corporate event"
+
+#: apps/contacts/models.py:48
+msgid "Другое"
+msgstr "Other"
+
+#: apps/contacts/models.py:51
+msgid "Заявка на мероприятие"
+msgstr ""
+
+#: apps/contacts/models.py:52
+msgid "Заявки на мероприятия"
+msgstr ""
+
+#: apps/contacts/models.py:55
+msgid "Контактное лицо"
+msgstr ""
+
+#: apps/contacts/models.py:56 templates/emails/request_admin.html:17
+msgid "Компания"
+msgstr "Company"
+
+#: apps/contacts/models.py:61
+msgid "Тип мероприятия"
+msgstr "Event type"
+
+#: apps/contacts/models.py:64
+msgid "Зал"
+msgstr "Hall"
+
+#: apps/contacts/models.py:67 templates/emails/request_admin.html:21
+msgid "Дата мероприятия"
+msgstr "Event date"
+
+#: apps/contacts/models.py:68
+msgid "Количество гостей"
+msgstr "Number of guests"
+
+#: apps/contacts/models.py:69
+msgid "Нужно размещение"
+msgstr "Accommodation needed"
+
+#: apps/contacts/models.py:70 apps/offers/models.py:82
+msgid "Комментарий"
+msgstr "Comment"
+
+#: apps/contacts/models.py:86
+msgid "Подписчик"
+msgstr ""
+
+#: apps/contacts/models.py:87
+msgid "Подписчики"
+msgstr ""
+
+#: apps/contacts/models.py:93
+msgid "Активна"
+msgstr ""
+
+#: apps/contacts/views.py:26
+msgid "Контакты — Baytur Resort & Spa"
+msgstr "Contacts — Baytur Resort & Spa"
+
+#: apps/contacts/views.py:27
+msgid ""
+"Телефоны, e-mail, адрес и карта проезда к курорту Baytur Resort & Spa, с. "
+"Бостери, Иссык-Куль."
+msgstr "Phones, e-mail, address and directions to Baytur Resort & Spa, Bosteri, Issyk-Kul."
+
+#: apps/contacts/views.py:40
+msgid "Новое обращение с сайта"
+msgstr "New enquiry from the website"
+
+#: apps/contacts/views.py:41
+msgid "Спасибо! Мы свяжемся с вами в ближайшее время."
+msgstr "Thank you! We will contact you shortly."
+
+#: apps/contacts/views.py:65
+msgid "Новая заявка на мероприятие"
+msgstr "New event request"
+
+#: apps/contacts/views.py:66
+msgid "Заявка отправлена. Менеджер свяжется с вами."
+msgstr "Request sent. Our manager will contact you."
+
+#: apps/contacts/views.py:75
+msgid "Проверьте правильность заполнения формы."
+msgstr "Please check the form."
+
+#: apps/contacts/views.py:91 apps/contacts/views.py:92
+msgid "Вы подписаны на спецпредложения."
+msgstr "You are subscribed to our offers."
+
+#: apps/contacts/views.py:98
+msgid "Проверьте правильность e-mail."
+msgstr "Please check the e-mail address."
+
+#: apps/gallery/models.py:11 apps/gallery/models.py:37
+msgid "Альбом"
+msgstr ""
+
+#: apps/gallery/models.py:12 templates/include/header.html:43
+#: templates/pages/gallery/album.html:6 templates/pages/home.html:170
+msgid "Галерея"
+msgstr "Gallery"
+
+#: apps/gallery/models.py:40
+msgid "Подпись"
+msgstr ""
+
+#: apps/gallery/models.py:41 apps/rooms/models.py:113
+#: apps/services/models.py:73
+msgid "Alt-текст"
+msgstr ""
+
+#: apps/gallery/models.py:49 apps/gallery/models.py:50
+#: templates/pages/gallery/index.html:68
+msgid "Видео"
+msgstr "Video"
+
+#: apps/gallery/models.py:54
+msgid "Ссылка (YouTube / mp4)"
+msgstr ""
+
+#: apps/gallery/models.py:56
+msgid "Постер"
+msgstr ""
+
+#: apps/gallery/models.py:68 templates/include/footer.html:32
+#: templates/include/header.html:51
+msgid "3D-тур"
+msgstr "3D Tour"
+
+#: apps/gallery/models.py:69
+msgid "3D-туры"
+msgstr ""
+
+#: apps/gallery/models.py:73
+msgid "Ссылка для встраивания (iframe src)"
+msgstr ""
+
+#: apps/gallery/views.py:12
+msgid "Галерея и 3D-тур — Baytur Resort & Spa"
+msgstr "Gallery & 3D Tour — Baytur Resort & Spa"
+
+#: apps/gallery/views.py:13
+msgid ""
+"Фотографии, видео и виртуальный 3D-тур по территории курорта Baytur Resort & "
+"Spa на Иссык-Куле."
+msgstr "Photos, video and a virtual 3D tour of Baytur Resort & Spa at Issyk-Kul."
+
+#: apps/offers/admin.py:21
+msgid "Цена и период"
+msgstr ""
+
+#: apps/offers/admin.py:24
+msgid "Связи"
+msgstr ""
+
+#: apps/offers/admin.py:36
+msgid "Идёт сейчас"
+msgstr ""
+
+#: apps/offers/admin.py:60
+msgid "Условия применения"
+msgstr ""
+
+#: apps/offers/models.py:19 templates/include/footer.html:28
+#: templates/include/header.html:42 templates/pages/home.html:125
+#: templates/pages/offers/detail.html:6 templates/pages/offers/list.html:5
+msgid "Спецпредложения"
+msgstr "Special Offers"
+
+#: apps/offers/models.py:31
+msgid "Цена по акции, сом"
+msgstr ""
+
+#: apps/offers/models.py:32
+msgid "Цена без скидки, сом"
+msgstr ""
+
+#: apps/offers/models.py:34 apps/offers/models.py:89
+#: templates/pages/offers/detail.html:26
+msgid "Действует с"
+msgstr "Valid from"
+
+#: apps/offers/models.py:35 apps/offers/models.py:90
+#: templates/pages/offers/detail.html:27 templates/pages/offers/list.html:27
+msgid "Действует до"
+msgstr "Valid until"
+
+#: apps/offers/models.py:38
+msgid "Применимо к категориям"
+msgstr ""
+
+#: apps/offers/models.py:73
+msgid "Процент"
+msgstr ""
+
+#: apps/offers/models.py:74
+msgid "Фиксированная сумма"
+msgstr ""
+
+#: apps/offers/models.py:78
+msgid "Промокоды"
+msgstr ""
+
+#: apps/offers/models.py:81
+msgid "Код"
+msgstr ""
+
+#: apps/offers/models.py:85
+msgid "Тип скидки"
+msgstr ""
+
+#: apps/offers/models.py:87
+msgid "Размер скидки"
+msgstr ""
+
+#: apps/offers/models.py:92
+msgid "Минимум ночей"
+msgstr ""
+
+#: apps/offers/models.py:93
+msgid "Минимальная сумма брони"
+msgstr ""
+
+#: apps/offers/models.py:96
+msgid "Лимит применений"
+msgstr ""
+
+#: apps/offers/models.py:96
+msgid "0 — без ограничений"
+msgstr ""
+
+#: apps/offers/models.py:98
+msgid "Использован раз"
+msgstr ""
+
+#: apps/offers/models.py:101
+msgid "Только для категорий"
+msgstr ""
+
+#: apps/offers/models.py:102
+msgid "Пусто — действует на все категории."
+msgstr ""
+
+#: apps/offers/models.py:105
+msgid "Активен"
+msgstr ""
+
+#: apps/offers/models.py:112
+msgid "Процент скидки должен быть от 1 до 100."
+msgstr ""
+
+#: apps/offers/models.py:123
+msgid "Промокод неактивен."
+msgstr ""
+
+#: apps/offers/models.py:125
+msgid "Промокод ещё не действует."
+msgstr ""
+
+#: apps/offers/models.py:127
+msgid "Срок действия промокода истёк."
+msgstr ""
+
+#: apps/offers/models.py:129
+msgid "Лимит применений промокода исчерпан."
+msgstr ""
+
+#: apps/offers/models.py:131
+#, python-format
+msgid "Промокод действует при бронировании от %(n)s ночей."
+msgstr ""
+
+#: apps/offers/models.py:133
+#, python-format
+msgid "Промокод действует при сумме от %(s)s сом."
+msgstr ""
+
+#: apps/offers/models.py:136
+msgid "Промокод не применим к выбранной категории."
+msgstr ""
+
+#: apps/offers/views.py:16
+msgid "Спецпредложения и акции — Baytur Resort & Spa"
+msgstr "Special Offers — Baytur Resort & Spa"
+
+#: apps/offers/views.py:17
+msgid ""
+"Пакеты «проживание + SPA», завтраки, сезонные тарифы и промокоды курорта "
+"Baytur Resort & Spa."
+msgstr "Stay + spa packages, breakfasts, seasonal rates and promo codes at Baytur Resort & Spa."
+
+#: apps/rooms/admin.py:40
+msgid "Вместимость и параметры"
+msgstr ""
+
+#: apps/rooms/admin.py:43
+msgid "Цена и бронирование"
+msgstr ""
+
+#: apps/rooms/models.py:14
+msgid "Удобство"
+msgstr ""
+
+#: apps/rooms/models.py:15 apps/rooms/models.py:75
+#: templates/pages/rooms/detail.html:27
+msgid "Удобства"
+msgstr "Amenities"
+
+#: apps/rooms/models.py:35
+msgid "Стандарт"
+msgstr "Standard"
+
+#: apps/rooms/models.py:36
+msgid "Полулюкс"
+msgstr "Junior Suite"
+
+#: apps/rooms/models.py:37
+msgid "Люкс"
+msgstr "Suite"
+
+#: apps/rooms/models.py:38
+msgid "Делюкс"
+msgstr "Deluxe"
+
+#: apps/rooms/models.py:39
+msgid "Президентский"
+msgstr "Presidential"
+
+#: apps/rooms/models.py:40
+msgid "Семейный"
+msgstr "Family"
+
+#: apps/rooms/models.py:41
+msgid "Коттедж"
+msgstr "Cottage"
+
+#: apps/rooms/models.py:42
+msgid "Вилла"
+msgstr "Villa"
+
+#: apps/rooms/models.py:43
+msgid "Юрта"
+msgstr "Yurt"
+
+#: apps/rooms/models.py:47 templates/include/footer.html:25
+#: templates/pages/home.html:78 templates/pages/rooms/list.html:5
+msgid "Номера и жильё"
+msgstr "Rooms & Accommodation"
+
+#: apps/rooms/models.py:52
+msgid "Тип размещения"
+msgstr ""
+
+#: apps/rooms/models.py:63
+msgid "Взрослых (макс.)"
+msgstr ""
+
+#: apps/rooms/models.py:64
+msgid "Детей (макс.)"
+msgstr ""
+
+#: apps/rooms/models.py:65 apps/services/models.py:95
+msgid "Площадь, м²"
+msgstr ""
+
+#: apps/rooms/models.py:66 templates/pages/rooms/detail.html:54
+msgid "Кровати"
+msgstr "Beds"
+
+#: apps/rooms/models.py:67 templates/pages/rooms/detail.html:55
+msgid "Комнат"
+msgstr "Rooms"
+
+#: apps/rooms/models.py:71
+msgid "Цена от, сом/ночь"
+msgstr ""
+
+#: apps/rooms/models.py:72
+msgid "Витринная цена. Точная цена на выбранные даты приходит из Shelter."
+msgstr ""
+
+#: apps/rooms/models.py:80
+msgid ""
+"Идентификатор категории номера в PMS Shelter. Без него бронирование "
+"недоступно."
+msgstr ""
+
+#: apps/rooms/models.py:83
+msgid "Всего номеров категории"
+msgstr ""
+
+#: apps/rooms/models.py:84
+msgid "Резервное значение, если Shelter недоступен."
+msgstr ""
+
+#: apps/rooms/models.py:87
+msgid "Доступно к бронированию"
+msgstr ""
+
+#: apps/rooms/models.py:103 apps/rooms/models.py:104
+msgid "Фото номера"
+msgstr ""
+
+#: apps/rooms/models.py:108 apps/services/models.py:41
+#: templates/emails/booking_admin.html:10
+#: templates/emails/booking_confirmed.html:17
+#: templates/emails/booking_sync_failed.html:15
+#: templates/pages/booking/detail.html:15
+#: templates/pages/booking/failure.html:16
+#: templates/pages/booking/success.html:18
+#: templates/pages/services/detail.html:36
+msgid "Категория"
+msgstr "Category"
+
+#: apps/rooms/views.py:16
+msgid "Номера и жильё — Baytur Resort & Spa"
+msgstr "Rooms & Accommodation — Baytur Resort & Spa"
+
+#: apps/rooms/views.py:17
+msgid ""
+"Стандарты, полулюксы, люксы, коттеджи и виллы Baytur Resort & Spa. Фото, "
+"вместимость, удобства и цены."
+msgstr "Standard rooms, junior suites, suites, cottages and villas at Baytur Resort & Spa. Photos, capacity, amenities and prices."
+
+#: apps/services/admin.py:35
+msgid "Цена"
+msgstr ""
+
+#: apps/services/admin.py:59 templates/pages/rooms/detail.html:51
+msgid "Вместимость"
+msgstr "Capacity"
+
+#: apps/services/models.py:14
+msgid "Категория услуг"
+msgstr ""
+
+#: apps/services/models.py:15
+msgid "Категории услуг"
+msgstr ""
+
+#: apps/services/models.py:37 templates/include/footer.html:26
+#: templates/include/header.html:40 templates/pages/services/category.html:6
+#: templates/pages/services/list.html:14
+msgid "Услуги"
+msgstr "Services"
+
+#: apps/services/models.py:52
+msgid "Примечание к цене"
+msgstr ""
+
+#: apps/services/models.py:53 templates/pages/services/detail.html:35
+msgid "Длительность"
+msgstr "Duration"
+
+#: apps/services/models.py:65 apps/services/models.py:66
+msgid "Фото услуги"
+msgstr ""
+
+#: apps/services/models.py:83
+msgid "Конференц-зал"
+msgstr ""
+
+#: apps/services/models.py:84 templates/include/footer.html:27
+#: templates/include/header.html:41 templates/pages/services/hall_detail.html:6
+msgid "Конференц-залы"
+msgstr "Conference Halls"
+
+#: apps/services/models.py:96
+msgid "Театр, чел."
+msgstr ""
+
+#: apps/services/models.py:97
+msgid "Банкет, чел."
+msgstr ""
+
+#: apps/services/models.py:98
+msgid "Класс, чел."
+msgstr ""
+
+#: apps/services/models.py:99
+msgid "П-образно, чел."
+msgstr ""
+
+#: apps/services/models.py:101 templates/pages/services/hall_detail.html:15
+msgid "Оборудование"
+msgstr "Equipment"
+
+#: apps/services/models.py:102
+msgid "Цена от, сом"
+msgstr ""
+
+#: apps/services/views.py:15
+msgid "Услуги курорта — Baytur Resort & Spa"
+msgstr "Resort Services — Baytur Resort & Spa"
+
+#: apps/services/views.py:16
+msgid ""
+"SPA, бассейны, рестораны, спорткомплекс, детская зона и развлечения курорта "
+"Baytur Resort & Spa."
+msgstr "Spa, pools, restaurants, sports complex, kids area and entertainment at Baytur Resort & Spa."
+
+#: apps/services/views.py:52
+msgid "Конференц-залы и мероприятия — Baytur Resort & Spa"
+msgstr "Conference Halls & Events — Baytur Resort & Spa"
+
+#: apps/services/views.py:53
+msgid ""
+"Залы для конференций, банкетов и корпоративов на Иссык-Куле: вместимость, "
+"оборудование, заявка онлайн."
+msgstr "Halls for conferences, banquets and corporate events at Issyk-Kul: capacity, equipment, online request."
+
+#: templates/emails/booking_admin.html:5
+msgid "Новая бронь с сайта"
+msgstr "New booking from the website"
+
+#: templates/emails/booking_admin.html:12
+#: templates/emails/booking_sync_failed.html:17
+#: templates/pages/booking/failure.html:17
+#: templates/pages/booking/success.html:19
+msgid "Даты"
+msgstr "Dates"
+
+#: templates/emails/booking_admin.html:14
+#: templates/emails/booking_sync_failed.html:19
+#: templates/pages/booking/detail.html:20
+msgid "Гость"
+msgstr "Guest"
+
+#: templates/emails/booking_admin.html:20
+msgid "Итого / оплачено"
+msgstr "Total / paid"
+
+#: templates/emails/booking_admin.html:25
+msgid "не записана"
+msgstr "not recorded"
+
+#: templates/emails/booking_admin.html:36
+msgid "Открыть в админке"
+msgstr "Open in admin"
+
+#: templates/emails/booking_confirmed.html:6
+#, python-format
+msgid "%(name)s, спасибо за бронирование!"
+msgstr "%(name)s, thank you for your booking!"
+
+#: templates/emails/booking_confirmed.html:9
+#, python-format
+msgid ""
+"\n"
+"            Ваша бронь № %(number)s принята. Ниже — детали. Сохраните это "
+"письмо.\n"
+"        "
+msgstr "\n            Your booking no. %(number)s is confirmed. Details below — please keep this e-mail.\n        "
+
+#: templates/emails/booking_confirmed.html:20
+msgid "с"
+msgstr "from"
+
+#: templates/emails/booking_confirmed.html:22
+msgid "до"
+msgstr "until"
+
+#: templates/emails/booking_confirmed.html:25
+#: templates/emails/request_admin.html:25
+#: templates/pages/booking/checkout.html:146
+#: templates/pages/booking/detail.html:19
+msgid "Гостей"
+msgstr "Guests"
+
+#: templates/emails/booking_confirmed.html:27
+#: templates/pages/booking/checkout.html:169
+#: templates/pages/booking/detail.html:21
+msgid "Итого"
+msgstr "Total"
+
+#: templates/emails/booking_confirmed.html:29
+msgid "Оплачено онлайн"
+msgstr "Paid online"
+
+#: templates/emails/booking_confirmed.html:32
+#: templates/pages/booking/detail.html:24
+msgid "К оплате при заселении"
+msgstr "Due at check-in"
+
+#: templates/emails/booking_confirmed.html:40
+msgid "Посмотреть бронь"
+msgstr "View booking"
+
+#: templates/emails/booking_sync_failed.html:6
+msgid "Бронь оплачена, но НЕ записана в Shelter"
+msgstr "Booking is paid but NOT recorded in Shelter"
+
+#: templates/emails/booking_sync_failed.html:9
+msgid ""
+"Деньги гостя приняты. Заведите бронь в PMS вручную, чтобы номер не продали "
+"повторно."
+msgstr "The guest has paid. Create the booking in the PMS manually so the room is not sold twice."
+
+#: templates/emails/booking_sync_failed.html:32
+msgid "Открыть бронь"
+msgstr "Open booking"
+
+#: templates/include/booking_widget.html:25
+msgid "Найти номер"
+msgstr "Search"
+
+#: templates/include/footer.html:23
+msgid "Разделы"
+msgstr "Sections"
+
+#: templates/include/footer.html:24 templates/include/header.html:38
+#: templates/pages/about.html:5
+msgid "О курорте"
+msgstr "About"
+
+#: templates/include/footer.html:29 templates/pages/gallery/index.html:5
+msgid "Галерея и 3D-тур"
+msgstr "Gallery & 3D Tour"
+
+#: templates/include/footer.html:35 templates/pages/blog/detail.html:6
+msgid "Блог"
+msgstr "Blog"
+
+#: templates/include/footer.html:52
+msgid "Спецпредложения на почту"
+msgstr "Offers by e-mail"
+
+#: templates/include/footer.html:53
+msgid "Подпишитесь — присылаем акции и сезонные тарифы."
+msgstr "Subscribe — we send offers and seasonal rates."
+
+#: templates/include/footer.html:58
+msgid "Подписаться"
+msgstr "Subscribe"
+
+#: templates/include/header.html:39 templates/pages/rooms/detail.html:6
+msgid "Номера"
+msgstr "Rooms"
+
+#: templates/include/header.html:55 templates/pages/booking/search.html:63
+#: templates/pages/home.html:254 templates/pages/offers/detail.html:31
+msgid "Забронировать"
+msgstr "Book Now"
+
+#: templates/include/header.html:57
+msgid "Меню"
+msgstr "Menu"
+
+#: templates/include/page_head.html:6
+msgid "Главная"
+msgstr "Home"
+
+#: templates/include/room_card.html:12 templates/pages/booking/search.html:41
+#, python-format
+msgid "до %(n)s гостей"
+msgstr "up to %(n)s guests"
+
+#: templates/include/room_card.html:21 templates/pages/rooms/detail.html:45
+#: templates/pages/services/halls.html:31
+msgid "от"
+msgstr "from"
+
+#: templates/include/room_card.html:23 templates/pages/rooms/detail.html:47
+msgid "сом / ночь"
+msgstr "KGS / night"
+
+#: templates/include/room_card.html:25 templates/pages/home.html:151
+#: templates/pages/offers/list.html:37
+#: templates/pages/services/category.html:32
+#: templates/pages/services/halls.html:36 templates/pages/services/list.html:18
+#: templates/pages/services/list.html:41
+msgid "Подробнее"
+msgstr "Details"
+
+#: templates/pages/about.html:6
+msgid ""
+"Baytur Resort & Spa — территория отдыха на северном берегу Иссык-Куля, с. "
+"Бостери."
+msgstr "Baytur Resort & Spa — a holiday destination on the northern shore of Issyk-Kul, Bosteri."
+
+#: templates/pages/about.html:49
+msgid "Территория курорта"
+msgstr "Resort grounds"
+
+#: templates/pages/about.html:50
+msgid "Вся галерея"
+msgstr "Full gallery"
+
+#: templates/pages/blog/detail.html:21
+msgid "Читайте также"
+msgstr "Read also"
+
+#: templates/pages/blog/list.html:5 templates/pages/home.html:223
+msgid "Новости и статьи"
+msgstr "News & Articles"
+
+#: templates/pages/blog/list.html:29
+msgid "Публикаций пока нет."
+msgstr "No posts yet."
+
+#: templates/pages/blog/reviews.html:5
+msgid "Отзывы гостей"
+msgstr "Guest Reviews"
+
+#: templates/pages/blog/reviews.html:39
+msgid "Отзывы скоро появятся."
+msgstr "Reviews are coming soon."
+
+#: templates/pages/booking/checkout.html:5
+msgid "Оформление брони"
+msgstr "Checkout"
+
+#: templates/pages/booking/checkout.html:23
+msgid "Дополнительно к проживанию"
+msgstr "Add to your stay"
+
+#: templates/pages/booking/checkout.html:35
+#: templates/pages/booking/checkout.html:151
+#: templates/pages/booking/checkout.html:157
+#: templates/pages/booking/checkout.html:164
+#: templates/pages/booking/checkout.html:170
+#: templates/pages/booking/search.html:56 templates/pages/home.html:148
+#: templates/pages/offers/detail.html:21 templates/pages/offers/list.html:34
+#: templates/pages/services/category.html:29
+#: templates/pages/services/detail.html:31
+#: templates/pages/services/hall_detail.html:27
+#: templates/pages/services/halls.html:33 templates/pages/services/list.html:38
+msgid "сом"
+msgstr "KGS"
+
+#: templates/pages/booking/checkout.html:42
+msgid "Дополнительные услуги можно заказать на ресепшене."
+msgstr "Extra services can be arranged at the reception."
+
+#: templates/pages/booking/checkout.html:50
+msgid "Введите промокод"
+msgstr "Enter promo code"
+
+#: templates/pages/booking/checkout.html:51
+msgid "Применить"
+msgstr "Apply"
+
+#: templates/pages/booking/checkout.html:71
+msgid "Данные гостя"
+msgstr "Guest details"
+
+#: templates/pages/booking/checkout.html:126
+msgid "Перейти к оплате"
+msgstr "Proceed to payment"
+
+#: templates/pages/booking/checkout.html:129
+msgid ""
+"Оплата проходит на защищённой странице FreedomPay. Данные карты на сайте не "
+"сохраняются."
+msgstr "Payment is processed on FreedomPay's secure page. Card details are never stored on this site."
+
+#: templates/pages/booking/checkout.html:175
+#, python-format
+msgid ""
+"\n"
+"                            Сейчас к оплате: %(amount)s сом, остальное — при "
+"заселении.\n"
+"                        "
+msgstr "\n                            Due now: %(amount)s KGS, the rest on arrival.\n                        "
+
+#: templates/pages/booking/detail.html:30
+msgid ""
+"Бронь ожидает оплаты. Если оплата не прошла, свяжитесь с нами — мы поможем."
+msgstr "The booking is awaiting payment. If the payment failed, contact us — we will help."
+
+#: templates/pages/booking/detail.html:34
+#: templates/pages/booking/success.html:27 templates/pages/errors/404.html:13
+#: templates/pages/errors/500.html:13
+msgid "На главную"
+msgstr "Back to home"
+
+#: templates/pages/booking/failure.html:11
+msgid ""
+"Номер остался свободным, деньги не списаны. Попробуйте оплатить ещё раз или "
+"свяжитесь с нами."
+msgstr "The room is still available and no money was taken. Please try again or contact us."
+
+#: templates/pages/booking/failure.html:21
+msgid "Попробовать снова"
+msgstr "Try again"
+
+#: templates/pages/booking/search.html:6
+msgid "Выберите даты — мы покажем свободные категории и актуальные цены."
+msgstr "Choose your dates — we will show available categories and live prices."
+
+#: templates/pages/booking/search.html:23
+msgid "Свободные категории"
+msgstr "Available categories"
+
+#: templates/pages/booking/search.html:50
+#, python-format
+msgid "Осталось номеров: %(n)s"
+msgstr "Rooms left: %(n)s"
+
+#: templates/pages/booking/search.html:58
+msgid "сом за ночь"
+msgstr "KGS per night"
+
+#: templates/pages/booking/search.html:66
+msgid "Нет свободных номеров"
+msgstr "No rooms available"
+
+#: templates/pages/booking/search.html:74
+msgid ""
+"На выбранные даты свободных номеров не найдено. Попробуйте другие даты или "
+"позвоните нам."
+msgstr "No rooms available for these dates. Try other dates or call us."
+
+#: templates/pages/booking/search.html:79
+msgid "Укажите даты заезда и выезда, чтобы увидеть свободные номера и цены."
+msgstr "Enter your dates to see available rooms and prices."
+
+#: templates/pages/booking/success.html:9
+msgid "Спасибо! Оплата принята"
+msgstr "Thank you! Payment received"
+
+#: templates/pages/booking/success.html:11
+#, python-format
+msgid ""
+"\n"
+"                    Подтверждение брони отправлено на %(email)s. Если письма "
+"нет — проверьте папку «Спам».\n"
+"                "
+msgstr "\n                    A confirmation has been sent to %(email)s. If you don't see it, check your spam folder.\n                "
+
+#: templates/pages/booking/success.html:23
+msgid "При заселении"
+msgstr "On arrival"
+
+#: templates/pages/contacts.html:11
+msgid "Как с нами связаться"
+msgstr "How to reach us"
+
+#: templates/pages/contacts.html:14
+msgid "Доп. телефон"
+msgstr "Second phone"
+
+#: templates/pages/contacts.html:17
+msgid "Ресепшен"
+msgstr "Reception"
+
+#: templates/pages/contacts.html:18 templates/pages/rooms/detail.html:56
+msgid "Заезд / выезд"
+msgstr "Check-in / Check-out"
+
+#: templates/pages/contacts.html:33
+msgid "Напишите нам"
+msgstr "Write to us"
+
+#: templates/pages/contacts.html:55
+msgid "Отправить"
+msgstr "Send"
+
+#: templates/pages/errors/404.html:4 templates/pages/errors/404.html:11
+msgid "Страница не найдена"
+msgstr "Page not found"
+
+#: templates/pages/errors/404.html:12
+msgid "Возможно, страница была удалена или адрес указан неверно."
+msgstr "The page may have been removed or the address is wrong."
+
+#: templates/pages/errors/404.html:14
+msgid "Посмотреть номера"
+msgstr "View rooms"
+
+#: templates/pages/errors/500.html:4
+msgid "Ошибка сервера"
+msgstr "Server error"
+
+#: templates/pages/errors/500.html:11
+msgid "Что-то пошло не так"
+msgstr "Something went wrong"
+
+#: templates/pages/errors/500.html:12
+msgid ""
+"Мы уже знаем о проблеме и чиним её. Попробуйте обновить страницу чуть позже."
+msgstr "We already know about the issue and are fixing it. Please try again shortly."
+
+#: templates/pages/gallery/album.html:24
+msgid "В альбоме пока нет фотографий."
+msgstr "This album has no photos yet."
+
+#: templates/pages/gallery/index.html:6
+msgid "Фото, видео и виртуальная прогулка по курорту."
+msgstr "Photos, video and a virtual walk around the resort."
+
+#: templates/pages/gallery/index.html:14 templates/pages/gallery/index.html:29
+msgid "Виртуальный 3D-тур"
+msgstr "Virtual 3D tour"
+
+#: templates/pages/gallery/index.html:15
+msgid ""
+"Пройдитесь по территории курорта, номерам и бассейнам, не выходя из дома."
+msgstr "Walk around the resort grounds, rooms and pools without leaving home."
+
+#: templates/pages/gallery/index.html:18
+#| msgid "Виртуальный 3D-тур"
+msgid "Открыть 3D-тур"
+msgstr "Open 3D tour"
+
+#: templates/pages/gallery/index.html:43
+msgid "Фотоальбомы"
+msgstr "Photo albums"
+
+#: templates/pages/gallery/index.html:59
+msgid "Фотографии скоро появятся."
+msgstr "Photos are coming soon."
+
+#: templates/pages/home.html:19 templates/pages/home.html:31
+msgid "Иссык-Куль · с. Бостери"
+msgstr "Issyk-Kul · Bosteri"
+
+#: templates/pages/home.html:33
+msgid "Курорт на берегу Иссык-Куля"
+msgstr "A resort on the shore of Issyk-Kul"
+
+#: templates/pages/home.html:77
+msgid "Размещение"
+msgstr "Accommodation"
+
+#: templates/pages/home.html:80
+msgid "Все категории"
+msgstr "All categories"
+
+#: templates/pages/home.html:97
+msgid "Инфраструктура"
+msgstr "Facilities"
+
+#: templates/pages/home.html:98 templates/pages/services/list.html:5
+msgid "Услуги курорта"
+msgstr "Resort Services"
+
+#: templates/pages/home.html:100
+msgid "Все услуги"
+msgstr "All services"
+
+#: templates/pages/home.html:124
+msgid "Выгодно"
+msgstr "Best value"
+
+#: templates/pages/home.html:127
+msgid "Все акции"
+msgstr "All offers"
+
+#: templates/pages/home.html:167
+msgid "Виртуальная прогулка"
+msgstr "Virtual tour"
+
+#: templates/pages/home.html:186
+msgid "Гости о нас"
+msgstr "Guests about us"
+
+#: templates/pages/home.html:189
+msgid "Все отзывы"
+msgstr "All reviews"
+
+#: templates/pages/home.html:222
+msgid "Журнал"
+msgstr "Journal"
+
+#: templates/pages/home.html:225
+msgid "Все материалы"
+msgstr "All posts"
+
+#: templates/pages/home.html:251
+msgid "Готовы отдохнуть на Иссык-Куле?"
+msgstr "Ready for a break at Issyk-Kul?"
+
+#: templates/pages/home.html:252
+msgid ""
+"Забронируйте номер онлайн — подтверждение придёт на e-mail сразу после "
+"оплаты."
+msgstr "Book online — confirmation arrives by e-mail right after payment."
+
+#: templates/pages/offers/detail.html:40
+msgid "Подходящие номера"
+msgstr "Matching rooms"
+
+#: templates/pages/offers/list.html:6
+msgid "Пакеты, сезонные тарифы и акции курорта."
+msgstr "Packages, seasonal rates and resort offers."
+
+#: templates/pages/offers/list.html:45
+msgid "Сейчас активных акций нет — загляните позже."
+msgstr "No active offers right now — check back later."
+
+#: templates/pages/rooms/detail.html:53
+#: templates/pages/services/hall_detail.html:22
+#: templates/pages/services/halls.html:23
+msgid "Площадь"
+msgstr "Area"
+
+#: templates/pages/rooms/detail.html:62
+msgid "Проверить даты и забронировать"
+msgstr "Check dates and book"
+
+#: templates/pages/rooms/detail.html:65
+msgid "Онлайн-бронирование этой категории временно недоступно. Позвоните нам."
+msgstr ""
+"Online booking for this category is temporarily unavailable. Please call us."
+
+#: templates/pages/rooms/detail.html:81
+msgid "Похожие варианты"
+msgstr "Similar options"
+
+#: templates/pages/rooms/list.html:6
+msgid ""
+"Стандарты, полулюксы, люксы, коттеджи и виллы — выберите размещение по вкусу "
+"и бюджету."
+msgstr "Standard rooms, junior suites, suites, cottages and villas — choose what suits you."
+
+#: templates/pages/rooms/list.html:16
+msgid "Все"
+msgstr "All"
+
+#: templates/pages/rooms/list.html:30
+msgid "В этой категории пока нет номеров."
+msgstr "No rooms in this category yet."
+
+#: templates/pages/services/category.html:39
+msgid "Услуги этой категории скоро появятся."
+msgstr "Services in this category are coming soon."
+
+#: templates/pages/services/detail.html:39
+msgid "Записаться"
+msgstr "Book a session"
+
+#: templates/pages/services/detail.html:42
+msgid "Забронировать номер"
+msgstr "Book a Room"
+
+#: templates/pages/services/hall_detail.html:23
+#: templates/pages/services/halls.html:24
+msgid "Театр"
+msgstr "Theatre"
+
+#: templates/pages/services/hall_detail.html:25
+#: templates/pages/services/halls.html:26
+msgid "Класс"
+msgstr "Classroom"
+
+#: templates/pages/services/hall_detail.html:26
+msgid "П-образно"
+msgstr "U-shape"
+
+#: templates/pages/services/hall_detail.html:27
+msgid "Цена от"
+msgstr "Price from"
+
+#: templates/pages/services/hall_detail.html:30
+msgid "Оставить заявку"
+msgstr "Leave a request"
+
+#: templates/pages/services/halls.html:5
+msgid "Конференц-залы и мероприятия"
+msgstr "Conference Halls & Events"
+
+#: templates/pages/services/halls.html:6
+msgid "Конференции, семинары, банкеты и корпоративы на берегу Иссык-Куля."
+msgstr ""
+"Conferences, seminars, banquets and corporate events on the shore of Issyk-"
+"Kul."
+
+#: templates/pages/services/halls.html:43
+msgid "Информация о залах скоро появится."
+msgstr "Hall details are coming soon."
+
+#: templates/pages/services/halls.html:52
+msgid "Заявка"
+msgstr "Request"
+
+#: templates/pages/services/halls.html:53
+msgid "Организуем мероприятие под ключ"
+msgstr "We organise your event end to end"
+
+#: templates/pages/services/halls.html:108
+msgid "Отправить заявку"
+msgstr "Send request"
+
+#: templates/pages/services/list.html:6
+msgid "SPA, бассейны, рестораны, спорткомплекс, детская зона и развлечения."
+msgstr "Spa, pools, restaurants, sports complex, kids area and entertainment."
+
+#: templates/pages/services/list.html:51
+msgid "Раздел наполняется."
+msgstr "This section is being filled in."

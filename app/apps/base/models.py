@@ -70,6 +70,14 @@ class SiteSettings(SEOModel):
     address = models.CharField(_('Адрес'), max_length=255, blank=True)
     working_hours = models.CharField(_('Часы работы ресепшена'), max_length=255, blank=True)
 
+    # Виртуальный тур. Ссылка внешняя (kuula.co) и одна на все языки —
+    # выводится кнопкой в шапке, подвале и на странице галереи.
+    tour_url = models.URLField(
+        _('Ссылка на 3D-тур'), max_length=1000, blank=True,
+        help_text=_('Внешняя ссылка на виртуальный тур. Кнопка «3D-тур» '
+                    'появляется в шапке, подвале и в галерее, если поле заполнено.'),
+    )
+
     # Карты и мессенджеры
     map_embed = models.TextField(_('Карта (iframe Google Maps / 2GIS)'), blank=True)
     whatsapp = models.CharField(_('WhatsApp (номер или ссылка)'), max_length=255, blank=True)

@@ -1,5 +1,8 @@
 name: baitur
 
+# Redis в проекте не используется (кеш и очереди не подключены), поэтому
+# в прод-конфиге его нет — на сервере дорога каждая сотня мегабайт RAM.
+
 services:
   db_baitur:
     image: postgres:14
@@ -16,13 +19,10 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-
-  redis_baitur:
-    image: redis:6
-    container_name: redis_baitur
-    restart: always
-    networks:
-      - baitur_network
+    deploy:
+      resources:
+        limits:
+          memory: 256M
 
   web_baitur:
     build:
@@ -30,7 +30,7 @@ services:
       dockerfile: docker/Dockerfile
     container_name: django_web_baitur
     restart: always
-    command: sh -c "/entrypoint.sh && gunicorn core.wsgi:application --bind 0.0.0.0:8000 --workers 3 --timeout 60"
+    command: sh -c "/entrypoint.sh && gunicorn core.wsgi:application --bind 0.0.0.0:8000 --workers 2 --threads 2 --timeout 60 --max-requests 400 --max-requests-jitter 50"
     volumes:
       - ../app:/app
       - ../app/static:/app/static
@@ -42,12 +42,14 @@ services:
     depends_on:
       db_baitur:
         condition: service_healthy
-      redis_baitur:
-        condition: service_started
     ports:
       - "127.0.0.1:8091:8000"
     networks:
       - baitur_network
+    deploy:
+      resources:
+        limits:
+          memory: 512M
 
 networks:
   baitur_network:
