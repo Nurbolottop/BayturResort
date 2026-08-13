@@ -1,0 +1,33 @@
+{% load i18n %}
+{% comment %}
+    Адрес с выбором карты. На телефоне система сама открывает приложение
+    по умолчанию, поэтому даём гостю выбрать: Google Maps или 2ГИС.
+
+    Если ссылка задана одна — ведём сразу на неё, без лишнего клика.
+    Если ни одной — обычный текст.
+
+    Параметр class_name задаёт класс подписи под окружение (шапка, подвал).
+{% endcomment %}
+{% if site.address %}
+    {% if site.map_google_url and site.map_2gis_url %}
+        <span class="addr" data-addr>
+            <button class="addr__toggle {{ class_name }}" type="button" data-addr-toggle
+                    aria-expanded="false" aria-haspopup="true">
+                {{ site.address }}
+            </button>
+            <span class="addr__menu" data-addr-menu hidden>
+                <a class="addr__link" href="{{ site.map_google_url }}" target="_blank" rel="noopener">
+                    {% translate "Открыть в Google Maps" %}
+                </a>
+                <a class="addr__link" href="{{ site.map_2gis_url }}" target="_blank" rel="noopener">
+                    {% translate "Открыть в 2ГИС" %}
+                </a>
+            </span>
+        </span>
+    {% elif site.map_google_url or site.map_2gis_url %}
+        <a class="{{ class_name }}" href="{{ site.map_google_url|default:site.map_2gis_url }}"
+           target="_blank" rel="noopener">{{ site.address }}</a>
+    {% else %}
+        <span class="{{ class_name }}">{{ site.address }}</span>
+    {% endif %}
+{% endif %}

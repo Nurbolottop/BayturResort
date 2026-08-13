@@ -40,7 +40,7 @@
             {% if site.phone %}<a class="footer__link" href="tel:{{ site.phone }}">{{ site.phone }}</a>{% endif %}
             {% if site.phone_extra %}<a class="footer__link" href="tel:{{ site.phone_extra }}">{{ site.phone_extra }}</a>{% endif %}
             {% if site.email %}<a class="footer__link" href="mailto:{{ site.email }}">{{ site.email }}</a>{% endif %}
-            {% if site.address %}<p class="footer__text">{{ site.address }}</p>{% endif %}
+            {% include 'include/address.html' with class_name="footer__text" %}
             {% if site.working_hours %}<p class="footer__text">{{ site.working_hours }}</p>{% endif %}
             {% if site.whatsapp %}
                 <a class="btn btn--ghost btn--sm" href="https://wa.me/{{ site.whatsapp|cut:'+'|cut:' '|cut:'-' }}"

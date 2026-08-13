@@ -125,6 +125,114 @@
         start();
     }
 
+    // ------------------------------------------- адрес: выбор карты
+    document.querySelectorAll('[data-addr]').forEach(function (addr) {
+        var toggle = addr.querySelector('[data-addr-toggle]');
+        var menu = addr.querySelector('[data-addr-menu]');
+        if (!toggle || !menu) return;
+
+        // Верхняя строка шапки обрезает содержимое (overflow:hidden нужен
+        // для схлопывания при скролле) — на время показа снимаем.
+        var clipper = addr.closest('.header__top');
+
+        function close() {
+            menu.hidden = true;
+            toggle.setAttribute('aria-expanded', 'false');
+            if (clipper) clipper.classList.remove('is-addr-open');
+        }
+
+        toggle.addEventListener('click', function (event) {
+            event.stopPropagation();
+            var open = menu.hidden;
+            // Одновременно открытым может быть только одно меню
+            document.querySelectorAll('[data-addr-menu]').forEach(function (m) { m.hidden = true; });
+            document.querySelectorAll('[data-addr-toggle]').forEach(function (t) {
+                t.setAttribute('aria-expanded', 'false');
+            });
+            document.querySelectorAll('.header__top').forEach(function (h) {
+                h.classList.remove('is-addr-open');
+            });
+            menu.hidden = !open;
+            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            if (clipper) clipper.classList.toggle('is-addr-open', open);
+        });
+
+        document.addEventListener('click', function (event) {
+            if (!addr.contains(event.target)) close();
+        });
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') close();
+        });
+    });
+
+    // ------------------------------------ всплывающее окно с акциями
+    // Показываем один раз и с задержкой. Кто закрыл — не видит окно
+    // заданное число дней; отметка привязана к составу акций, поэтому
+    // после смены предложений окно покажется снова.
+    var popup = document.querySelector('[data-popup]');
+    if (popup) {
+        var storeKey = 'baitur:popup:' + (popup.dataset.popupKey || 'offers');
+        var repeatDays = parseInt(popup.dataset.popupRepeat, 10);
+        var delay = parseInt(popup.dataset.popupDelay, 10);
+        if (isNaN(repeatDays)) repeatDays = 7;
+        if (isNaN(delay)) delay = 4;
+
+        var lastReturnFocus = null;
+
+        function seenRecently() {
+            if (repeatDays === 0) return false;
+            try {
+                var until = parseInt(window.localStorage.getItem(storeKey), 10);
+                return !isNaN(until) && Date.now() < until;
+            } catch (e) {
+                // приватный режим — просто показываем окно
+                return false;
+            }
+        }
+
+        function remember() {
+            if (repeatDays === 0) return;
+            try {
+                var until = Date.now() + repeatDays * 24 * 60 * 60 * 1000;
+                window.localStorage.setItem(storeKey, String(until));
+            } catch (e) { /* хранилище недоступно — не критично */ }
+        }
+
+        function openPopup() {
+            popup.hidden = false;
+            lastReturnFocus = document.activeElement;
+            // Кадр между снятием hidden и классом — иначе перехода не будет
+            window.requestAnimationFrame(function () {
+                window.requestAnimationFrame(function () {
+                    popup.classList.add('is-open');
+                });
+            });
+            document.body.style.overflow = 'hidden';
+            var win = popup.querySelector('.popup__window');
+            if (win) win.focus();
+        }
+
+        function closePopup() {
+            popup.classList.remove('is-open');
+            document.body.style.overflow = '';
+            remember();
+            window.setTimeout(function () { popup.hidden = true; }, 550);
+            if (lastReturnFocus && lastReturnFocus.focus) lastReturnFocus.focus();
+        }
+
+        popup.querySelectorAll('[data-popup-close]').forEach(function (el) {
+            el.addEventListener('click', closePopup);
+        });
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && !popup.hidden) closePopup();
+        });
+
+        if (!seenRecently()) {
+            window.setTimeout(openPopup, delay * 1000);
+        }
+    }
+
     // --------------------------------------- даты: выезд всегда позже заезда
     function syncDates(root) {
         var checkIn = root.querySelector('[data-check-in]');

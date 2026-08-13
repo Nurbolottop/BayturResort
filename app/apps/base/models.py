@@ -70,6 +70,30 @@ class SiteSettings(SEOModel):
     address = models.CharField(_('Адрес'), max_length=255, blank=True)
     working_hours = models.CharField(_('Часы работы ресепшена'), max_length=255, blank=True)
 
+    # Всплывающее окно с акциями. Показывается один раз и с задержкой:
+    # окно, которое выскакивает сразу и на каждой странице, гости
+    # закрывают не читая, а часть уходит с сайта.
+    popup_enabled = models.BooleanField(
+        _('Показывать окно с акциями'), default=False,
+        help_text=_('Окно появляется только если есть действующие акции.'),
+    )
+    popup_title = models.CharField(
+        _('Заголовок окна'), max_length=255, blank=True,
+        help_text=_('По умолчанию — «Специальные предложения».'),
+    )
+    popup_text = models.CharField(_('Подпись в окне'), max_length=500, blank=True)
+    popup_delay = models.PositiveSmallIntegerField(
+        _('Задержка перед показом, сек'), default=4,
+        help_text=_('Даём гостю осмотреться. Рекомендуем 3–6 секунд.'),
+    )
+    popup_repeat_days = models.PositiveSmallIntegerField(
+        _('Не показывать повторно, дней'), default=7,
+        help_text=_('Сколько дней не показывать окно тому, кто его закрыл. 0 — показывать каждый раз.'),
+    )
+    popup_limit = models.PositiveSmallIntegerField(
+        _('Сколько акций показывать'), default=3,
+    )
+
     # Виртуальный тур. Ссылка внешняя (kuula.co) и одна на все языки —
     # выводится кнопкой в шапке, подвале и на странице галереи.
     tour_url = models.URLField(
@@ -80,6 +104,17 @@ class SiteSettings(SEOModel):
 
     # Карты и мессенджеры
     map_embed = models.TextField(_('Карта (iframe Google Maps / 2GIS)'), blank=True)
+    # По клику на адрес гость выбирает карту сам: на телефоне система иначе
+    # открывает приложение по умолчанию, а в Кыргызстане это чаще 2ГИС,
+    # но не у всех.
+    map_google_url = models.URLField(
+        _('Ссылка на Google Maps'), max_length=500, blank=True,
+        help_text=_('Открывается по клику на адрес.'),
+    )
+    map_2gis_url = models.URLField(
+        _('Ссылка на 2ГИС'), max_length=500, blank=True,
+        help_text=_('Открывается по клику на адрес.'),
+    )
     whatsapp = models.CharField(_('WhatsApp (номер или ссылка)'), max_length=255, blank=True)
     telegram = models.CharField(_('Telegram'), max_length=255, blank=True)
     instagram = models.URLField(_('Instagram'), blank=True)

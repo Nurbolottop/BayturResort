@@ -1,0 +1,77 @@
+{% load i18n baitur %}
+{% comment %}
+    Всплывающее окно с акциями. Рисуется только когда есть что показать —
+    пустой popup_offers означает, что окна в разметке нет вообще.
+    Поведение и частота — в JS, настройки приходят через data-атрибуты.
+{% endcomment %}
+{% if popup_offers %}
+    <div class="popup" data-popup
+         data-popup-delay="{{ site.popup_delay|default:4 }}"
+         data-popup-repeat="{{ site.popup_repeat_days|default:7 }}"
+         data-popup-key="offers-{{ popup_offers.0.pk }}-{{ popup_offers|length }}"
+         hidden>
+
+        <div class="popup__backdrop" data-popup-close></div>
+
+        <div class="popup__window" role="dialog" aria-modal="true"
+             aria-labelledby="popup-title" tabindex="-1">
+
+            <button class="popup__close" type="button" data-popup-close
+                    aria-label="{% translate 'Закрыть' %}">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                    <path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor"
+                          stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+            </button>
+
+            <div class="popup__head">
+                <span class="popup__eyebrow">{% translate "Выгодно" %}</span>
+                <h2 class="popup__title" id="popup-title">
+                    {% if site.popup_title %}{{ site.popup_title }}{% else %}{% translate "Специальные предложения" %}{% endif %}
+                </h2>
+                {% if site.popup_text %}
+                    <p class="popup__text">{{ site.popup_text }}</p>
+                {% endif %}
+            </div>
+
+            <div class="popup__list">
+                {% for offer in popup_offers %}
+                    <a class="popup__offer" href="{{ offer.get_absolute_url }}">
+                        <span class="popup__offer-media">
+                            {% if offer.cover %}
+                                <img src="{{ offer.cover.url }}" alt="{{ offer.title }}"
+                                     loading="lazy" width="320" height="220">
+                            {% endif %}
+                            {% if offer.discount_percent %}
+                                <span class="popup__badge">−{{ offer.discount_percent }}%</span>
+                            {% endif %}
+                        </span>
+                        <span class="popup__offer-body">
+                            <span class="popup__offer-title">{{ offer.title }}</span>
+                            {% if offer.subtitle %}
+                                <span class="popup__offer-text">{{ offer.subtitle }}</span>
+                            {% endif %}
+                            {% if offer.price %}
+                                <span class="popup__offer-price">
+                                    <span class="price__from">{% translate "от" %}</span>
+                                    <span class="price__value">{{ offer.price|money }}</span>
+                                    <span class="price__unit">{% translate "сом" %}</span>
+                                    {% if offer.old_price %}
+                                        <s class="price__old">{{ offer.old_price|money }}</s>
+                                    {% endif %}
+                                </span>
+                            {% endif %}
+                        </span>
+                    </a>
+                {% endfor %}
+            </div>
+
+            <div class="popup__actions">
+                <a class="btn btn--primary" href="{% url 'offers:list' %}">{% translate "Все акции" %}</a>
+                <button class="btn btn--ghost" type="button" data-popup-close>
+                    {% translate "Закрыть" %}
+                </button>
+            </div>
+        </div>
+    </div>
+{% endif %}

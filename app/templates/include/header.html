@@ -8,7 +8,7 @@
             {% if site.email %}
                 <a class="header__contact header__contact--hide-sm" href="mailto:{{ site.email }}">{{ site.email }}</a>
             {% endif %}
-            <span class="header__contact header__contact--hide-sm">{{ site.address }}</span>
+            {% include 'include/address.html' with class_name="header__contact header__contact--hide-sm" %}
 
             <div class="lang" data-lang>
                 {% get_available_languages as LANGUAGES %}

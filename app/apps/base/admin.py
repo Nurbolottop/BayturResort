@@ -26,13 +26,28 @@ class SiteSettingsAdmin(TabbedTranslationAdmin):
             'fields': ('site_name', 'tagline', 'logo', 'logo_light', 'favicon'),
         }),
         (_('Контакты'), {
-            'fields': ('phone', 'phone_extra', 'email', 'address', 'working_hours', 'map_embed'),
+            'fields': ('phone', 'phone_extra', 'email', 'address', 'working_hours',
+                       'map_embed', 'map_google_url', 'map_2gis_url'),
+            'description': _('Если заданы обе ссылки на карты, по клику на адрес гость '
+                             'выбирает, где открыть — Google Maps или 2ГИС.'),
         }),
         (_('Соцсети и мессенджеры'), {
             'fields': ('whatsapp', 'telegram', 'instagram', 'facebook', 'youtube', 'tiktok'),
         }),
         (_('Бронирование'), {
             'fields': ('check_in_time', 'check_out_time', 'booking_rules'),
+        }),
+        (_('3D-тур'), {
+            'fields': ('tour_url',),
+            'description': _('Кнопка «3D-тур» в шапке, подвале и галерее появляется, '
+                             'когда поле заполнено.'),
+        }),
+        (_('Окно с акциями'), {
+            'fields': ('popup_enabled', 'popup_title', 'popup_text',
+                       'popup_delay', 'popup_repeat_days', 'popup_limit'),
+            'description': _('Всплывающее окно при входе на сайт. Показывается только '
+                             'при наличии действующих акций и не появляется на самих '
+                             'страницах спецпредложений.'),
         }),
         (_('Реквизиты'), {
             'fields': ('legal_name', 'requisites'),

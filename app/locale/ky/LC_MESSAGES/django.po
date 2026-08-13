@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-13 11:20+0600\n"
+"POT-Creation-Date: 2026-08-13 16:36+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,28 +31,62 @@ msgid "Идентичность"
 msgstr ""
 
 #: apps/base/admin.py:28 templates/include/footer.html:39
-#: templates/include/header.html:45 templates/pages/contacts.html:5
+#: templates/include/header.html:48 templates/pages/contacts.html:5
 msgid "Контакты"
 msgstr "Байланыш"
 
 #: apps/base/admin.py:31
+msgid ""
+"Если заданы обе ссылки на карты, по клику на адрес гость выбирает, где "
+"открыть — Google Maps или 2ГИС."
+msgstr ""
+
+#: apps/base/admin.py:34
 msgid "Соцсети и мессенджеры"
 msgstr ""
 
-#: apps/base/admin.py:34 templates/pages/booking/search.html:5
+#: apps/base/admin.py:37 templates/pages/booking/search.html:5
 msgid "Бронирование"
 msgstr "Брондоо"
 
-#: apps/base/admin.py:37 apps/base/models.py:92
-#: templates/pages/contacts.html:27
+#: apps/base/admin.py:40 apps/gallery/models.py:68
+#: templates/include/footer.html:32 templates/include/header.html:54
+msgid "3D-тур"
+msgstr "3D-тур"
+
+#: apps/base/admin.py:42
+#, fuzzy
+#| msgid ""
+#| "Внешняя ссылка на виртуальный тур. Кнопка «3D-тур» появляется в шапке, "
+#| "подвале и в галерее, если поле заполнено."
+msgid ""
+"Кнопка «3D-тур» в шапке, подвале и галерее появляется, когда поле заполнено."
+msgstr ""
+"Виртуалдык турга тышкы шилтеме. Талаа толтурулганда «3D-тур» баскычы "
+"жогорку, ылдыйкы бөлүктө жана галереяда чыгат."
+
+#: apps/base/admin.py:45
+#, fuzzy
+#| msgid "Все акции"
+msgid "Окно с акциями"
+msgstr "Бардык сунуштар"
+
+#: apps/base/admin.py:48
+msgid ""
+"Всплывающее окно при входе на сайт. Показывается только при наличии "
+"действующих акций и не появляется на самих страницах спецпредложений."
+msgstr ""
+
+#: apps/base/admin.py:52 apps/base/models.py:127
+#: templates/pages/contacts.html:29
 msgid "Реквизиты"
 msgstr "Реквизиттер"
 
-#: apps/base/admin.py:41
+#: apps/base/admin.py:56
 msgid "Аналитика"
 msgstr ""
 
-#: apps/base/admin.py:45 apps/blog/admin.py:25 apps/cms/admin.py:22
+#: apps/base/admin.py:60 apps/blog/admin.py:25 apps/cms/admin.py:22
 #: apps/offers/admin.py:30 apps/rooms/admin.py:49 apps/services/admin.py:41
 #: apps/services/admin.py:68
 msgid "SEO"
@@ -130,7 +164,7 @@ msgstr ""
 msgid "E-mail"
 msgstr "E-mail"
 
-#: apps/base/models.py:70 templates/pages/contacts.html:16
+#: apps/base/models.py:70 templates/pages/contacts.html:17
 msgid "Адрес"
 msgstr "Дарек"
 
@@ -138,125 +172,188 @@ msgstr "Дарек"
 msgid "Часы работы ресепшена"
 msgstr ""
 
-#: apps/base/models.py:76
-#| msgid "Галерея и 3D-тур"
-msgid "Ссылка на 3D-тур"
-msgstr "3D-турга шилтеме"
-
 #: apps/base/models.py:77
-msgid ""
-"Внешняя ссылка на виртуальный тур. Кнопка «3D-тур» появляется в шапке, "
-"подвале и в галерее, если поле заполнено."
-msgstr "Виртуалдык турга тышкы шилтеме. Талаа толтурулганда «3D-тур» баскычы жогорку, ылдыйкы бөлүктө жана галереяда чыгат."
+msgid "Показывать окно с акциями"
+msgstr ""
+
+#: apps/base/models.py:78
+msgid "Окно появляется только если есть действующие акции."
+msgstr ""
+
+#: apps/base/models.py:81
+msgid "Заголовок окна"
+msgstr ""
 
 #: apps/base/models.py:82
-msgid "Карта (iframe Google Maps / 2GIS)"
-msgstr ""
-
-#: apps/base/models.py:83
-msgid "WhatsApp (номер или ссылка)"
-msgstr ""
+#, fuzzy
+#| msgid "Вы подписаны на спецпредложения."
+msgid "По умолчанию — «Специальные предложения»."
+msgstr "Сиз атайын сунуштарга жазылдыңыз."
 
 #: apps/base/models.py:84
-msgid "Telegram"
-msgstr ""
-
-#: apps/base/models.py:85
-msgid "Instagram"
+msgid "Подпись в окне"
 msgstr ""
 
 #: apps/base/models.py:86
-msgid "Facebook"
+msgid "Задержка перед показом, сек"
 msgstr ""
 
 #: apps/base/models.py:87
-msgid "YouTube"
+msgid "Даём гостю осмотреться. Рекомендуем 3–6 секунд."
 msgstr ""
 
-#: apps/base/models.py:88
-msgid "TikTok"
+#: apps/base/models.py:90
+msgid "Не показывать повторно, дней"
 msgstr ""
 
 #: apps/base/models.py:91
+msgid ""
+"Сколько дней не показывать окно тому, кто его закрыл. 0 — показывать каждый "
+"раз."
+msgstr ""
+
+#: apps/base/models.py:94
+#, fuzzy
+#| msgid "Публикаций пока нет."
+msgid "Сколько акций показывать"
+msgstr "Азырынча жарыялар жок."
+
+#: apps/base/models.py:100
+msgid "Ссылка на 3D-тур"
+msgstr "3D-турга шилтеме"
+
+#: apps/base/models.py:101
+msgid ""
+"Внешняя ссылка на виртуальный тур. Кнопка «3D-тур» появляется в шапке, "
+"подвале и в галерее, если поле заполнено."
+msgstr ""
+"Виртуалдык турга тышкы шилтеме. Талаа толтурулганда «3D-тур» баскычы "
+"жогорку, ылдыйкы бөлүктө жана галереяда чыгат."
+
+#: apps/base/models.py:106
+msgid "Карта (iframe Google Maps / 2GIS)"
+msgstr ""
+
+#: apps/base/models.py:111
+#, fuzzy
+#| msgid "Ссылка на 3D-тур"
+msgid "Ссылка на Google Maps"
+msgstr "3D-турга шилтеме"
+
+#: apps/base/models.py:112 apps/base/models.py:116
+msgid "Открывается по клику на адрес."
+msgstr ""
+
+#: apps/base/models.py:115
+#, fuzzy
+#| msgid "Ссылка на 3D-тур"
+msgid "Ссылка на 2ГИС"
+msgstr "3D-турга шилтеме"
+
+#: apps/base/models.py:118
+msgid "WhatsApp (номер или ссылка)"
+msgstr ""
+
+#: apps/base/models.py:119
+msgid "Telegram"
+msgstr ""
+
+#: apps/base/models.py:120
+msgid "Instagram"
+msgstr ""
+
+#: apps/base/models.py:121
+msgid "Facebook"
+msgstr ""
+
+#: apps/base/models.py:122
+msgid "YouTube"
+msgstr ""
+
+#: apps/base/models.py:123
+msgid "TikTok"
+msgstr ""
+
+#: apps/base/models.py:126
 msgid "Юридическое лицо"
 msgstr ""
 
-#: apps/base/models.py:95
+#: apps/base/models.py:130
 msgid "Google Analytics ID"
 msgstr ""
 
-#: apps/base/models.py:96
+#: apps/base/models.py:131
 msgid "Google Search Console"
 msgstr ""
 
-#: apps/base/models.py:97
+#: apps/base/models.py:132
 msgid "Яндекс.Метрика ID"
 msgstr ""
 
-#: apps/base/models.py:100
+#: apps/base/models.py:135
 msgid "Правила бронирования"
 msgstr ""
 
-#: apps/base/models.py:101
+#: apps/base/models.py:136
 msgid "Время заезда"
 msgstr ""
 
-#: apps/base/models.py:102
+#: apps/base/models.py:137
 msgid "Время выезда"
 msgstr ""
 
-#: apps/base/models.py:112
+#: apps/base/models.py:147
 msgid "Настройки сайта удалять нельзя."
 msgstr ""
 
-#: apps/base/models.py:128
+#: apps/base/models.py:163
 msgid "Слайд на главной"
 msgstr ""
 
-#: apps/base/models.py:129
+#: apps/base/models.py:164
 msgid "Слайды на главной"
 msgstr ""
 
-#: apps/base/models.py:132 apps/base/models.py:153 apps/blog/models.py:24
+#: apps/base/models.py:167 apps/base/models.py:188 apps/blog/models.py:24
 #: apps/cms/models.py:21 apps/cms/models.py:47
 msgid "Заголовок"
 msgstr ""
 
-#: apps/base/models.py:133 apps/cms/models.py:48 apps/offers/models.py:24
+#: apps/base/models.py:168 apps/cms/models.py:48 apps/offers/models.py:24
 msgid "Подзаголовок"
 msgstr ""
 
-#: apps/base/models.py:135 apps/cms/models.py:51
+#: apps/base/models.py:170 apps/cms/models.py:51
 msgid "Изображение"
 msgstr ""
 
-#: apps/base/models.py:137
+#: apps/base/models.py:172
 msgid "Ссылка на видео (mp4/YouTube)"
 msgstr ""
 
-#: apps/base/models.py:138
+#: apps/base/models.py:173
 msgid "Текст кнопки"
 msgstr ""
 
-#: apps/base/models.py:139
+#: apps/base/models.py:174
 msgid "Ссылка кнопки"
 msgstr ""
 
-#: apps/base/models.py:149
+#: apps/base/models.py:184
 msgid "Преимущество"
 msgstr ""
 
-#: apps/base/models.py:150
+#: apps/base/models.py:185
 msgid "Преимущества"
 msgstr ""
 
-#: apps/base/models.py:154 apps/booking/models.py:26 apps/gallery/models.py:17
+#: apps/base/models.py:189 apps/booking/models.py:26 apps/gallery/models.py:17
 #: apps/offers/models.py:25 apps/rooms/models.py:55 apps/services/models.py:20
 #: apps/services/models.py:46 apps/services/models.py:89
 msgid "Описание"
 msgstr ""
 
-#: apps/base/models.py:155
+#: apps/base/models.py:190
 msgid "Иконка (SVG/PNG)"
 msgstr ""
 
@@ -293,7 +390,9 @@ msgid ""
 "Курорт Baytur Resort & Spa на берегу Иссык-Куля: номера и коттеджи, SPA, "
 "бассейны, рестораны, конференц-залы. Онлайн-бронирование с подтверждением на "
 "e-mail."
-msgstr "Ысык-Көлдүн жээгиндеги Baytur Resort & Spa: бөлмөлөр жана коттедждер, SPA, бассейндер, ресторандар, конференц-залдар. Онлайн брондоо."
+msgstr ""
+"Ысык-Көлдүн жээгиндеги Baytur Resort & Spa: бөлмөлөр жана коттедждер, SPA, "
+"бассейндер, ресторандар, конференц-залдар. Онлайн брондоо."
 
 #: apps/base/views.py:48
 msgid "О курорте — Baytur Resort & Spa"
@@ -303,7 +402,9 @@ msgstr "Курорт жөнүндө — Baytur Resort & Spa"
 msgid ""
 "История, инфраструктура и территория курорта Baytur Resort & Spa на Иссык-"
 "Куле."
-msgstr "Ысык-Көлдөгү Baytur Resort & Spa курортунун тарыхы, инфраструктурасы жана аймагы."
+msgstr ""
+"Ысык-Көлдөгү Baytur Resort & Spa курортунун тарыхы, инфраструктурасы жана "
+"аймагы."
 
 #: apps/blog/admin.py:22
 msgid "Публикация"
@@ -377,7 +478,7 @@ msgstr ""
 msgid "Отзыв"
 msgstr ""
 
-#: apps/blog/models.py:56 templates/include/header.html:44
+#: apps/blog/models.py:56 templates/include/header.html:47
 #: templates/pages/home.html:187
 msgid "Отзывы"
 msgstr "Пикирлер"
@@ -427,7 +528,8 @@ msgstr "Жаңылыктар жана макалалар — Baytur Resort & Spa
 msgid ""
 "Новости курорта, гид по отдыху на Иссык-Куле и полезные статьи от Baytur "
 "Resort & Spa."
-msgstr "Курорттун жаңылыктары, Ысык-Көлдө эс алуу боюнча гид жана пайдалуу макалалар."
+msgstr ""
+"Курорттун жаңылыктары, Ысык-Көлдө эс алуу боюнча гид жана пайдалуу макалалар."
 
 #: apps/blog/views.py:46
 msgid "Отзывы гостей — Baytur Resort & Spa"
@@ -946,7 +1048,9 @@ msgstr "Бөлмө брондоо — Baytur Resort & Spa"
 msgid ""
 "Онлайн-бронирование номеров Baytur Resort & Spa: выберите даты, категорию и "
 "оплатите картой. Подтверждение приходит на e-mail."
-msgstr "Baytur Resort & Spa бөлмөлөрүн онлайн брондоо: күндөрдү жана категорияны тандап, карта менен төлөңүз."
+msgstr ""
+"Baytur Resort & Spa бөлмөлөрүн онлайн брондоо: күндөрдү жана категорияны "
+"тандап, карта менен төлөңүз."
 
 #: apps/booking/views.py:90
 msgid "Проверьте даты и количество гостей."
@@ -1136,7 +1240,9 @@ msgstr "Байланыш — Baytur Resort & Spa"
 msgid ""
 "Телефоны, e-mail, адрес и карта проезда к курорту Baytur Resort & Spa, с. "
 "Бостери, Иссык-Куль."
-msgstr "Baytur Resort & Spa курортуна телефондор, электрондук почта, дарек жана жол картасы, Бостери, Ысык-Көл."
+msgstr ""
+"Baytur Resort & Spa курортуна телефондор, электрондук почта, дарек жана жол "
+"картасы, Бостери, Ысык-Көл."
 
 #: apps/contacts/views.py:40
 msgid "Новое обращение с сайта"
@@ -1170,7 +1276,7 @@ msgstr "Электрондук почтаны текшериңиз."
 msgid "Альбом"
 msgstr ""
 
-#: apps/gallery/models.py:12 templates/include/header.html:43
+#: apps/gallery/models.py:12 templates/include/header.html:46
 #: templates/pages/gallery/album.html:6 templates/pages/home.html:170
 msgid "Галерея"
 msgstr "Галерея"
@@ -1197,11 +1303,6 @@ msgstr ""
 msgid "Постер"
 msgstr ""
 
-#: apps/gallery/models.py:68 templates/include/footer.html:32
-#: templates/include/header.html:51
-msgid "3D-тур"
-msgstr "3D-тур"
-
 #: apps/gallery/models.py:69
 msgid "3D-туры"
 msgstr ""
@@ -1218,7 +1319,9 @@ msgstr "Галерея жана 3D-тур — Baytur Resort & Spa"
 msgid ""
 "Фотографии, видео и виртуальный 3D-тур по территории курорта Baytur Resort & "
 "Spa на Иссык-Куле."
-msgstr "Ысык-Көлдөгү Baytur Resort & Spa аймагы боюнча сүрөттөр, видео жана виртуалдык 3D-тур."
+msgstr ""
+"Ысык-Көлдөгү Baytur Resort & Spa аймагы боюнча сүрөттөр, видео жана "
+"виртуалдык 3D-тур."
 
 #: apps/offers/admin.py:21
 msgid "Цена и период"
@@ -1237,7 +1340,7 @@ msgid "Условия применения"
 msgstr ""
 
 #: apps/offers/models.py:19 templates/include/footer.html:28
-#: templates/include/header.html:42 templates/pages/home.html:125
+#: templates/include/header.html:45 templates/pages/home.html:125
 #: templates/pages/offers/detail.html:6 templates/pages/offers/list.html:5
 msgid "Спецпредложения"
 msgstr "Атайын сунуштар"
@@ -1362,7 +1465,9 @@ msgstr "Атайын сунуштар — Baytur Resort & Spa"
 msgid ""
 "Пакеты «проживание + SPA», завтраки, сезонные тарифы и промокоды курорта "
 "Baytur Resort & Spa."
-msgstr "«Жашоо + SPA» пакеттери, эртең мененки тамак, мезгилдик баалар жана промокоддор."
+msgstr ""
+"«Жашоо + SPA» пакеттери, эртең мененки тамак, мезгилдик баалар жана "
+"промокоддор."
 
 #: apps/rooms/admin.py:40
 msgid "Вместимость и параметры"
@@ -1495,7 +1600,9 @@ msgstr "Бөлмөлөр жана жашоо жайы — Baytur Resort & Spa"
 msgid ""
 "Стандарты, полулюксы, люксы, коттеджи и виллы Baytur Resort & Spa. Фото, "
 "вместимость, удобства и цены."
-msgstr "Baytur Resort & Spa стандарт, жарым люкс, люкс, коттедж жана виллалары. Сүрөттөр, сыйымдуулугу, ыңгайлуулуктары жана баалары."
+msgstr ""
+"Baytur Resort & Spa стандарт, жарым люкс, люкс, коттедж жана виллалары. "
+"Сүрөттөр, сыйымдуулугу, ыңгайлуулуктары жана баалары."
 
 #: apps/services/admin.py:35
 msgid "Цена"
@@ -1514,7 +1621,7 @@ msgid "Категории услуг"
 msgstr ""
 
 #: apps/services/models.py:37 templates/include/footer.html:26
-#: templates/include/header.html:40 templates/pages/services/category.html:6
+#: templates/include/header.html:43 templates/pages/services/category.html:6
 #: templates/pages/services/list.html:14
 msgid "Услуги"
 msgstr "Кызматтар"
@@ -1536,7 +1643,7 @@ msgid "Конференц-зал"
 msgstr ""
 
 #: apps/services/models.py:84 templates/include/footer.html:27
-#: templates/include/header.html:41 templates/pages/services/hall_detail.html:6
+#: templates/include/header.html:44 templates/pages/services/hall_detail.html:6
 msgid "Конференц-залы"
 msgstr "Конференц-залдар"
 
@@ -1572,7 +1679,9 @@ msgstr "Курорттун кызматтары — Baytur Resort & Spa"
 msgid ""
 "SPA, бассейны, рестораны, спорткомплекс, детская зона и развлечения курорта "
 "Baytur Resort & Spa."
-msgstr "Baytur Resort & Spa курортунун SPA, бассейндери, ресторандары, спорт комплекси, балдар аймагы жана көңүл ачуусу."
+msgstr ""
+"Baytur Resort & Spa курортунун SPA, бассейндери, ресторандары, спорт "
+"комплекси, балдар аймагы жана көңүл ачуусу."
 
 #: apps/services/views.py:52
 msgid "Конференц-залы и мероприятия — Baytur Resort & Spa"
@@ -1582,7 +1691,9 @@ msgstr "Конференц-залдар жана иш-чаралар — Baytur 
 msgid ""
 "Залы для конференций, банкетов и корпоративов на Иссык-Куле: вместимость, "
 "оборудование, заявка онлайн."
-msgstr "Ысык-Көлдөгү конференция, банкет жана корпоративдер үчүн залдар: сыйымдуулугу, жабдуулары, онлайн арыз."
+msgstr ""
+"Ысык-Көлдөгү конференция, банкет жана корпоративдер үчүн залдар: "
+"сыйымдуулугу, жабдуулары, онлайн арыз."
 
 #: templates/emails/booking_admin.html:5
 msgid "Новая бронь с сайта"
@@ -1625,7 +1736,11 @@ msgid ""
 "            Ваша бронь № %(number)s принята. Ниже — детали. Сохраните это "
 "письмо.\n"
 "        "
-msgstr "\n            Сиздин №%(number)s бронуңуз кабыл алынды. Төмөндө — чоо-жайы. Бул катты сактаңыз.\n        "
+msgstr ""
+"\n"
+"            Сиздин №%(number)s бронуңуз кабыл алынды. Төмөндө — чоо-жайы. "
+"Бул катты сактаңыз.\n"
+"        "
 
 #: templates/emails/booking_confirmed.html:20
 msgid "с"
@@ -1669,11 +1784,22 @@ msgstr "Брон төлөндү, бирок Shelter'ге жазылган ЖОК
 msgid ""
 "Деньги гостя приняты. Заведите бронь в PMS вручную, чтобы номер не продали "
 "повторно."
-msgstr "Коноктун акчасы кабыл алынды. Бөлмө кайра сатылбашы үчүн бронду PMS'ке кол менен киргизиңиз."
+msgstr ""
+"Коноктун акчасы кабыл алынды. Бөлмө кайра сатылбашы үчүн бронду PMS'ке кол "
+"менен киргизиңиз."
 
 #: templates/emails/booking_sync_failed.html:32
 msgid "Открыть бронь"
 msgstr "Бронду ачуу"
+
+#: templates/include/address.html:20
+msgid "Открыть в Google Maps"
+msgstr "Google Maps'те ачуу"
+
+#: templates/include/address.html:23
+#| msgid "Открыть в админке"
+msgid "Открыть в 2ГИС"
+msgstr "2ГИСте ачуу"
 
 #: templates/include/booking_widget.html:25
 msgid "Найти номер"
@@ -1683,7 +1809,7 @@ msgstr "Бөлмө издөө"
 msgid "Разделы"
 msgstr "Бөлүмдөр"
 
-#: templates/include/footer.html:24 templates/include/header.html:38
+#: templates/include/footer.html:24 templates/include/header.html:41
 #: templates/pages/about.html:5
 msgid "О курорте"
 msgstr "Курорт жөнүндө"
@@ -1708,18 +1834,56 @@ msgstr "Жазылыңыз — акцияларды жана мезгилдик 
 msgid "Подписаться"
 msgstr "Жазылуу"
 
-#: templates/include/header.html:39 templates/pages/rooms/detail.html:6
+#: templates/include/header.html:42 templates/pages/rooms/detail.html:6
 msgid "Номера"
 msgstr "Бөлмөлөр"
 
-#: templates/include/header.html:55 templates/pages/booking/search.html:63
+#: templates/include/header.html:58 templates/pages/booking/search.html:63
 #: templates/pages/home.html:254 templates/pages/offers/detail.html:31
 msgid "Забронировать"
 msgstr "Брондоо"
 
-#: templates/include/header.html:57
+#: templates/include/header.html:60
 msgid "Меню"
 msgstr "Меню"
+
+#: templates/include/offers_popup.html:20
+#: templates/include/offers_popup.html:72
+msgid "Закрыть"
+msgstr "Жабуу"
+
+#: templates/include/offers_popup.html:28 templates/pages/home.html:124
+msgid "Выгодно"
+msgstr "Пайдалуу"
+
+#: templates/include/offers_popup.html:30
+#| msgid "Спецпредложения"
+msgid "Специальные предложения"
+msgstr "Атайын сунуштар"
+
+#: templates/include/offers_popup.html:56 templates/include/room_card.html:21
+#: templates/pages/rooms/detail.html:45 templates/pages/services/halls.html:31
+msgid "от"
+msgstr "баштап"
+
+#: templates/include/offers_popup.html:58
+#: templates/pages/booking/checkout.html:35
+#: templates/pages/booking/checkout.html:151
+#: templates/pages/booking/checkout.html:157
+#: templates/pages/booking/checkout.html:164
+#: templates/pages/booking/checkout.html:170
+#: templates/pages/booking/search.html:56 templates/pages/home.html:148
+#: templates/pages/offers/detail.html:21 templates/pages/offers/list.html:34
+#: templates/pages/services/category.html:29
+#: templates/pages/services/detail.html:31
+#: templates/pages/services/hall_detail.html:27
+#: templates/pages/services/halls.html:33 templates/pages/services/list.html:38
+msgid "сом"
+msgstr "сом"
+
+#: templates/include/offers_popup.html:70 templates/pages/home.html:127
+msgid "Все акции"
+msgstr "Бардык сунуштар"
 
 #: templates/include/page_head.html:6
 msgid "Главная"
@@ -1729,11 +1893,6 @@ msgstr "Башкы бет"
 #, python-format
 msgid "до %(n)s гостей"
 msgstr "%(n)s конокко чейин"
-
-#: templates/include/room_card.html:21 templates/pages/rooms/detail.html:45
-#: templates/pages/services/halls.html:31
-msgid "от"
-msgstr "баштап"
 
 #: templates/include/room_card.html:23 templates/pages/rooms/detail.html:47
 msgid "сом / ночь"
@@ -1751,7 +1910,9 @@ msgstr "Толугураак"
 msgid ""
 "Baytur Resort & Spa — территория отдыха на северном берегу Иссык-Куля, с. "
 "Бостери."
-msgstr "Baytur Resort & Spa — Ысык-Көлдүн түндүк жээгиндеги эс алуу аймагы, Бостери айылы."
+msgstr ""
+"Baytur Resort & Spa — Ысык-Көлдүн түндүк жээгиндеги эс алуу аймагы, Бостери "
+"айылы."
 
 #: templates/pages/about.html:49
 msgid "Территория курорта"
@@ -1789,20 +1950,6 @@ msgstr "Бронду тариздөө"
 msgid "Дополнительно к проживанию"
 msgstr "Жашоого кошумча"
 
-#: templates/pages/booking/checkout.html:35
-#: templates/pages/booking/checkout.html:151
-#: templates/pages/booking/checkout.html:157
-#: templates/pages/booking/checkout.html:164
-#: templates/pages/booking/checkout.html:170
-#: templates/pages/booking/search.html:56 templates/pages/home.html:148
-#: templates/pages/offers/detail.html:21 templates/pages/offers/list.html:34
-#: templates/pages/services/category.html:29
-#: templates/pages/services/detail.html:31
-#: templates/pages/services/hall_detail.html:27
-#: templates/pages/services/halls.html:33 templates/pages/services/list.html:38
-msgid "сом"
-msgstr "сом"
-
 #: templates/pages/booking/checkout.html:42
 msgid "Дополнительные услуги можно заказать на ресепшене."
 msgstr "Кошумча кызматтарды ресепшнден заказ кылса болот."
@@ -1827,7 +1974,9 @@ msgstr "Төлөмгө өтүү"
 msgid ""
 "Оплата проходит на защищённой странице FreedomPay. Данные карты на сайте не "
 "сохраняются."
-msgstr "Төлөм FreedomPay'дин корголгон бетинде өтөт. Карта маалыматы сайтта сакталбайт."
+msgstr ""
+"Төлөм FreedomPay'дин корголгон бетинде өтөт. Карта маалыматы сайтта "
+"сакталбайт."
 
 #: templates/pages/booking/checkout.html:175
 #, python-format
@@ -1836,7 +1985,11 @@ msgid ""
 "                            Сейчас к оплате: %(amount)s сом, остальное — при "
 "заселении.\n"
 "                        "
-msgstr "\n                            Азыр төлөнөт: %(amount)s сом, калганы — келгенде.\n                        "
+msgstr ""
+"\n"
+"                            Азыр төлөнөт: %(amount)s сом, калганы — "
+"келгенде.\n"
+"                        "
 
 #: templates/pages/booking/detail.html:30
 msgid ""
@@ -1853,7 +2006,9 @@ msgstr "Башкы бетке"
 msgid ""
 "Номер остался свободным, деньги не списаны. Попробуйте оплатить ещё раз или "
 "свяжитесь с нами."
-msgstr "Бөлмө бош бойдон калды, акча алынган жок. Кайра аракет кылыңыз же байланышыңыз."
+msgstr ""
+"Бөлмө бош бойдон калды, акча алынган жок. Кайра аракет кылыңыз же "
+"байланышыңыз."
 
 #: templates/pages/booking/failure.html:21
 msgid "Попробовать снова"
@@ -1885,7 +2040,9 @@ msgstr "Бош бөлмө жок"
 msgid ""
 "На выбранные даты свободных номеров не найдено. Попробуйте другие даты или "
 "позвоните нам."
-msgstr "Тандалган күндөргө бош бөлмө табылган жок. Башка күндөрдү тандаңыз же чалыңыз."
+msgstr ""
+"Тандалган күндөргө бош бөлмө табылган жок. Башка күндөрдү тандаңыз же "
+"чалыңыз."
 
 #: templates/pages/booking/search.html:79
 msgid "Укажите даты заезда и выезда, чтобы увидеть свободные номера и цены."
@@ -1902,7 +2059,11 @@ msgid ""
 "                    Подтверждение брони отправлено на %(email)s. Если письма "
 "нет — проверьте папку «Спам».\n"
 "                "
-msgstr "\n                    Ырастоо %(email)s дарегине жөнөтүлдү. Кат келбесе, «Спам» папкасын текшериңиз.\n                "
+msgstr ""
+"\n"
+"                    Ырастоо %(email)s дарегине жөнөтүлдү. Кат келбесе, "
+"«Спам» папкасын текшериңиз.\n"
+"                "
 
 #: templates/pages/booking/success.html:23
 msgid "При заселении"
@@ -1916,19 +2077,19 @@ msgstr "Биз менен кантип байланышуу"
 msgid "Доп. телефон"
 msgstr "Кошумча телефон"
 
-#: templates/pages/contacts.html:17
+#: templates/pages/contacts.html:19
 msgid "Ресепшен"
 msgstr "Ресепшн"
 
-#: templates/pages/contacts.html:18 templates/pages/rooms/detail.html:56
+#: templates/pages/contacts.html:20 templates/pages/rooms/detail.html:56
 msgid "Заезд / выезд"
 msgstr "Келүү / кетүү"
 
-#: templates/pages/contacts.html:33
+#: templates/pages/contacts.html:35
 msgid "Напишите нам"
 msgstr "Бизге жазыңыз"
 
-#: templates/pages/contacts.html:55
+#: templates/pages/contacts.html:57
 msgid "Отправить"
 msgstr "Жөнөтүү"
 
@@ -1955,7 +2116,9 @@ msgstr "Бир нерсе туура эмес кетти"
 #: templates/pages/errors/500.html:12
 msgid ""
 "Мы уже знаем о проблеме и чиним её. Попробуйте обновить страницу чуть позже."
-msgstr "Көйгөй жөнүндө билебиз жана оңдоп жатабыз. Бир аздан кийин кайра аракет кылыңыз."
+msgstr ""
+"Көйгөй жөнүндө билебиз жана оңдоп жатабыз. Бир аздан кийин кайра аракет "
+"кылыңыз."
 
 #: templates/pages/gallery/album.html:24
 msgid "В альбоме пока нет фотографий."
@@ -1972,10 +2135,10 @@ msgstr "Виртуалдык 3D-тур"
 #: templates/pages/gallery/index.html:15
 msgid ""
 "Пройдитесь по территории курорта, номерам и бассейнам, не выходя из дома."
-msgstr "Үйдөн чыкпай туруп курорттун аймагын, бөлмөлөрүн жана бассейндерин кыдырыңыз."
+msgstr ""
+"Үйдөн чыкпай туруп курорттун аймагын, бөлмөлөрүн жана бассейндерин кыдырыңыз."
 
 #: templates/pages/gallery/index.html:18
-#| msgid "Виртуальный 3D-тур"
 msgid "Открыть 3D-тур"
 msgstr "3D-турду ачуу"
 
@@ -2015,14 +2178,6 @@ msgstr "Курорттун кызматтары"
 msgid "Все услуги"
 msgstr "Бардык кызматтар"
 
-#: templates/pages/home.html:124
-msgid "Выгодно"
-msgstr "Пайдалуу"
-
-#: templates/pages/home.html:127
-msgid "Все акции"
-msgstr "Бардык сунуштар"
-
 #: templates/pages/home.html:167
 msgid "Виртуальная прогулка"
 msgstr "Виртуалдык сейилдөө"
@@ -2051,7 +2206,8 @@ msgstr "Ысык-Көлдө эс алууга даярсызбы?"
 msgid ""
 "Забронируйте номер онлайн — подтверждение придёт на e-mail сразу после "
 "оплаты."
-msgstr "Онлайн брондоңуз — төлөмдөн кийин ырастоо электрондук почтаңызга келет."
+msgstr ""
+"Онлайн брондоңуз — төлөмдөн кийин ырастоо электрондук почтаңызга келет."
 
 #: templates/pages/offers/detail.html:40
 msgid "Подходящие номера"
@@ -2087,7 +2243,9 @@ msgstr "Окшош варианттар"
 msgid ""
 "Стандарты, полулюксы, люксы, коттеджи и виллы — выберите размещение по вкусу "
 "и бюджету."
-msgstr "Стандарт, жарым люкс, люкс, коттедж жана виллалар — өзүңүзгө ылайыгын тандаңыз."
+msgstr ""
+"Стандарт, жарым люкс, люкс, коттедж жана виллалар — өзүңүзгө ылайыгын "
+"тандаңыз."
 
 #: templates/pages/rooms/list.html:16
 msgid "Все"

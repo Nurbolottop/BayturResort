@@ -1120,6 +1120,195 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover { opacity: 1; }
 }
 .float-whatsapp:hover { transform: scale(1.1) rotate(6deg); }
 
+/* ======================= АДРЕС С ВЫБОРОМ КАРТЫ ========================= */
+
+.addr { position: relative; display: inline-block; }
+
+.addr__toggle {
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+    border-bottom: 1px dashed currentColor;
+    transition: color .3s;
+}
+.addr__toggle:hover { color: var(--gold); }
+
+.addr__menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 0;
+    z-index: 80;
+    min-width: 232px;
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    border-radius: var(--r-sm);
+    border: 1px solid var(--stroke-gold);
+    background: rgba(28, 24, 21, .97);
+    backdrop-filter: blur(18px);
+    box-shadow: var(--shadow);
+    animation: fadeUp .35s var(--ease) both;
+}
+.addr__menu[hidden] { display: none; }
+
+/* В подвале меню открывается вверх — снизу для него нет места */
+.footer .addr__menu { top: auto; bottom: calc(100% + 12px); }
+
+/* Верхней строке шапки нужен overflow:hidden, чтобы она схлопывалась при
+   скролле, — но он же обрезает выпадающее меню. На время показа открываем. */
+.header__top.is-addr-open { overflow: visible; }
+
+.addr__link {
+    padding: 11px 14px;
+    border-radius: var(--r-xs);
+    font-size: .88rem;
+    color: var(--text-soft);
+    white-space: nowrap;
+    transition: background .3s, color .3s;
+}
+.addr__link:hover { background: var(--surface-2); color: var(--gold); }
+
+/* ==================== ВСПЛЫВАЮЩЕЕ ОКНО С АКЦИЯМИ ======================= */
+
+.popup {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+.popup[hidden] { display: none; }
+
+.popup__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 8, 7, .72);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    opacity: 0;
+    transition: opacity .5s var(--ease-soft);
+}
+
+.popup__window {
+    position: relative;
+    width: min(920px, 100%);
+    max-height: min(86vh, 820px);
+    overflow-y: auto;
+    padding: 46px 46px 38px;
+    border-radius: var(--r-lg);
+    border: 1px solid var(--stroke-gold);
+    background: linear-gradient(160deg, rgba(32, 27, 23, .98) 0%, rgba(20, 17, 15, .99) 100%);
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    transform: translateY(24px) scale(.98);
+    transition: opacity .55s var(--ease), transform .55s var(--ease);
+}
+/* Окну ставится фокус для доступности — системная рамка здесь лишняя,
+   у клавиатурной навигации подсвечиваются сами кнопки внутри. */
+.popup__window:focus { outline: none; }
+
+.popup.is-open .popup__backdrop { opacity: 1; }
+.popup.is-open .popup__window { opacity: 1; transform: none; }
+
+.popup__close {
+    position: absolute;
+    top: 18px; right: 18px;
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--stroke);
+    background: var(--surface);
+    color: var(--text-soft);
+    transition: color .3s, border-color .3s, background .3s, transform .3s var(--ease);
+}
+.popup__close:hover {
+    color: var(--gold);
+    border-color: var(--stroke-gold);
+    background: var(--surface-2);
+    transform: rotate(90deg);
+}
+
+.popup__head { text-align: center; margin-bottom: 34px; padding: 0 30px; }
+.popup__eyebrow {
+    display: inline-block;
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: .26em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+}
+.popup__title { margin: 0 0 .35em; font-size: clamp(1.6rem, 3vw, 2.3rem); }
+.popup__text { margin: 0; color: var(--text-soft); font-size: .96rem; }
+
+.popup__list { display: grid; gap: 16px; }
+
+.popup__offer {
+    display: grid;
+    grid-template-columns: 168px 1fr;
+    gap: 22px;
+    align-items: center;
+    padding: 14px;
+    border-radius: var(--r);
+    border: 1px solid var(--stroke);
+    background: var(--surface);
+    transition: border-color .45s var(--ease), background .45s var(--ease), transform .45s var(--ease);
+}
+.popup__offer:hover {
+    border-color: var(--stroke-gold);
+    background: var(--surface-2);
+    transform: translateX(4px);
+}
+
+.popup__offer-media {
+    position: relative;
+    display: block;
+    aspect-ratio: 3 / 2;
+    border-radius: var(--r-sm);
+    overflow: hidden;
+    background: #1c1815;
+}
+.popup__offer-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease); }
+.popup__offer:hover .popup__offer-media img { transform: scale(1.06); }
+
+.popup__badge {
+    position: absolute;
+    top: 10px; left: 10px;
+    padding: 5px 12px;
+    border-radius: var(--r-full);
+    background: var(--gold-grad);
+    color: var(--on-gold);
+    font-size: .68rem;
+    font-weight: 700;
+}
+
+.popup__offer-body { display: flex; flex-direction: column; gap: 6px; padding-right: 14px; }
+.popup__offer-title { font-family: var(--font-display); font-size: 1.28rem; color: var(--text); }
+.popup__offer-text { color: var(--text-soft); font-size: .9rem; }
+.popup__offer-price { display: flex; align-items: baseline; gap: 7px; margin-top: 4px; }
+
+.popup__actions {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 760px) {
+    .popup { padding: 16px; }
+    .popup__window { padding: 38px 20px 28px; max-height: 90vh; }
+    .popup__head { padding: 0; margin-bottom: 26px; }
+    .popup__offer { grid-template-columns: 1fr; gap: 14px; }
+    .popup__offer-body { padding-right: 0; }
+    .popup__actions .btn { width: 100%; }
+}
+
 /* ============================= АДАПТИВНОСТЬ ============================ */
 
 /* Кыргызские пункты меню заметно длиннее русских («Конференц-залдар»,

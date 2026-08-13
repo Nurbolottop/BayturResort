@@ -13,7 +13,9 @@
                     {% if site.phone %}<li><span>{% translate "Телефон" %}</span><a href="tel:{{ site.phone }}">{{ site.phone }}</a></li>{% endif %}
                     {% if site.phone_extra %}<li><span>{% translate "Доп. телефон" %}</span><a href="tel:{{ site.phone_extra }}">{{ site.phone_extra }}</a></li>{% endif %}
                     {% if site.email %}<li><span>E-mail</span><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>{% endif %}
-                    {% if site.address %}<li><span>{% translate "Адрес" %}</span><span>{{ site.address }}</span></li>{% endif %}
+                    {% if site.address %}
+                        <li><span>{% translate "Адрес" %}</span>{% include 'include/address.html' %}</li>
+                    {% endif %}
                     {% if site.working_hours %}<li><span>{% translate "Ресепшен" %}</span><span>{{ site.working_hours }}</span></li>{% endif %}
                     <li><span>{% translate "Заезд / выезд" %}</span><span>{{ site.check_in_time }} / {{ site.check_out_time }}</span></li>
                 </ul>
