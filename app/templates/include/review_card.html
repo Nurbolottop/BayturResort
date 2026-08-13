@@ -1,0 +1,46 @@
+{% load i18n %}
+{% comment %}
+    Карточка отзыва. Показывает, где отзыв оставлен, и ведёт туда по клику.
+
+    Ссылка берётся из самого отзыва, а если её нет — из карточки курорта
+    на Google Maps или 2ГИС (настройки сайта). Так гость всегда попадает
+    на наш адрес, а не на общий поиск.
+{% endcomment %}
+<article class="review">
+    <div class="review__rating" aria-label="{{ review.rating }}/5">
+        {% for i in "12345"|make_list %}
+            <span class="star {% if forloop.counter <= review.rating %}is-on{% endif %}">★</span>
+        {% endfor %}
+    </div>
+
+    <p class="review__text">{{ review.text|truncatewords:40 }}</p>
+
+    <div class="review__author">
+        {% if review.avatar %}
+            <img src="{{ review.avatar.url }}" alt="{{ review.author_name }}" loading="lazy" width="44" height="44">
+        {% endif %}
+        <div>
+            <strong>{{ review.author_name }}</strong>
+            {% if review.author_city %}<span>{{ review.author_city }}</span>{% endif %}
+        </div>
+
+        {% if review.source != 'site' %}
+            {% if review.source == 'google' %}
+                {% firstof review.source_url site.map_google_url as review_link %}
+            {% elif review.source == '2gis' %}
+                {% firstof review.source_url site.map_2gis_url as review_link %}
+            {% else %}
+                {% firstof review.source_url '' as review_link %}
+            {% endif %}
+
+            {% if review_link %}
+                <a class="review__source" href="{{ review_link }}" target="_blank" rel="noopener"
+                   title="{% blocktranslate with name=review.get_source_display %}Открыть на {{ name }}{% endblocktranslate %}">
+                    {{ review.get_source_display }}
+                </a>
+            {% else %}
+                <span class="review__source review__source--flat">{{ review.get_source_display }}</span>
+            {% endif %}
+        {% endif %}
+    </div>
+</article>

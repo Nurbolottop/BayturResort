@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-13 17:34+0600\n"
+"POT-Creation-Date: 2026-08-13 17:45+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -86,7 +86,7 @@ msgstr "Legal details"
 msgid "Аналитика"
 msgstr ""
 
-#: apps/base/admin.py:60 apps/blog/admin.py:25 apps/cms/admin.py:22
+#: apps/base/admin.py:60 apps/blog/admin.py:25 apps/cms/admin.py:24
 #: apps/offers/admin.py:30 apps/rooms/admin.py:49 apps/services/admin.py:41
 #: apps/services/admin.py:68
 msgid "SEO"
@@ -315,15 +315,15 @@ msgid "Слайды на главной"
 msgstr ""
 
 #: apps/base/models.py:167 apps/base/models.py:188 apps/blog/models.py:24
-#: apps/cms/models.py:21 apps/cms/models.py:47
+#: apps/cms/models.py:21 apps/cms/models.py:57 apps/cms/models.py:106
 msgid "Заголовок"
 msgstr ""
 
-#: apps/base/models.py:168 apps/cms/models.py:48 apps/offers/models.py:24
+#: apps/base/models.py:168 apps/cms/models.py:107 apps/offers/models.py:24
 msgid "Подзаголовок"
 msgstr ""
 
-#: apps/base/models.py:170 apps/cms/models.py:51
+#: apps/base/models.py:170 apps/cms/models.py:67 apps/cms/models.py:110
 msgid "Изображение"
 msgstr ""
 
@@ -394,12 +394,11 @@ msgstr ""
 "Baytur Resort & Spa on the shore of Issyk-Kul: rooms and cottages, spa, "
 "pools, restaurants, conference halls. Book online with e-mail confirmation."
 
-#: apps/base/views.py:48
-#| msgid "Контакты — Baytur Resort & Spa"
+#: apps/base/views.py:51
 msgid "О нас — Baytur Resort & Spa"
 msgstr "About Us — Baytur Resort & Spa"
 
-#: apps/base/views.py:49
+#: apps/base/views.py:52
 msgid ""
 "История, инфраструктура и территория курорта Baytur Resort & Spa на Иссык-"
 "Куле."
@@ -436,7 +435,7 @@ msgstr ""
 msgid "Краткое описание"
 msgstr ""
 
-#: apps/blog/models.py:27 apps/cms/models.py:49
+#: apps/blog/models.py:27 apps/cms/models.py:108
 msgid "Текст"
 msgstr ""
 
@@ -1065,9 +1064,15 @@ msgstr "Checkout — %(name)s"
 msgid "Бронь принята. Менеджер свяжется с вами для подтверждения оплаты."
 msgstr "Booking received. Our manager will contact you to confirm payment."
 
-#: apps/cms/admin.py:19 apps/offers/admin.py:27 apps/rooms/admin.py:46
+#: apps/cms/admin.py:21 apps/offers/admin.py:27 apps/rooms/admin.py:46
 #: apps/services/admin.py:38 apps/services/admin.py:65
 msgid "Отображение"
+msgstr ""
+
+#: apps/cms/admin.py:45
+msgid ""
+"Первый блок страницы «О нас». Миссия выводится крупно, цели — карточками под "
+"ней."
 msgstr ""
 
 #: apps/cms/models.py:17
@@ -1090,25 +1095,75 @@ msgstr ""
 msgid "Показывать в меню"
 msgstr ""
 
-#: apps/cms/models.py:43
-#| msgid "Гости о нас"
+#: apps/cms/models.py:48 apps/cms/models.py:49 apps/cms/models.py:57
+msgid "Миссия и цели"
+msgstr "Mission and Goals"
+
+#: apps/cms/models.py:51
+#, fuzzy
+#| msgid "Новая бронь с сайта"
+msgid "Показывать на сайте"
+msgstr "New booking from the website"
+
+#: apps/cms/models.py:54
+msgid "Надпись над заголовком"
+msgstr ""
+
+#: apps/cms/models.py:55
+msgid "Например: «Наш замысел»."
+msgstr ""
+
+#: apps/cms/models.py:59
+msgid "Миссия"
+msgstr ""
+
+#: apps/cms/models.py:60
+msgid "Одна-две ёмкие фразы. Выводится крупно, как цитата."
+msgstr ""
+
+#: apps/cms/models.py:63
+msgid "Текст под миссией"
+msgstr ""
+
+#: apps/cms/models.py:64
+msgid "Необязательно: развёрнутое пояснение."
+msgstr ""
+
+#: apps/cms/models.py:84 apps/cms/models.py:91
+msgid "Цель"
+msgstr "Goal"
+
+#: apps/cms/models.py:85
+msgid "Цели"
+msgstr "Goals"
+
+#: apps/cms/models.py:89
+msgid "Блок"
+msgstr ""
+
+#: apps/cms/models.py:92
+#, fuzzy
+#| msgid "Сообщение"
+msgid "Пояснение"
+msgstr "Message"
+
+#: apps/cms/models.py:102
 msgid "Блок «О нас»"
 msgstr "About Us block"
 
-#: apps/cms/models.py:44
-#| msgid "Страница не найдена"
+#: apps/cms/models.py:103
 msgid "Страница «О нас»"
 msgstr "About Us page"
 
-#: apps/cms/models.py:55
+#: apps/cms/models.py:114
 msgid "Положение изображения"
 msgstr ""
 
-#: apps/cms/models.py:56
+#: apps/cms/models.py:115
 msgid "Слева"
 msgstr ""
 
-#: apps/cms/models.py:56
+#: apps/cms/models.py:115
 msgid "Справа"
 msgstr ""
 
@@ -1166,7 +1221,6 @@ msgid "Конференция / семинар"
 msgstr "Conference / seminar"
 
 #: apps/contacts/models.py:45 templates/pages/services/hall_detail.html:24
-#: templates/pages/services/halls.html:25
 msgid "Банкет"
 msgstr "Banquet"
 
@@ -1839,7 +1893,7 @@ msgid "Номера"
 msgstr "Rooms"
 
 #: templates/include/header.html:58 templates/pages/booking/search.html:63
-#: templates/pages/home.html:254 templates/pages/offers/detail.html:31
+#: templates/pages/home.html:238 templates/pages/offers/detail.html:31
 msgid "Забронировать"
 msgstr "Book Now"
 
@@ -1861,7 +1915,7 @@ msgid "Специальные предложения"
 msgstr "Special Offers"
 
 #: templates/include/offers_popup.html:56 templates/include/room_card.html:21
-#: templates/pages/rooms/detail.html:45 templates/pages/services/halls.html:31
+#: templates/pages/rooms/detail.html:45 templates/pages/services/halls.html:32
 msgid "от"
 msgstr "from"
 
@@ -1876,7 +1930,7 @@ msgstr "from"
 #: templates/pages/services/category.html:29
 #: templates/pages/services/detail.html:31
 #: templates/pages/services/hall_detail.html:27
-#: templates/pages/services/halls.html:33 templates/pages/services/list.html:38
+#: templates/pages/services/halls.html:34 templates/pages/services/list.html:38
 msgid "сом"
 msgstr "KGS"
 
@@ -1887,6 +1941,12 @@ msgstr "All offers"
 #: templates/include/page_head.html:6
 msgid "Главная"
 msgstr "Home"
+
+#: templates/include/review_card.html:38
+#, python-format
+#| msgid "Открыть в Google Maps"
+msgid "Открыть на %(name)s"
+msgstr "Open on %(name)s"
 
 #: templates/include/room_card.html:12 templates/pages/booking/search.html:41
 #, python-format
@@ -1900,7 +1960,7 @@ msgstr "KGS / night"
 #: templates/include/room_card.html:25 templates/pages/home.html:151
 #: templates/pages/offers/list.html:37
 #: templates/pages/services/category.html:32
-#: templates/pages/services/halls.html:36 templates/pages/services/list.html:18
+#: templates/pages/services/halls.html:37 templates/pages/services/list.html:18
 #: templates/pages/services/list.html:41
 msgid "Подробнее"
 msgstr "Details"
@@ -1913,11 +1973,11 @@ msgstr ""
 "Baytur Resort & Spa — a holiday destination on the northern shore of Issyk-"
 "Kul, Bosteri."
 
-#: templates/pages/about.html:49
+#: templates/pages/about.html:88
 msgid "Территория курорта"
 msgstr "Resort grounds"
 
-#: templates/pages/about.html:50
+#: templates/pages/about.html:89
 msgid "Вся галерея"
 msgstr "Full gallery"
 
@@ -1925,7 +1985,7 @@ msgstr "Full gallery"
 msgid "Читайте также"
 msgstr "Read also"
 
-#: templates/pages/blog/list.html:5 templates/pages/home.html:223
+#: templates/pages/blog/list.html:5 templates/pages/home.html:207
 msgid "Новости и статьи"
 msgstr "News & Articles"
 
@@ -1937,7 +1997,7 @@ msgstr "No posts yet."
 msgid "Отзывы гостей"
 msgstr "Guest Reviews"
 
-#: templates/pages/blog/reviews.html:39
+#: templates/pages/blog/reviews.html:18
 msgid "Отзывы скоро появятся."
 msgstr "Reviews are coming soon."
 
@@ -2185,19 +2245,19 @@ msgstr "Guests about us"
 msgid "Все отзывы"
 msgstr "All reviews"
 
-#: templates/pages/home.html:222
+#: templates/pages/home.html:206
 msgid "Журнал"
 msgstr "Journal"
 
-#: templates/pages/home.html:225
+#: templates/pages/home.html:209
 msgid "Все материалы"
 msgstr "All posts"
 
-#: templates/pages/home.html:251
+#: templates/pages/home.html:235
 msgid "Готовы отдохнуть на Иссык-Куле?"
 msgstr "Ready for a break at Issyk-Kul?"
 
-#: templates/pages/home.html:252
+#: templates/pages/home.html:236
 msgid ""
 "Забронируйте номер онлайн — подтверждение придёт на e-mail сразу после "
 "оплаты."
@@ -2217,7 +2277,6 @@ msgstr "No active offers right now — check back later."
 
 #: templates/pages/rooms/detail.html:53
 #: templates/pages/services/hall_detail.html:22
-#: templates/pages/services/halls.html:23
 msgid "Площадь"
 msgstr "Area"
 
@@ -2263,12 +2322,10 @@ msgid "Забронировать номер"
 msgstr "Book a Room"
 
 #: templates/pages/services/hall_detail.html:23
-#: templates/pages/services/halls.html:24
 msgid "Театр"
 msgstr "Theatre"
 
 #: templates/pages/services/hall_detail.html:25
-#: templates/pages/services/halls.html:26
 msgid "Класс"
 msgstr "Classroom"
 
@@ -2294,19 +2351,29 @@ msgstr ""
 "Conferences, seminars, banquets and corporate events on the shore of Issyk-"
 "Kul."
 
-#: templates/pages/services/halls.html:43
+#: templates/pages/services/halls.html:26
+#| msgid "Театр"
+msgid "театр"
+msgstr "theatre"
+
+#: templates/pages/services/halls.html:27
+#| msgid "Банкет"
+msgid "банкет"
+msgstr "banquet"
+
+#: templates/pages/services/halls.html:44
 msgid "Информация о залах скоро появится."
 msgstr "Hall details are coming soon."
 
-#: templates/pages/services/halls.html:52
+#: templates/pages/services/halls.html:53
 msgid "Заявка"
 msgstr "Request"
 
-#: templates/pages/services/halls.html:53
+#: templates/pages/services/halls.html:54
 msgid "Организуем мероприятие под ключ"
 msgstr "We organise your event end to end"
 
-#: templates/pages/services/halls.html:108
+#: templates/pages/services/halls.html:109
 msgid "Отправить заявку"
 msgstr "Send request"
 

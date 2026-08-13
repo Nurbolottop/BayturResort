@@ -33,7 +33,10 @@ class HomeView(SEOMixin, TemplateView):
             ).prefetch_related('amenities')[:6],
             'service_categories': ServiceCategory.objects.filter(is_active=True)[:6],
             'offers': SpecialOffer.objects.filter(is_active=True, show_on_home=True)[:3],
-            'reviews': Review.objects.filter(is_approved=True, show_on_home=True)[:6],
+            # Случайная выборка: у гостя при каждом заходе разные отзывы,
+            # а не одни и те же три сверху списка. order_by('?') здесь
+            # уместен — таблица отзывов небольшая.
+            'reviews': Review.objects.filter(is_approved=True, show_on_home=True).order_by('?')[:3],
             'albums': GalleryAlbum.objects.filter(is_active=True)[:4],
             'virtual_tour': VirtualTour.objects.filter(is_active=True, show_on_home=True).first(),
             'posts': Post.objects.published()[:3],
@@ -50,7 +53,13 @@ class AboutView(SEOMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        from apps.cms.models import Mission
+
+        mission = Mission.objects.filter(is_active=True).prefetch_related('goals').first()
+
         context.update({
+            'mission': mission,
+            'mission_goals': mission.goals.filter(is_active=True) if mission else [],
             'sections': AboutSection.objects.filter(is_active=True),
             'advantages': Advantage.objects.filter(is_active=True),
             'albums': GalleryAlbum.objects.filter(is_active=True)[:6],

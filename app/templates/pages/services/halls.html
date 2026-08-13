@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n %}
+{% load i18n baitur %}
 
 {% block content %}
     {% translate "Конференц-залы и мероприятия" as head_title %}
@@ -9,7 +9,9 @@
     <section class="section">
         <div class="container">
             {% if halls %}
-                <div class="grid grid--2">
+                {# Сетка и наполнение — как у карточек номеров, чтобы залы
+                   не выглядели крупнее остального каталога #}
+                <div class="grid grid--3">
                     {% for hall in halls %}
                         <article class="card">
                             <a class="card__media" href="{{ hall.get_absolute_url }}">
@@ -19,17 +21,16 @@
                             </a>
                             <div class="card__body">
                                 <h3 class="card__title"><a href="{{ hall.get_absolute_url }}">{{ hall.name }}</a></h3>
-                                <ul class="specs">
-                                    {% if hall.area %}<li><span>{% translate "Площадь" %}</span><span>{{ hall.area }} м²</span></li>{% endif %}
-                                    {% if hall.capacity_theatre %}<li><span>{% translate "Театр" %}</span><span>{{ hall.capacity_theatre }}</span></li>{% endif %}
-                                    {% if hall.capacity_banquet %}<li><span>{% translate "Банкет" %}</span><span>{{ hall.capacity_banquet }}</span></li>{% endif %}
-                                    {% if hall.capacity_classroom %}<li><span>{% translate "Класс" %}</span><span>{{ hall.capacity_classroom }}</span></li>{% endif %}
-                                </ul>
+                                <p class="card__meta">
+                                    {% if hall.area %}{{ hall.area|floatformat:"-1" }} м²{% endif %}
+                                    {% if hall.capacity_theatre %} · {% translate "театр" %} {{ hall.capacity_theatre }}{% endif %}
+                                    {% if hall.capacity_banquet %} · {% translate "банкет" %} {{ hall.capacity_banquet }}{% endif %}
+                                </p>
                                 <div class="card__footer">
                                     {% if hall.price_from %}
                                         <span class="price">
                                             <span class="price__from">{% translate "от" %}</span>
-                                            <span class="price__value">{{ hall.price_from }}</span>
+                                            <span class="price__value">{{ hall.price_from|money }}</span>
                                             <span class="price__unit">{% translate "сом" %}</span>
                                         </span>
                                     {% endif %}

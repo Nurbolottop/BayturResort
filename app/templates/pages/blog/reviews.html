@@ -10,28 +10,7 @@
             {% if reviews %}
                 <div class="grid grid--3">
                     {% for review in reviews %}
-                        <article class="review">
-                            <div class="review__rating" aria-label="{{ review.rating }}/5">
-                                {% for i in "12345"|make_list %}
-                                    <span class="star {% if forloop.counter <= review.rating %}is-on{% endif %}">★</span>
-                                {% endfor %}
-                            </div>
-                            <p class="review__text">{{ review.text }}</p>
-                            <div class="review__author">
-                                {% if review.avatar %}
-                                    <img src="{{ review.avatar.url }}" alt="{{ review.author_name }}" loading="lazy" width="44" height="44">
-                                {% endif %}
-                                <div>
-                                    <strong>{{ review.author_name }}</strong>
-                                    {% if review.author_city %}<span>{{ review.author_city }}</span>{% endif %}
-                                </div>
-                            </div>
-                            {% if review.source_url %}
-                                <a class="link-more" href="{{ review.source_url }}" target="_blank" rel="noopener nofollow">
-                                    {{ review.get_source_display }} →
-                                </a>
-                            {% endif %}
-                        </article>
+                        {% include 'include/review_card.html' %}
                     {% endfor %}
                 </div>
                 {% include 'include/pagination.html' %}

@@ -155,7 +155,7 @@ class Command(BaseCommand):
                 'is_approved': True, 'show_on_home': True, 'order': i,
             })
 
-        AboutSection.objects.get_or_create(title='О нас', defaults={
+        AboutSection.objects.get_or_create(title='Наша история', defaults={
             'subtitle': 'Иссык-Куль, с. Бостери',
             'content': '<p>Демо-текст о курорте. Замените реальным описанием от Заказчика.</p>',
         })

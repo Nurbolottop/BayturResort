@@ -6,6 +6,45 @@
     {% translate "Baytur Resort & Spa — территория отдыха на северном берегу Иссык-Куля, с. Бостери." as head_text %}
     {% include 'include/page_head.html' %}
 
+    {# Миссия и цели — первое, что видит гость на странице #}
+    {% if mission %}
+        <section class="section mission">
+            <div class="container">
+                <div class="mission__top">
+                    {% if mission.eyebrow %}
+                        <span class="section__eyebrow">{{ mission.eyebrow }}</span>
+                    {% endif %}
+                    <h2 class="section__title">{{ mission.title }}</h2>
+                    {% if mission.statement %}
+                        <p class="mission__statement">{{ mission.statement }}</p>
+                    {% endif %}
+                    {% if mission.content %}
+                        <div class="prose mission__content">{{ mission.content|safe }}</div>
+                    {% endif %}
+                </div>
+
+                {% if mission_goals %}
+                    <ol class="mission__goals">
+                        {% for goal in mission_goals %}
+                            <li class="mission__goal">
+                                <span class="mission__goal-num">{{ forloop.counter|stringformat:"02d" }}</span>
+                                <h3 class="mission__goal-title">{{ goal.title }}</h3>
+                                {% if goal.description %}
+                                    <p class="mission__goal-text">{{ goal.description }}</p>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ol>
+                {% endif %}
+
+                {% if mission.image %}
+                    <img class="mission__image" src="{{ mission.image.url }}"
+                         alt="{{ mission.title }}" loading="lazy" width="1600" height="1067">
+                {% endif %}
+            </div>
+        </section>
+    {% endif %}
+
     {% for section in sections %}
         <section class="section {% if not forloop.counter|divisibleby:2 %}{% else %}section--muted{% endif %}">
             <div class="container grid grid--2" style="align-items:center;">
