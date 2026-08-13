@@ -224,7 +224,7 @@ class Command(BaseCommand):
         self.stdout.write('Галерея наполнена.')
 
     def import_misc(self):
-        section = AboutSection.objects.filter(title='О курорте').first()
+        section = AboutSection.objects.filter(title='О нас').first()
         if section:
             self.attach(section, 'image', '49.jpg')
 

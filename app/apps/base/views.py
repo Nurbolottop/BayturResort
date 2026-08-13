@@ -42,10 +42,10 @@ class HomeView(SEOMixin, TemplateView):
 
 
 class AboutView(SEOMixin, TemplateView):
-    """О курорте: история, миссия, инфраструктура, юрточный городок, галерея."""
+    """О нас: история, миссия, инфраструктура, юрточный городок, галерея."""
 
     template_name = 'pages/about.html'
-    meta_title = _('О курорте — Baytur Resort & Spa')
+    meta_title = _('О нас — Baytur Resort & Spa')
     meta_description = _('История, инфраструктура и территория курорта Baytur Resort & Spa на Иссык-Куле.')
 
     def get_context_data(self, **kwargs):

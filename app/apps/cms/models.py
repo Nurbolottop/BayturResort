@@ -10,7 +10,7 @@ from apps.base.models import SEOModel, SortableModel, TimeStampedModel
 class StaticPage(SortableModel, SEOModel, TimeStampedModel):
     """
     Служебные и текстовые страницы: политика конфиденциальности, оферта,
-    правила проживания, «О курорте» (п. 4 ТЗ). Всё в HTML, без PDF.
+    правила проживания, «О нас» (п. 4 ТЗ). Всё в HTML, без PDF.
     """
 
     class Meta:
@@ -37,11 +37,11 @@ class StaticPage(SortableModel, SEOModel, TimeStampedModel):
 
 
 class AboutSection(SortableModel):
-    """Блок на странице «О курорте»: история, миссия, инфраструктура, юрточный городок."""
+    """Блок на странице «О нас»: история, миссия, инфраструктура, юрточный городок."""
 
     class Meta:
-        verbose_name = _('Блок «О курорте»')
-        verbose_name_plural = _('Страница «О курорте»')
+        verbose_name = _('Блок «О нас»')
+        verbose_name_plural = _('Страница «О нас»')
         ordering = ('order', 'id')
 
     title = models.CharField(_('Заголовок'), max_length=255)

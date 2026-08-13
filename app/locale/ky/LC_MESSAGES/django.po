@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-13 16:36+0600\n"
+"POT-Creation-Date: 2026-08-13 17:34+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -395,8 +395,9 @@ msgstr ""
 "бассейндер, ресторандар, конференц-залдар. Онлайн брондоо."
 
 #: apps/base/views.py:48
-msgid "О курорте — Baytur Resort & Spa"
-msgstr "Курорт жөнүндө — Baytur Resort & Spa"
+#| msgid "Контакты — Baytur Resort & Spa"
+msgid "О нас — Baytur Resort & Spa"
+msgstr "Биз жөнүндө — Baytur Resort & Spa"
 
 #: apps/base/views.py:49
 msgid ""
@@ -1091,12 +1092,14 @@ msgid "Показывать в меню"
 msgstr ""
 
 #: apps/cms/models.py:43
-msgid "Блок «О курорте»"
-msgstr ""
+#| msgid "Гости о нас"
+msgid "Блок «О нас»"
+msgstr "«Биз жөнүндө» блогу"
 
 #: apps/cms/models.py:44
-msgid "Страница «О курорте»"
-msgstr ""
+#| msgid "Страница не найдена"
+msgid "Страница «О нас»"
+msgstr "«Биз жөнүндө» барагы"
 
 #: apps/cms/models.py:55
 msgid "Положение изображения"
@@ -1797,7 +1800,6 @@ msgid "Открыть в Google Maps"
 msgstr "Google Maps'те ачуу"
 
 #: templates/include/address.html:23
-#| msgid "Открыть в админке"
 msgid "Открыть в 2ГИС"
 msgstr "2ГИСте ачуу"
 
@@ -1811,8 +1813,8 @@ msgstr "Бөлүмдөр"
 
 #: templates/include/footer.html:24 templates/include/header.html:41
 #: templates/pages/about.html:5
-msgid "О курорте"
-msgstr "Курорт жөнүндө"
+msgid "О нас"
+msgstr "Биз жөнүндө"
 
 #: templates/include/footer.html:29 templates/pages/gallery/index.html:5
 msgid "Галерея и 3D-тур"
@@ -1857,7 +1859,6 @@ msgid "Выгодно"
 msgstr "Пайдалуу"
 
 #: templates/include/offers_popup.html:30
-#| msgid "Спецпредложения"
 msgid "Специальные предложения"
 msgstr "Атайын сунуштар"
 
@@ -2323,3 +2324,9 @@ msgstr ""
 #: templates/pages/services/list.html:51
 msgid "Раздел наполняется."
 msgstr "Бөлүм толтурулууда."
+
+#~ msgid "О курорте — Baytur Resort & Spa"
+#~ msgstr "Курорт жөнүндө — Baytur Resort & Spa"
+
+#~ msgid "О курорте"
+#~ msgstr "Курорт жөнүндө"
