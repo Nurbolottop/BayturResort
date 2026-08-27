@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-13 18:48+0600\n"
+"POT-Creation-Date: 2026-08-27 13:09+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -410,7 +410,7 @@ msgstr ""
 msgid "Публикация"
 msgstr ""
 
-#: apps/blog/admin.py:47 apps/blog/models.py:67 apps/booking/models.py:150
+#: apps/blog/admin.py:47 apps/blog/models.py:96 apps/booking/models.py:150
 msgid "Источник"
 msgstr ""
 
@@ -465,73 +465,108 @@ msgstr ""
 msgid "Просмотры"
 msgstr ""
 
-#: apps/blog/models.py:48
+#: apps/blog/models.py:54 templates/emails/booking_admin.html:14
+#: templates/emails/booking_sync_failed.html:19
+#: templates/pages/booking/detail.html:20
+msgid "Гость"
+msgstr "Конок"
+
+#: apps/blog/models.py:55 templates/pages/blog/reviews.html:5
+#| msgid "За гостя"
+msgid "Наши гости"
+msgstr "Биздин коноктор"
+
+#: apps/blog/models.py:58
+msgid "ФИО"
+msgstr "Аты-жөнү"
+
+#: apps/blog/models.py:60
+msgid "Кто это"
+msgstr "Бул ким"
+
+#: apps/blog/models.py:61
+msgid "Например: «Гость курорта, Алматы» или должность."
+msgstr "Мисалы: «Курорттун коногу, Алматы» же кызматы."
+
+#: apps/blog/models.py:64 apps/booking/models.py:29 apps/gallery/admin.py:30
+#: apps/gallery/models.py:32 apps/gallery/models.py:33
+#: apps/gallery/models.py:39 apps/offers/models.py:27 apps/rooms/admin.py:55
+#: apps/rooms/models.py:111 apps/services/models.py:48
+#: apps/services/models.py:72 apps/services/models.py:91
+msgid "Фото"
+msgstr "Сүрөт"
+
+#: apps/blog/models.py:67
+#| msgid "Показать"
+msgid "Что сказал"
+msgstr "Эмне деди"
+
+#: apps/blog/models.py:77
 msgid "Форма на сайте"
 msgstr ""
 
-#: apps/blog/models.py:49
+#: apps/blog/models.py:78
 msgid "Booking.com"
 msgstr ""
 
-#: apps/blog/models.py:50
+#: apps/blog/models.py:79
 msgid "Google"
 msgstr ""
 
-#: apps/blog/models.py:51
+#: apps/blog/models.py:80
 msgid "2GIS"
 msgstr ""
 
-#: apps/blog/models.py:52
+#: apps/blog/models.py:81
 msgid "Добавлен вручную"
 msgstr ""
 
-#: apps/blog/models.py:55
+#: apps/blog/models.py:84
 msgid "Отзыв"
 msgstr ""
 
-#: apps/blog/models.py:56 templates/include/header.html:47
-#: templates/pages/home.html:187
+#: apps/blog/models.py:85 templates/include/header.html:47
+#: templates/pages/blog/reviews.html:37 templates/pages/home.html:187
 msgid "Отзывы"
 msgstr "Пикирлер"
 
-#: apps/blog/models.py:59
+#: apps/blog/models.py:88
 msgid "Имя автора"
 msgstr ""
 
-#: apps/blog/models.py:60
+#: apps/blog/models.py:89
 msgid "Город / страна"
 msgstr ""
 
-#: apps/blog/models.py:62
+#: apps/blog/models.py:91
 msgid "Фото автора"
 msgstr ""
 
-#: apps/blog/models.py:65
+#: apps/blog/models.py:94
 msgid "Оценка (1–5)"
 msgstr ""
 
-#: apps/blog/models.py:66
+#: apps/blog/models.py:95
 msgid "Текст отзыва"
 msgstr ""
 
-#: apps/blog/models.py:68
+#: apps/blog/models.py:97
 msgid "Ссылка на отзыв"
 msgstr ""
 
-#: apps/blog/models.py:73
+#: apps/blog/models.py:102
 msgid "ID во внешнем сервисе"
 msgstr "Тышкы кызматтагы ID"
 
-#: apps/blog/models.py:75
-#| msgid "Все отзывы"
+#: apps/blog/models.py:104
 msgid "Дата отзыва"
 msgstr "Пикирдин күнү"
 
-#: apps/blog/models.py:77
+#: apps/blog/models.py:106
 msgid "Одобрен к публикации"
 msgstr ""
 
-#: apps/blog/models.py:78 apps/gallery/models.py:78 apps/offers/models.py:45
+#: apps/blog/models.py:107 apps/gallery/models.py:78 apps/offers/models.py:45
 #: apps/rooms/models.py:88 apps/services/models.py:54
 msgid "Показывать на главной"
 msgstr ""
@@ -548,12 +583,14 @@ msgstr ""
 "Курорттун жаңылыктары, Ысык-Көлдө эс алуу боюнча гид жана пайдалуу макалалар."
 
 #: apps/blog/views.py:46
-msgid "Отзывы гостей — Baytur Resort & Spa"
-msgstr "Коноктордун пикирлери — Baytur Resort & Spa"
+#| msgid "Отзывы гостей — Baytur Resort & Spa"
+msgid "Наши гости — Baytur Resort & Spa"
+msgstr "Биздин коноктор — Baytur Resort & Spa"
 
 #: apps/blog/views.py:47
-msgid "Отзывы гостей курорта Baytur Resort & Spa на Иссык-Куле."
-msgstr "Ысык-Көлдөгү Baytur Resort & Spa конокторунун пикирлери."
+#| msgid "Отзывы гостей курорта Baytur Resort & Spa на Иссык-Куле."
+msgid "Гости курорта Baytur Resort & Spa на Иссык-Куле и их отзывы."
+msgstr "Ысык-Көлдөгү Baytur Resort & Spa курортунун коноктору жана алардын пикирлери."
 
 #: apps/booking/admin.py:67
 msgid "Проживание"
@@ -714,13 +751,6 @@ msgstr ""
 
 #: apps/booking/models.py:27 apps/rooms/models.py:19 apps/services/models.py:21
 msgid "Иконка"
-msgstr ""
-
-#: apps/booking/models.py:29 apps/gallery/admin.py:30 apps/gallery/models.py:32
-#: apps/gallery/models.py:33 apps/gallery/models.py:39 apps/offers/models.py:27
-#: apps/rooms/admin.py:55 apps/rooms/models.py:111 apps/services/models.py:48
-#: apps/services/models.py:72 apps/services/models.py:91
-msgid "Фото"
 msgstr ""
 
 #: apps/booking/models.py:33 apps/services/models.py:51
@@ -1779,12 +1809,6 @@ msgstr "Сайттан жаңы брон"
 msgid "Даты"
 msgstr "Күндөр"
 
-#: templates/emails/booking_admin.html:14
-#: templates/emails/booking_sync_failed.html:19
-#: templates/pages/booking/detail.html:20
-msgid "Гость"
-msgstr "Конок"
-
 #: templates/emails/booking_admin.html:20
 msgid "Итого / оплачено"
 msgstr "Жалпы / төлөндү"
@@ -1991,8 +2015,8 @@ msgstr ""
 "айылы."
 
 #: templates/pages/about.html:88
-msgid "Территория курорта"
-msgstr "Курорттун аймагы"
+msgid "Наши проекты"
+msgstr "Биздин долбоорлор"
 
 #: templates/pages/about.html:89
 msgid "Вся галерея"
@@ -2010,11 +2034,7 @@ msgstr "Жаңылыктар жана макалалар"
 msgid "Публикаций пока нет."
 msgstr "Азырынча жарыялар жок."
 
-#: templates/pages/blog/reviews.html:5
-msgid "Отзывы гостей"
-msgstr "Коноктордун пикирлери"
-
-#: templates/pages/blog/reviews.html:18
+#: templates/pages/blog/reviews.html:49
 msgid "Отзывы скоро появятся."
 msgstr "Пикирлер жакында пайда болот."
 
@@ -2336,12 +2356,10 @@ msgid "от %(n)s"
 msgstr "%(n)s+"
 
 #: templates/pages/rooms/list.html:52
-#| msgid "Цена от"
 msgid "Цена до, сом"
 msgstr "Баасы, сомго чейин"
 
 #: templates/pages/rooms/list.html:59
-#| msgid "Забронировать"
 msgid "Сортировка"
 msgstr "Иреттөө"
 
@@ -2358,17 +2376,14 @@ msgid "Сначала дороже"
 msgstr "Кымбатыраагы биринчи"
 
 #: templates/pages/rooms/list.html:64
-#| msgid "Площадь"
 msgid "Больше площадь"
 msgstr "Аянты чоңураак"
 
 #: templates/pages/rooms/list.html:65
-#| msgid "Количество гостей"
 msgid "Больше гостей"
 msgstr "Конок көбүрөөк"
 
 #: templates/pages/rooms/list.html:84
-#| msgid "Новая бронь с сайта"
 msgid "Показать"
 msgstr "Көрсөтүү"
 
@@ -2384,11 +2399,9 @@ msgid_plural "Найдено вариантов: %(counter)s"
 msgstr[0] "Окшош варианттар"
 
 #: templates/pages/rooms/list.html:104
-#| msgid ""
-#| "На выбранные даты свободных номеров не найдено. Попробуйте другие даты "
-#| "или позвоните нам."
 msgid "По выбранным условиям ничего не нашлось. Попробуйте смягчить фильтры."
-msgstr "Тандалган шарттар боюнча эч нерсе табылган жок. Чыпкаларды жумшартып көрүңүз."
+msgstr ""
+"Тандалган шарттар боюнча эч нерсе табылган жок. Чыпкаларды жумшартып көрүңүз."
 
 #: templates/pages/rooms/list.html:106
 msgid "В этой категории пока нет номеров."
@@ -2468,6 +2481,12 @@ msgstr ""
 #: templates/pages/services/list.html:51
 msgid "Раздел наполняется."
 msgstr "Бөлүм толтурулууда."
+
+#~ msgid "Территория курорта"
+#~ msgstr "Курорттун аймагы"
+
+#~ msgid "Отзывы гостей"
+#~ msgstr "Коноктордун пикирлери"
 
 #~ msgid "О курорте — Baytur Resort & Spa"
 #~ msgstr "Курорт жөнүндө — Baytur Resort & Spa"
