@@ -797,12 +797,13 @@ a.review__source:hover { color: var(--gold); border-color: var(--stroke-gold); b
     background: var(--surface-2);
 }
 
-/* Круглое фото: лицо гостя — главный элемент карточки */
+/* Квадрат со скруглением: в круге кадр обрезается по краям и теряет
+   часть фотографии, квадрат показывает её целиком. */
 .guest__photo {
-    width: 116px;
-    height: 116px;
-    margin: 0 auto 22px;
-    border-radius: 50%;
+    width: 168px;
+    height: 168px;
+    margin: 0 auto 24px;
+    border-radius: var(--r);
     overflow: hidden;
     background: var(--surface-2);
     border: 1px solid var(--stroke-gold);
