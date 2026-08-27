@@ -1,0 +1,1048 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Список текстов, фотографий и доступов, которые нужны для наполнения сайта Baytur Resort &amp; Spa.">
+<title>Материалы для сайта Baytur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+</head>
+<body>
+<style>
+    /* ── Палитра: светлый камень с зелёным подтоном (вода Иссык-Куля),
+       бронза курорта как акцент, глубокая бирюза как второй сигнал ── */
+    :root {
+        --ground: #eff2f0;
+        --surface: #ffffff;
+        --surface-sunk: #e7ebe8;
+        --ink: #16211f;
+        --ink-soft: #4a5854;
+        --ink-mute: #75837e;
+        --line: #d5dcd8;
+        --line-soft: #e2e7e4;
+        --bronze: #8f6f37;
+        --bronze-soft: #f0e7d6;
+        --lake: #16645f;
+        --lake-soft: #dceae8;
+
+        --measure: 68ch;
+        --radius: 3px;
+        --shadow: 0 1px 2px rgba(22, 33, 31, .05), 0 8px 24px rgba(22, 33, 31, .05);
+
+        --font-display: "Newsreader", Georgia, "Times New Roman", serif;
+        --font-body: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+            --ground: #101715;
+            --surface: #172020;
+            --surface-sunk: #131b1a;
+            --ink: #e6ece9;
+            --ink-soft: #a9b6b2;
+            --ink-mute: #7c8a86;
+            --line: #26332f;
+            --line-soft: #1f2b28;
+            --bronze: #c9a86a;
+            --bronze-soft: #2a2418;
+            --lake: #63b3ac;
+            --lake-soft: #14282a;
+            --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .28);
+        }
+    }
+
+    :root[data-theme="dark"] {
+        --ground: #101715;
+        --surface: #172020;
+        --surface-sunk: #131b1a;
+        --ink: #e6ece9;
+        --ink-soft: #a9b6b2;
+        --ink-mute: #7c8a86;
+        --line: #26332f;
+        --line-soft: #1f2b28;
+        --bronze: #c9a86a;
+        --bronze-soft: #2a2418;
+        --lake: #63b3ac;
+        --lake-soft: #14282a;
+        --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .28);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        background: var(--ground);
+        color: var(--ink);
+        font-family: var(--font-body);
+        font-size: 16px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 56px 24px 96px;
+    }
+
+    /* ── Шапка ── */
+    .masthead {
+        border-bottom: 2px solid var(--ink);
+        padding-bottom: 28px;
+        margin-bottom: 40px;
+    }
+
+    .masthead__eyebrow {
+        font-family: var(--font-mono);
+        font-size: .74rem;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--bronze);
+        margin: 0 0 18px;
+    }
+
+    .masthead h1 {
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: clamp(2.1rem, 5vw, 3.3rem);
+        line-height: 1.08;
+        letter-spacing: -.02em;
+        margin: 0 0 .35em;
+        text-wrap: balance;
+    }
+
+    .masthead__lead {
+        max-width: var(--measure);
+        color: var(--ink-soft);
+        font-size: 1.06rem;
+        margin: 0;
+    }
+
+    /* ── Как присылать ── */
+    .howto {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1px;
+        background: var(--line);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        overflow: hidden;
+        margin-bottom: 52px;
+    }
+
+    .howto__item {
+        background: var(--surface);
+        padding: 22px 24px;
+    }
+
+    .howto__item h3 {
+        font-family: var(--font-mono);
+        font-size: .72rem;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        color: var(--ink-mute);
+        margin: 0 0 10px;
+        font-weight: 500;
+    }
+
+    .howto__item p {
+        margin: 0;
+        font-size: .93rem;
+        color: var(--ink-soft);
+    }
+
+    /* ── Оглавление ── */
+    .toc {
+        background: var(--surface-sunk);
+        border-radius: var(--radius);
+        padding: 26px 28px;
+        margin-bottom: 60px;
+    }
+
+    .toc h2 {
+        font-family: var(--font-mono);
+        font-size: .74rem;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--ink-mute);
+        margin: 0 0 16px;
+        font-weight: 500;
+    }
+
+    .toc ol {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        columns: 2;
+        column-gap: 40px;
+    }
+
+    .toc li {
+        break-inside: avoid;
+        padding: 5px 0;
+        display: flex;
+        gap: 12px;
+        align-items: baseline;
+    }
+
+    .toc a {
+        color: var(--ink);
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: border-color .2s, color .2s;
+    }
+
+    .toc a:hover,
+    .toc a:focus-visible { color: var(--bronze); border-bottom-color: var(--bronze); }
+
+    .toc__num {
+        font-family: var(--font-mono);
+        font-size: .8rem;
+        color: var(--ink-mute);
+        font-variant-numeric: tabular-nums;
+        flex-shrink: 0;
+    }
+
+    /* ── Секции ── */
+    .section { margin-bottom: 64px; scroll-margin-top: 24px; }
+
+    .section__head {
+        display: flex;
+        align-items: baseline;
+        gap: 16px;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 14px;
+        margin-bottom: 8px;
+    }
+
+    .section__num {
+        font-family: var(--font-mono);
+        font-size: .84rem;
+        color: var(--bronze);
+        font-variant-numeric: tabular-nums;
+        flex-shrink: 0;
+    }
+
+    .section__head h2 {
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+        letter-spacing: -.015em;
+        margin: 0;
+        flex: 1;
+        text-wrap: balance;
+    }
+
+    .section__where {
+        font-size: .86rem;
+        color: var(--ink-mute);
+        margin: 0 0 22px;
+        padding-left: calc(.84rem + 16px);
+    }
+
+    .section__where code {
+        font-family: var(--font-mono);
+        font-size: .84em;
+        background: var(--surface-sunk);
+        padding: 2px 6px;
+        border-radius: 2px;
+    }
+
+    .section__note {
+        max-width: var(--measure);
+        font-size: .95rem;
+        color: var(--ink-soft);
+        margin: 0 0 22px;
+        padding-left: calc(.84rem + 16px);
+    }
+
+    /* ── Таблица полей ── */
+    .fields {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--surface);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+    }
+
+    .field {
+        display: grid;
+        grid-template-columns: minmax(180px, 240px) 1fr auto;
+        gap: 20px;
+        padding: 15px 22px;
+        border-bottom: 1px solid var(--line-soft);
+        align-items: start;
+    }
+
+    .field:last-child { border-bottom: 0; }
+
+    .field__name {
+        font-weight: 600;
+        font-size: .95rem;
+        line-height: 1.45;
+    }
+
+    .field__name small {
+        display: block;
+        font-family: var(--font-mono);
+        font-size: .72rem;
+        font-weight: 400;
+        color: var(--ink-mute);
+        letter-spacing: .02em;
+        margin-top: 3px;
+    }
+
+    .field__desc {
+        font-size: .93rem;
+        color: var(--ink-soft);
+        line-height: 1.55;
+    }
+
+    .field__desc em {
+        font-style: normal;
+        color: var(--bronze);
+        font-family: var(--font-mono);
+        font-size: .85em;
+    }
+
+    /* Метка приоритета несёт реальный смысл: без «для запуска» сайт
+       не откроется, «можно позже» добавляется в рабочем порядке. */
+    .tag {
+        font-family: var(--font-mono);
+        font-size: .68rem;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+        padding: 3px 9px;
+        border-radius: 100px;
+        white-space: nowrap;
+        align-self: center;
+    }
+
+    .tag--must { background: var(--bronze-soft); color: var(--bronze); }
+    .tag--later { background: var(--surface-sunk); color: var(--ink-mute); }
+    .tag--access { background: var(--lake-soft); color: var(--lake); }
+
+    /* ── Врезка ── */
+    .callout {
+        border-left: 3px solid var(--lake);
+        background: var(--lake-soft);
+        padding: 18px 22px;
+        border-radius: 0 var(--radius) var(--radius) 0;
+        margin-top: 20px;
+        font-size: .93rem;
+        color: var(--ink-soft);
+        max-width: var(--measure);
+    }
+
+    .callout strong { color: var(--ink); }
+
+    /* ── Легенда ── */
+    .legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        align-items: center;
+        margin-bottom: 44px;
+        padding: 16px 20px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        font-size: .88rem;
+        color: var(--ink-soft);
+    }
+
+    .legend span { display: inline-flex; align-items: center; gap: 9px; }
+
+    /* ── Подвал ── */
+    .foot {
+        border-top: 2px solid var(--ink);
+        padding-top: 24px;
+        margin-top: 20px;
+        font-size: .9rem;
+        color: var(--ink-mute);
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .foot a { color: var(--bronze); }
+
+    @media (max-width: 720px) {
+        .wrap { padding: 36px 18px 64px; }
+        .toc ol { columns: 1; }
+        .field { grid-template-columns: 1fr; gap: 6px; padding: 16px 18px; }
+        .tag { justify-self: start; }
+        .section__where, .section__note { padding-left: 0; }
+    }
+
+    @media print {
+        body { background: #fff; }
+        .fields { box-shadow: none; }
+        .section { break-inside: avoid; }
+    }
+</style>
+
+<div class="wrap">
+
+    <header class="masthead">
+        <p class="masthead__eyebrow">Baytur Resort &amp; Spa · подготовка сайта</p>
+        <h1>Какие материалы нужны для сайта</h1>
+        <p class="masthead__lead">
+            Сайт собран и работает — сейчас в нём демонстрационные тексты и фотографии,
+            взятые со старого сайта. Ниже по каждому разделу перечислено, что нужно прислать,
+            чтобы заменить их на настоящие. Разделы независимы: можно присылать по частям,
+            в любом порядке.
+        </p>
+    </header>
+
+    <div class="howto">
+        <div class="howto__item">
+            <h3>Фотографии</h3>
+            <p>JPG или PNG, оригиналы без сжатия и без водяных знаков. Обрезать и подгонять
+               размер не нужно — это сделаем мы.</p>
+        </div>
+        <div class="howto__item">
+            <h3>Тексты</h3>
+            <p>Word, Google Docs или просто сообщением. Главное — подписать, к какому
+               разделу относится текст.</p>
+        </div>
+        <div class="howto__item">
+            <h3>Как передать</h3>
+            <p>Папкой на Google Диске или WeTransfer. Внутри — подпапки по названиям
+               разделов из этого документа.</p>
+        </div>
+        <div class="howto__item">
+            <h3>Переводы</h3>
+            <p>Сайт работает на трёх языках. Если английской и кыргызской версий текста
+               нет — пришлите русскую, переведём сами.</p>
+        </div>
+    </div>
+
+    <nav class="toc">
+        <h2>Разделы</h2>
+        <ol>
+            <li><span class="toc__num">01</span><a href="#s1">Общие данные курорта</a></li>
+            <li><span class="toc__num">02</span><a href="#s2">Главная страница</a></li>
+            <li><span class="toc__num">03</span><a href="#s3">Номера и жильё</a></li>
+            <li><span class="toc__num">04</span><a href="#s4">Услуги курорта</a></li>
+            <li><span class="toc__num">05</span><a href="#s5">Конференц-залы</a></li>
+            <li><span class="toc__num">06</span><a href="#s6">Спецпредложения и промокоды</a></li>
+            <li><span class="toc__num">07</span><a href="#s7">Галерея, видео и 3D-тур</a></li>
+            <li><span class="toc__num">08</span><a href="#s8">Страница «О нас»</a></li>
+            <li><span class="toc__num">09</span><a href="#s9">Наши гости и отзывы</a></li>
+            <li><span class="toc__num">10</span><a href="#s10">Блог и новости</a></li>
+            <li><span class="toc__num">11</span><a href="#s11">Бронирование</a></li>
+            <li><span class="toc__num">12</span><a href="#s12">Юридические страницы</a></li>
+            <li><span class="toc__num">13</span><a href="#s13">Доступы и интеграции</a></li>
+        </ol>
+    </nav>
+
+    <div class="legend">
+        <span><i class="tag tag--must">для запуска</i> без этого раздел не откроется</span>
+        <span><i class="tag tag--later">можно позже</i> добавим в рабочем порядке</span>
+        <span><i class="tag tag--access">доступ</i> логин, ключ или договор</span>
+    </div>
+
+    <!-- 01 ───────────────────────────────────────────────── -->
+    <section class="section" id="s1">
+        <div class="section__head">
+            <span class="section__num">01</span>
+            <h2>Общие данные курорта</h2>
+        </div>
+        <p class="section__where">Шапка и подвал на всех страницах, страница контактов</p>
+
+        <div class="fields">
+            <div class="field">
+                <div class="field__name">Логотип<small>PNG с прозрачным фоном</small></div>
+                <div class="field__desc">Два варианта: основной и светлый для тёмного фона.
+                    Векторный исходник (AI, SVG, EPS), если есть — из него сделаем все размеры.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Слоган<small>одна строка</small></div>
+                <div class="field__desc">Короткая фраза под названием. Сейчас стоит
+                    «Курорт на северном берегу Иссык-Куля».</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Телефоны</div>
+                <div class="field__desc">Основной и дополнительный, в международном формате
+                    <em>+996 XXX XX-XX-XX</em>. Будут кликабельными с телефона.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">E-mail</div>
+                <div class="field__desc">Публичный адрес для гостей. Отдельно — адреса,
+                    на которые должны приходить заявки с сайта (можно несколько).</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Адрес</div>
+                <div class="field__desc">Полный адрес курорта и режим работы ресепшена.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Ссылки на карты</div>
+                <div class="field__desc">Ссылка на карточку курорта в Google Maps и в 2ГИС.
+                    По клику на адрес гость выбирает, где открыть.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">WhatsApp</div>
+                <div class="field__desc">Номер для кнопки быстрой связи — она видна на всех
+                    страницах в углу экрана.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Соцсети</div>
+                <div class="field__desc">Ссылки на Instagram, Facebook, YouTube, TikTok, Telegram —
+                    те, что ведёте.</div>
+                <i class="tag tag--later">можно позже</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Реквизиты</div>
+                <div class="field__desc">Юридическое название (например, ОсОО «…») и полные
+                    реквизиты для подвала и договора-оферты.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Время заезда и выезда</div>
+                <div class="field__desc">Сейчас указано 14:00 / 12:00 — подтвердите или поправьте.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+        </div>
+    </section>
+
+    <!-- 02 ───────────────────────────────────────────────── -->
+    <section class="section" id="s2">
+        <div class="section__head">
+            <span class="section__num">02</span>
+            <h2>Главная страница</h2>
+        </div>
+        <p class="section__where">Первый экран и блок преимуществ</p>
+
+        <div class="fields">
+            <div class="field">
+                <div class="field__name">Слайды первого экрана<small>3–5 штук</small></div>
+                <div class="field__desc">Для каждого: горизонтальная фотография
+                    <em>от 1920×1080</em>, заголовок в 2–4 слова и подпись в одну строку.
+                    Это лицо курорта — нужны самые сильные кадры.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Преимущества<small>4 пункта</small></div>
+                <div class="field__desc">Чем курорт отличается: заголовок в 2–3 слова
+                    и пояснение в одно предложение. Сейчас стоят пляж, SPA, питание и детская зона.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Иконки к преимуществам</div>
+                <div class="field__desc">Необязательно. Если есть фирменные — присылайте SVG или PNG.</div>
+                <i class="tag tag--later">можно позже</i>
+            </div>
+        </div>
+    </section>
+
+    <!-- 03 ───────────────────────────────────────────────── -->
+    <section class="section" id="s3">
+        <div class="section__head">
+            <span class="section__num">03</span>
+            <h2>Номера и жильё</h2>
+        </div>
+        <p class="section__where">Каталог <code>/rooms/</code>, карточка каждой категории, поиск при бронировании</p>
+        <p class="section__note">
+            Самый объёмный раздел. Нужен список <strong>всех категорий</strong> размещения —
+            номера, коттеджи, виллы, юрты. По каждой категории заполняется одна карточка.
+        </p>
+
+        <div class="fields">
+            <div class="field">
+                <div class="field__name">Название категории</div>
+                <div class="field__desc">Как в прайсе: «Стандарт», «Полулюкс», «Коттедж у озера».</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Тип размещения</div>
+                <div class="field__desc">К какому типу относится: стандарт, полулюкс, люкс, делюкс,
+                    президентский, семейный, коттедж, вилла, юрта. Нужно для фильтра в каталоге.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Вместимость</div>
+                <div class="field__desc">Максимум взрослых и максимум детей. По этим числам
+                    работает поиск по количеству гостей.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Площадь, комнаты, кровати</div>
+                <div class="field__desc">Площадь в м², число комнат, состав спальных мест —
+                    например, «1 двуспальная + 2 односпальные».</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Цена за ночь</div>
+                <div class="field__desc">Базовая цена в сомах — показывается как «от … сом / ночь»,
+                    пока гость не выбрал даты.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Сколько номеров в категории</div>
+                <div class="field__desc">Общее количество. Пока не подключена система управления
+                    отелем, по этому числу считается наличие свободных мест.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Краткое описание<small>до 500 знаков</small></div>
+                <div class="field__desc">Одно-два предложения для карточки в каталоге.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Полное описание</div>
+                <div class="field__desc">Развёрнутый текст для страницы категории: вид из окна,
+                    особенности, что входит в стоимость.</div>
+                <i class="tag tag--later">можно позже</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Фотографии<small>4–8 на категорию</small></div>
+                <div class="field__desc">Первая станет обложкой. Горизонтальные,
+                    <em>от 1600×1067</em>. Желательно: общий вид, кровать, санузел, вид из окна.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Список удобств</div>
+                <div class="field__desc">Что есть в номере: Wi-Fi, кондиционер, балкон, сейф,
+                    мини-бар и так далее. Пришлите общий список по всем категориям — отметим,
+                    что к чему относится.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+        </div>
+
+        <div class="callout">
+            <strong>Если категорий много</strong> — удобнее прислать одной таблицей: строка на
+            категорию, столбцы по пунктам выше. Фотографии — папкой, названной по категории.
+        </div>
+    </section>
+
+    <!-- 04 ───────────────────────────────────────────────── -->
+    <section class="section" id="s4">
+        <div class="section__head">
+            <span class="section__num">04</span>
+            <h2>Услуги курорта</h2>
+        </div>
+        <p class="section__where">Раздел <code>/services/</code> и блок на главной</p>
+        <p class="section__note">
+            Услуги сгруппированы по категориям. Сейчас заведены SPA, бассейны, рестораны,
+            спорткомплекс и детская зона — список можно менять.
+        </p>
+
+        <div class="fields">
+            <div class="field">
+                <div class="field__name">Категории услуг</div>
+                <div class="field__desc">Название, короткое описание и обложка
+                    <em>от 1600×900</em> для каждой категории.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Услуги внутри категории</div>
+                <div class="field__desc">Название, краткое описание, цена в сомах и длительность
+                    (например, «60 минут»). Если цена договорная — так и напишите.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Примечание к цене</div>
+                <div class="field__desc">Уточнение рядом с ценой: «за человека», «для гостей курорта»,
+                    «по предварительной записи».</div>
+                <i class="tag tag--later">можно позже</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Фотографии услуг</div>
+                <div class="field__desc">По одной обложке минимум, можно галерею.
+                    <em>от 1600×1067</em>.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+        </div>
+    </section>
+
+    <!-- 05 ───────────────────────────────────────────────── -->
+    <section class="section" id="s5">
+        <div class="section__head">
+            <span class="section__num">05</span>
+            <h2>Конференц-залы</h2>
+        </div>
+        <p class="section__where">Раздел <code>/halls/</code> и форма заявки на мероприятие</p>
+
+        <div class="fields">
+            <div class="field">
+                <div class="field__name">Список залов</div>
+                <div class="field__desc">Название и площадь в м² по каждому залу.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Вместимость по рассадкам</div>
+                <div class="field__desc">Сколько человек помещается: театр, банкет, класс,
+                    П-образная расстановка. Заполняйте те, что применимы.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Оборудование</div>
+                <div class="field__desc">Что входит: проектор, экран, звук, микрофоны, флипчарт.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Цена аренды</div>
+                <div class="field__desc">Стоимость «от» в сомах — за час или за день, уточните.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Фотографии залов</div>
+                <div class="field__desc">Общий вид зала, желательно с расставленной мебелью.
+                    <em>от 1600×900</em>.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Схемы рассадки</div>
+                <div class="field__desc">Если есть планы залов — пришлите, добавим на страницу
+                    как отдельные изображения.</div>
+                <i class="tag tag--later">можно позже</i>
+            </div>
+        </div>
+    </section>
+
+    <!-- 06 ───────────────────────────────────────────────── -->
+    <section class="section" id="s6">
+        <div class="section__head">
+            <span class="section__num">06</span>
+            <h2>Спецпредложения и промокоды</h2>
+        </div>
+        <p class="section__where">Раздел <code>/offers/</code>, блок на главной, всплывающее окно при входе</p>
+
+        <div class="fields">
+            <div class="field">
+                <div class="field__name">Акции и пакеты</div>
+                <div class="field__desc">Название, подзаголовок в одну строку, описание условий.
+                    Например: «Проживание + SPA», «Раннее бронирование».</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Цены акции</div>
+                <div class="field__desc">Цена по акции и цена без скидки — из них считается
+                    процент скидки на карточке.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Срок действия</div>
+                <div class="field__desc">Даты начала и окончания. Просроченные акции пропадают
+                    с сайта автоматически.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Фото акции</div>
+                <div class="field__desc"><em>от 1600×900</em>, горизонтальная.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Промокоды</div>
+                <div class="field__desc">Код, размер скидки (процент или сумма), срок действия,
+                    минимум ночей, ограничение по числу применений и категориям номеров.</div>
+                <i class="tag tag--later">можно позже</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Текст всплывающего окна</div>
+                <div class="field__desc">Заголовок и подпись для окна с акциями, которое
+                    появляется через несколько секунд после входа на сайт.</div>
+                <i class="tag tag--later">можно позже</i>
+            </div>
+        </div>
+    </section>
+
+    <!-- 07 ───────────────────────────────────────────────── -->
+    <section class="section" id="s7">
+        <div class="section__head">
+            <span class="section__num">07</span>
+            <h2>Галерея, видео и 3D-тур</h2>
+        </div>
+        <p class="section__where">Раздел <code>/gallery/</code>, блок «Наши проекты» на странице «О нас»</p>
+
+        <div class="fields">
+            <div class="field">
+                <div class="field__name">Фотоальбомы</div>
+                <div class="field__desc">Разбейте фотографии по темам: территория, номера,
+                    бассейны, рестораны, юрточный городок, мероприятия. Для каждого альбома —
+                    название и обложка.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Фотографии в альбомах</div>
+                <div class="field__desc"><em>от 1920×1280</em>. Чем больше, тем лучше —
+                    ограничений по количеству нет.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Видео</div>
+                <div class="field__desc">Ссылки на YouTube или файлы mp4. Плюс кадр-обложка
+                    к каждому ролику.</div>
+                <i class="tag tag--later">можно позже</i>
+            </div>
+            <div class="field">
+                <div class="field__name">3D-тур</div>
+                <div class="field__desc">Ссылка уже подключена — kuula.co. Если появится новая
+                    версия тура, просто пришлите ссылку.</div>
+                <i class="tag tag--later">можно позже</i>
+            </div>
+        </div>
+    </section>
+
+    <!-- 08 ───────────────────────────────────────────────── -->
+    <section class="section" id="s8">
+        <div class="section__head">
+            <span class="section__num">08</span>
+            <h2>Страница «О нас»</h2>
+        </div>
+        <p class="section__where">Страница <code>/about/</code></p>
+
+        <div class="fields">
+            <div class="field">
+                <div class="field__name">Миссия<small>2–3 предложения</small></div>
+                <div class="field__desc">Первое, что видит гость на странице. Ради чего работает
+                    курорт, своими словами. Сейчас стоит наш черновой вариант — его нужно
+                    утвердить или переписать.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Цели<small>3–5 пунктов</small></div>
+                <div class="field__desc">Каждая — короткий заголовок и пояснение в одно
+                    предложение. Выводятся пронумерованными карточками под миссией.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">История курорта</div>
+                <div class="field__desc">Когда открылись, как развивались, чем гордитесь.
+                    Награды и достижения — например, HoReCa Awards 2025.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Дополнительные блоки</div>
+                <div class="field__desc">Инфраструктура, юрточный городок, планы развития.
+                    Каждый блок — заголовок, текст и фотография <em>от 1600×1067</em>.</div>
+                <i class="tag tag--later">можно позже</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Блок «Наши проекты»</div>
+                <div class="field__desc">Уточните, что показывать в этом блоке — сейчас туда
+                    выводятся фотоальбомы курорта.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+        </div>
+    </section>
+
+    <!-- 09 ───────────────────────────────────────────────── -->
+    <section class="section" id="s9">
+        <div class="section__head">
+            <span class="section__num">09</span>
+            <h2>Наши гости и отзывы</h2>
+        </div>
+        <p class="section__where">Страница <code>/reviews/</code> и блок отзывов на главной</p>
+
+        <div class="fields">
+            <div class="field">
+                <div class="field__name">Карточки гостей</div>
+                <div class="field__desc">Фотография человека <em>от 800×800</em>, ФИО, подпись
+                    («Гость курорта, Бишкек» или должность) и цитата в 1–2 предложения.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Согласие на публикацию</div>
+                <div class="field__desc">Письменное согласие каждого гостя на использование его
+                    фотографии и имени на сайте. Без него публиковать нельзя.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Отзывы текстом</div>
+                <div class="field__desc">Имя автора, город, оценка от 1 до 5, текст и ссылка
+                    на оригинал, если отзыв взят с Google, 2ГИС или Booking.</div>
+                <i class="tag tag--later">можно позже</i>
+            </div>
+        </div>
+
+        <div class="callout">
+            <strong>Про автоматическую загрузку отзывов.</strong> Google отдаёт максимум
+            5 отзывов на точку — это ограничение самого сервиса. 2ГИС отзывы по открытому
+            интерфейсу не отдаёт, доступ выдаётся только по партнёрскому договору.
+            Что нужно для подключения — в разделе 13.
+        </div>
+    </section>
+
+    <!-- 10 ───────────────────────────────────────────────── -->
+    <section class="section" id="s10">
+        <div class="section__head">
+            <span class="section__num">10</span>
+            <h2>Блог и новости</h2>
+        </div>
+        <p class="section__where">Раздел <code>/blog/</code></p>
+
+        <div class="fields">
+            <div class="field">
+                <div class="field__name">Статьи</div>
+                <div class="field__desc">Заголовок, краткое описание, текст и обложка
+                    <em>от 1600×900</em>. Подойдут новости курорта, гид по отдыху на Иссык-Куле,
+                    анонсы мероприятий.</div>
+                <i class="tag tag--later">можно позже</i>
+            </div>
+        </div>
+
+        <div class="callout">
+            Раздел не обязателен для запуска, но помогает в поиске: сайт с живым блогом
+            поднимается по запросам вроде «отдых на Иссык-Куле» заметно лучше.
+        </div>
+    </section>
+
+    <!-- 11 ───────────────────────────────────────────────── -->
+    <section class="section" id="s11">
+        <div class="section__head">
+            <span class="section__num">11</span>
+            <h2>Бронирование</h2>
+        </div>
+        <p class="section__where">Раздел <code>/booking/</code> и письма гостям</p>
+
+        <div class="fields">
+            <div class="field">
+                <div class="field__name">Дополнительные услуги</div>
+                <div class="field__desc">Что можно добавить к брони: завтрак, трансфер,
+                    SPA-программа. По каждой — название, описание, цена и как считается:
+                    за бронь, за ночь, за гостя или за гостя за ночь.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Правила бронирования</div>
+                <div class="field__desc">Условия оплаты, отмены и возврата. Гость подтверждает
+                    согласие с ними перед оплатой.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Размер предоплаты</div>
+                <div class="field__desc">Сколько гость платит на сайте: полная сумма или часть.
+                    Если часть — какой процент.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Куда сообщать о бронях</div>
+                <div class="field__desc">E-mail сотрудников, которым приходят уведомления
+                    о новых бронях. Можно несколько адресов.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12 ───────────────────────────────────────────────── -->
+    <section class="section" id="s12">
+        <div class="section__head">
+            <span class="section__num">12</span>
+            <h2>Юридические страницы</h2>
+        </div>
+        <p class="section__where">Ссылки в подвале сайта</p>
+        <p class="section__note">
+            Три страницы обязательны: без них нельзя принимать оплату и персональные данные.
+            Тексты должен подготовить или проверить ваш юрист — мы их только разместим.
+        </p>
+
+        <div class="fields">
+            <div class="field">
+                <div class="field__name">Политика конфиденциальности</div>
+                <div class="field__desc">Как обрабатываются персональные данные гостей.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Публичная оферта</div>
+                <div class="field__desc">Договор оказания услуг — основание для приёма
+                    онлайн-оплаты.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Правила проживания</div>
+                <div class="field__desc">Внутренние правила курорта, размещение с животными,
+                    условия для детей.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+        </div>
+    </section>
+
+    <!-- 13 ───────────────────────────────────────────────── -->
+    <section class="section" id="s13">
+        <div class="section__head">
+            <span class="section__num">13</span>
+            <h2>Доступы и интеграции</h2>
+        </div>
+        <p class="section__note">
+            Это не контент, а доступы к сторонним сервисам. Без них соответствующие функции
+            сайта работают в упрощённом режиме или не работают вовсе.
+        </p>
+
+        <div class="fields">
+            <div class="field">
+                <div class="field__name">Shelter<small>система управления отелем</small></div>
+                <div class="field__desc">Адрес сервера, ключ доступа к интерфейсу и код отеля.
+                    Пока не подключено, свободные номера считаются по числу из карточки категории,
+                    а не по реальной загрузке.</div>
+                <i class="tag tag--access">доступ</i>
+            </div>
+            <div class="field">
+                <div class="field__name">FreedomPay<small>приём оплаты картой</small></div>
+                <div class="field__desc">Номер магазина и секретный ключ. До подключения гость
+                    оставляет заявку, а оплату подтверждает менеджер.</div>
+                <i class="tag tag--access">доступ</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Google Places<small>отзывы из Google</small></div>
+                <div class="field__desc">Ключ доступа и идентификатор карточки курорта.
+                    Нужен аккаунт Google Cloud с привязанной картой — бесплатного лимита хватает.
+                    Даёт до 5 свежих отзывов, обновление раз в сутки.</div>
+                <i class="tag tag--access">доступ</i>
+            </div>
+            <div class="field">
+                <div class="field__name">2ГИС<small>отзывы из 2ГИС</small></div>
+                <div class="field__desc">Ключ выдаётся только по партнёрскому договору с 2ГИС.
+                    Пока его нет, отзывы добавляются вручную со ссылкой на оригинал.</div>
+                <i class="tag tag--access">доступ</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Почта для отправки писем</div>
+                <div class="field__desc">Ящик, с которого сайт отправляет подтверждения броней:
+                    адрес, пароль приложения и сервер. Лучше отдельный ящик вида
+                    <em>noreply@</em>, а не личный.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Аналитика</div>
+                <div class="field__desc">Идентификаторы Google Analytics и Яндекс.Метрики,
+                    код подтверждения Google Search Console. Если счётчиков нет — заведём.</div>
+                <i class="tag tag--later">можно позже</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Telegram-уведомления</div>
+                <div class="field__desc">Если хотите получать заявки в Telegram — создадим бота,
+                    от вас нужен только список получателей.</div>
+                <i class="tag tag--later">можно позже</i>
+            </div>
+            <div class="field">
+                <div class="field__name">Домен</div>
+                <div class="field__desc">Доступ к управлению доменом курорта, чтобы направить его
+                    на новый сайт. Сейчас сайт работает на временном адресе.</div>
+                <i class="tag tag--must">для запуска</i>
+            </div>
+        </div>
+    </section>
+
+    <footer class="foot">
+        <span>Baytur Resort &amp; Spa · список материалов для наполнения сайта</span>
+        <span>Вопросы по любому пункту — пишите, поясним и подскажем формат</span>
+    </footer>
+
+</div>
+
+</body>
+</html>
