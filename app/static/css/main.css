@@ -144,8 +144,8 @@ p { margin: 0 0 1em; }
     align-items: center;
     justify-content: center;
     gap: 9px;
-    padding: 15px 34px;
-    border: 1px solid transparent;
+    padding: 16px 35px;
+    border: 0;
     border-radius: var(--r-full);
     font-size: .84rem;
     font-weight: 600;
@@ -177,13 +177,19 @@ p { margin: 0 0 1em; }
 .btn--primary { background: var(--gold-grad); color: var(--on-gold); box-shadow: 0 6px 18px rgba(0, 0, 0, .3); }
 .btn--primary:hover { box-shadow: 0 12px 28px rgba(0, 0, 0, .38); }
 
-.btn--accent { background: transparent; color: var(--gold); border-color: var(--stroke-gold); }
+.btn--accent {
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--stroke-gold);
+    padding: 15px 34px;
+}
 .btn--accent:hover { background: rgba(192, 138, 78, .12); border-color: var(--gold); }
 
 .btn--ghost {
     background: var(--surface);
     color: var(--text);
-    border-color: var(--stroke);
+    border: 1px solid var(--stroke);
+    padding: 15px 34px;
     backdrop-filter: blur(10px);
 }
 .btn--ghost:hover { border-color: var(--stroke-gold); color: var(--gold); background: var(--surface-2); }
@@ -191,8 +197,10 @@ p { margin: 0 0 1em; }
 .btn--light { background: var(--text); color: var(--bg); }
 .btn--light:hover { background: #fff; }
 
-.btn--sm { padding: 11px 22px; font-size: .78rem; }
-.btn--lg { padding: 18px 44px; font-size: .92rem; }
+.btn--sm { padding: 12px 23px; font-size: .78rem; }
+.btn--accent.btn--sm, .btn--ghost.btn--sm { padding: 11px 22px; }
+.btn--lg { padding: 19px 45px; font-size: .92rem; }
+.btn--accent.btn--lg, .btn--ghost.btn--lg { padding: 18px 44px; }
 .btn--block { width: 100%; }
 .btn[disabled] { opacity: .45; pointer-events: none; }
 
