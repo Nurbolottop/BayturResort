@@ -2,11 +2,42 @@
 {% load i18n %}
 
 {% block content %}
-    {% translate "Отзывы гостей" as head_title %}
+    {% translate "Наши гости" as head_title %}
     {% include 'include/page_head.html' %}
 
-    <section class="section">
+    {# Гости идут первыми: живое лицо и имя убеждают сильнее анонимного текста #}
+    {% if guests %}
+        <section class="section">
+            <div class="container">
+                <div class="guests">
+                    {% for guest in guests %}
+                        <figure class="guest">
+                            <div class="guest__photo">
+                                {% if guest.photo %}
+                                    <img src="{{ guest.photo.url }}" alt="{{ guest.full_name }}"
+                                         loading="lazy" width="400" height="400">
+                                {% endif %}
+                            </div>
+                            <blockquote class="guest__quote">{{ guest.quote }}</blockquote>
+                            <figcaption class="guest__caption">
+                                <strong>{{ guest.full_name }}</strong>
+                                {% if guest.role %}<span>{{ guest.role }}</span>{% endif %}
+                            </figcaption>
+                        </figure>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+    <section class="section {% if guests %}section--muted{% endif %}">
         <div class="container">
+            {% if guests %}
+                <header class="section__head">
+                    <h2 class="section__title">{% translate "Отзывы" %}</h2>
+                </header>
+            {% endif %}
+
             {% if reviews %}
                 <div class="grid grid--3">
                     {% for review in reviews %}

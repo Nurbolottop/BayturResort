@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views.generic import DetailView, ListView
 
 from apps.base.seo import SEOMixin
-from apps.blog.models import Post, Review
+from apps.blog.models import Guest, Post, Review
 
 
 class PostListView(SEOMixin, ListView):
@@ -43,8 +43,13 @@ class ReviewListView(SEOMixin, ListView):
     template_name = 'pages/blog/reviews.html'
     context_object_name = 'reviews'
     paginate_by = 20
-    meta_title = _('Отзывы гостей — Baytur Resort & Spa')
-    meta_description = _('Отзывы гостей курорта Baytur Resort & Spa на Иссык-Куле.')
+    meta_title = _('Наши гости — Baytur Resort & Spa')
+    meta_description = _('Гости курорта Baytur Resort & Spa на Иссык-Куле и их отзывы.')
 
     def get_queryset(self):
         return Review.objects.filter(is_approved=True)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['guests'] = Guest.objects.filter(is_active=True)
+        return context

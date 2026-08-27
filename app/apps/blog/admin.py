@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 from modeltranslation.admin import TabbedTranslationAdmin
 
-from apps.blog.models import Post, Review
+from apps.blog.models import Guest, Post, Review
 
 
 @admin.register(Post)
@@ -59,3 +59,13 @@ class ReviewAdmin(admin.ModelAdmin):
     def approve_selected(self, request, queryset):
         updated = queryset.update(is_approved=True)
         self.message_user(request, _('Одобрено отзывов: %(n)s') % {'n': updated})
+
+
+@admin.register(Guest)
+class GuestAdmin(TabbedTranslationAdmin):
+    """Блок «Наши гости» в начале страницы отзывов."""
+
+    list_display = ('full_name', 'role', 'order', 'is_active')
+    list_editable = ('order', 'is_active')
+    search_fields = ('full_name', 'quote')
+    fields = ('full_name', 'role', 'photo', 'quote', 'order', 'is_active')

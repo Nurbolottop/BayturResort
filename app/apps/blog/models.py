@@ -41,6 +41,35 @@ class Post(SortableModel, SEOModel, TimeStampedModel):
         return reverse('blog:detail', kwargs={'slug': self.slug})
 
 
+class Guest(SortableModel):
+    """
+    Гость курорта с фотографией и цитатой — блок «Наши гости».
+
+    Отличается от отзыва: отзыв приходит с сайта или из карт и модерируется,
+    а гостя добавляет администратор вручную, с согласия человека на
+    публикацию фото и имени.
+    """
+
+    class Meta:
+        verbose_name = _('Гость')
+        verbose_name_plural = _('Наши гости')
+        ordering = ('order', '-id')
+
+    full_name = models.CharField(_('ФИО'), max_length=255)
+    role = models.CharField(
+        _('Кто это'), max_length=255, blank=True,
+        help_text=_('Например: «Гость курорта, Алматы» или должность.'),
+    )
+    photo = ResizedImageField(
+        _('Фото'), size=[800, 800], crop=['middle', 'center'], quality=88,
+        upload_to='guests/', blank=True, null=True,
+    )
+    quote = models.TextField(_('Что сказал'))
+
+    def __str__(self):
+        return str(self.full_name)
+
+
 class Review(SortableModel, TimeStampedModel):
     """Отзывы гостей. Отзывы с сайта публикуются только после модерации."""
 
