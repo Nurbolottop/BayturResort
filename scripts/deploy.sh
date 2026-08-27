@@ -43,6 +43,10 @@ ssh "$TARGET" "set -e
   sleep 20
   docker exec django_web_baitur python manage.py migrate --noinput
   docker exec django_web_baitur python manage.py compilemessages
-  docker exec django_web_baitur python manage.py collectstatic --noinput --clear"
+  docker exec django_web_baitur python manage.py collectstatic --noinput --clear
+  # Обязательный перезапуск: имена файлов статики содержат хеш, а gunicorn
+  # держит их карту в памяти с момента старта. Без перезапуска страницы
+  # ссылаются на старые имена и остаются без стилей.
+  docker restart django_web_baitur"
 
 echo "→ Готово: https://bautur.zeastudio.su"
