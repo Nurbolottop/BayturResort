@@ -40,7 +40,7 @@
     --shadow-sm: 0 4px 18px rgba(0, 0, 0, .35);
     --shadow: 0 18px 50px rgba(0, 0, 0, .5);
     --shadow-lg: 0 34px 90px rgba(0, 0, 0, .62);
-    --shadow-gold: 0 20px 60px rgba(192, 138, 78, .22);
+    --shadow-gold: 0 12px 32px rgba(0, 0, 0, .42);
 
     --container: 1300px;
     --gap: 30px;
@@ -146,7 +146,7 @@ p { margin: 0 0 1em; }
     gap: 9px;
     padding: 15px 34px;
     border: 1px solid transparent;
-    border-radius: var(--r-full);
+    border-radius: var(--r-sm);
     font-size: .84rem;
     font-weight: 600;
     letter-spacing: .05em;
@@ -172,8 +172,10 @@ p { margin: 0 0 1em; }
 .btn:hover { transform: translateY(-2px); }
 .btn:active { transform: translateY(0); }
 
-.btn--primary { background: var(--gold-grad); color: var(--on-gold); box-shadow: 0 10px 30px rgba(192, 138, 78, .26); }
-.btn--primary:hover { box-shadow: 0 18px 44px rgba(192, 138, 78, .4); }
+/* Тень нейтральная, не цветная: бронзовое свечение на тёмном фоне
+   расплывается по контуру и читается как светлый ободок. */
+.btn--primary { background: var(--gold-grad); color: var(--on-gold); box-shadow: 0 6px 18px rgba(0, 0, 0, .3); }
+.btn--primary:hover { box-shadow: 0 12px 28px rgba(0, 0, 0, .38); }
 
 .btn--accent { background: transparent; color: var(--gold); border-color: var(--stroke-gold); }
 .btn--accent:hover { background: rgba(192, 138, 78, .12); border-color: var(--gold); }
@@ -315,7 +317,7 @@ p { margin: 0 0 1em; }
 .lang { display: flex; gap: 2px; margin-left: auto; align-items: center; }
 .lang__item {
     padding: 4px 11px;
-    border-radius: var(--r-full);
+    border-radius: var(--r-sm);
     font-weight: 600;
     font-size: .76rem;
     color: var(--text-dim);
@@ -392,7 +394,7 @@ p { margin: 0 0 1em; }
     gap: 14px;
     padding: 9px 20px 9px 16px;
     border: 1px solid var(--stroke-gold);
-    border-radius: var(--r-full);
+    border-radius: var(--r-sm);
     background: rgba(192, 138, 78, .09);
     backdrop-filter: blur(12px);
     font-size: .78rem;
@@ -665,7 +667,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover { opacity: 1; }
     font-weight: 600;
     letter-spacing: .06em;
     padding: 7px 15px;
-    border-radius: var(--r-full);
+    border-radius: var(--r-sm);
 }
 .card__badge--accent { background: var(--gold-grad); color: var(--on-gold); border-color: transparent; }
 
@@ -762,7 +764,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover { opacity: 1; }
     margin-left: auto;
     align-self: center;
     padding: 6px 13px;
-    border-radius: var(--r-full);
+    border-radius: var(--r-sm);
     border: 1px solid var(--stroke);
     font-size: .72rem;
     font-weight: 600;
@@ -909,7 +911,7 @@ a.review__source:hover { color: var(--gold); border-color: var(--stroke-gold); b
     gap: 9px;
     background: var(--surface);
     border: 1px solid var(--stroke);
-    border-radius: var(--r-full);
+    border-radius: var(--r-sm);
     padding: 10px 20px;
     font-size: .86rem;
     color: var(--text-soft);
@@ -1095,7 +1097,7 @@ a.review__source:hover { color: var(--gold); border-color: var(--stroke-gold); b
 .filters a {
     padding: 11px 24px;
     border: 1px solid var(--stroke);
-    border-radius: var(--r-full);
+    border-radius: var(--r-sm);
     font-size: .85rem;
     color: var(--text-soft);
     background: var(--surface);
@@ -1155,7 +1157,7 @@ a.review__source:hover { color: var(--gold); border-color: var(--stroke-gold); b
     align-items: center;
     gap: 9px;
     padding: 9px 16px;
-    border-radius: var(--r-full);
+    border-radius: var(--r-sm);
     border: 1px solid var(--stroke);
     font-size: .85rem;
     color: var(--text-soft);
@@ -1224,7 +1226,7 @@ a.review__source:hover { color: var(--gold); border-color: var(--stroke-gold); b
     min-width: 46px; height: 46px;
     display: inline-flex; align-items: center; justify-content: center;
     border: 1px solid var(--stroke);
-    border-radius: var(--r-full);
+    border-radius: var(--r-sm);
     font-size: .9rem; color: var(--text-soft);
     transition: all .35s var(--ease);
 }
@@ -1273,7 +1275,7 @@ a.review__source:hover { color: var(--gold); border-color: var(--stroke-gold); b
     font-size: .8rem;
     padding: 9px 18px;
     border: 1px solid var(--stroke);
-    border-radius: var(--r-full);
+    border-radius: var(--r-sm);
     color: var(--text-dim);
     transition: all .35s var(--ease);
 }
@@ -1298,17 +1300,6 @@ a.review__source:hover { color: var(--gold); border-color: var(--stroke-gold); b
     box-shadow: var(--shadow-gold);
     z-index: 70;
     transition: transform .45s var(--ease), box-shadow .45s var(--ease);
-}
-.float-whatsapp::before {
-    content: '';
-    position: absolute; inset: 0;
-    border-radius: 50%;
-    border: 1px solid var(--gold);
-    animation: ripple 3s infinite;
-}
-@keyframes ripple {
-    0%   { transform: scale(1); opacity: .7; }
-    100% { transform: scale(1.5); opacity: 0; }
 }
 .float-whatsapp:hover { transform: scale(1.1) rotate(6deg); }
 
@@ -1533,7 +1524,7 @@ a.review__source:hover { color: var(--gold); border-color: var(--stroke-gold); b
     position: absolute;
     top: 10px; left: 10px;
     padding: 5px 12px;
-    border-radius: var(--r-full);
+    border-radius: var(--r-sm);
     background: var(--gold-grad);
     color: var(--on-gold);
     font-size: .68rem;
