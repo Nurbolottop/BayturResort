@@ -7,8 +7,10 @@
     {% include 'include/page_head.html' %}
 
     {% if site.fd24_enabled and site.fd24_book_widget_id %}
-        {# Внешний модуль ведёт весь подбор и оплату сам — собственный
-           поиск в этом режиме не выводим, чтобы не было двух форм. #}
+        {% comment %}
+            Внешний модуль ведёт весь подбор и оплату сам — собственный
+            поиск в этом режиме не выводим, чтобы не было двух форм.
+        {% endcomment %}
         <section class="section">
             <div class="container">
                 {% include 'include/fd24_widget.html' with widget='book' %}
