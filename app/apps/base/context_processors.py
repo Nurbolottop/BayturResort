@@ -30,8 +30,10 @@ def _popup_offers(request, site):
     if not site.popup_enabled:
         return []
 
+    # На страницах акций окно бессмысленно, а на бронировании — вредно:
+    # гость уже оформляет заказ, и перекрывать ему форму нельзя.
     path = request.path or ''
-    if path.startswith('/admin') or '/offers/' in path:
+    if path.startswith('/admin') or '/offers/' in path or '/booking/' in path:
         return []
 
     from apps.offers.models import SpecialOffer
