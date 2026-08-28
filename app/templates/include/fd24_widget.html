@@ -1,19 +1,34 @@
+{% load static i18n %}
 {% comment %}
     Внешний модуль бронирования FrontDesk24.
 
-    Скрипты провайдера подключаются только на тех страницах, где виджет
-    реально нужен — грузить их на весь сайт незачем.
+    Виджет открывается в iframe на домене провайдера, поэтому наш CSS туда
+    не достаёт. Провайдер принимает параметр `css` — абсолютную ссылку на
+    файл темы, который он подключает уже внутри своего окна.
+
+    Сигнатуры отличаются, порядок аргументов важен:
+        FD24StartWidget.createWidget(divId, token, lang, redirectUrl, css)
+        FD24BookWidget.createWidget(divId, token, lang, css, source)
 
     Параметр widget: "start" — форма поиска на главной,
                      "book"  — модуль бронирования на странице брони.
 {% endcomment %}
+
+{% comment %} Кыргызского у провайдера нет — на нём отдаём русскую версию {% endcomment %}
+{% with fd_lang=LANGUAGE_CODE|slice:":2" %}
 {% if widget == 'start' and site.fd24_start_widget_id %}
     <div class="fd24 fd24--start">
         <div id="start-widget"></div>
     </div>
     <script src="https://pms.frontdesk24.ru/onlineWidget/startWidget.js"></script>
     <script>
-        FD24StartWidget.createWidget("start-widget", "{{ site.fd24_start_widget_id }}", undefined, "");
+        FD24StartWidget.createWidget(
+            "start-widget",
+            "{{ site.fd24_start_widget_id|escapejs }}",
+            "{% if fd_lang == 'en' %}en{% else %}ru{% endif %}",
+            "{{ site_url }}{% url 'booking:search' %}",
+            "{{ site_url }}{% static 'css/fd24-theme.css' %}"
+        );
     </script>
 {% elif widget == 'book' and site.fd24_book_widget_id %}
     <div class="fd24 fd24--book">
@@ -21,6 +36,12 @@
     </div>
     <script src="https://pms.frontdesk24.ru/onlineWidget/bookWidget.js"></script>
     <script>
-        FD24BookWidget.createWidget("book-widget", "{{ site.fd24_book_widget_id }}", undefined);
+        FD24BookWidget.createWidget(
+            "book-widget",
+            "{{ site.fd24_book_widget_id|escapejs }}",
+            "{% if fd_lang == 'en' %}en{% else %}ru{% endif %}",
+            "{{ site_url }}{% static 'css/fd24-theme.css' %}"
+        );
     </script>
 {% endif %}
+{% endwith %}
