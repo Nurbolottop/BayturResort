@@ -37,6 +37,12 @@ class SiteSettingsAdmin(TabbedTranslationAdmin):
         (_('Бронирование'), {
             'fields': ('check_in_time', 'check_out_time', 'booking_rules'),
         }),
+        (_('Модуль бронирования FrontDesk24'), {
+            'fields': ('fd24_enabled', 'fd24_start_widget_id', 'fd24_book_widget_id'),
+            'description': _('Внешний модуль бронирования. Когда включён, на главной и '
+                             'на странице бронирования вместо собственной формы поиска '
+                             'выводится виджет провайдера.'),
+        }),
         (_('3D-тур'), {
             'fields': ('tour_url',),
             'description': _('Кнопка «3D-тур» в шапке, подвале и галерее появляется, '

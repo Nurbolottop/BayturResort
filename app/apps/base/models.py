@@ -70,6 +70,22 @@ class SiteSettings(SEOModel):
     address = models.CharField(_('Адрес'), max_length=255, blank=True)
     working_hours = models.CharField(_('Часы работы ресепшена'), max_length=255, blank=True)
 
+    # Модуль бронирования FrontDesk24 (внешний виджет провайдера).
+    # Идентификаторы держим в настройках, а не в шаблоне: провайдер меняет
+    # их при пересоздании виджета, и правка не должна требовать разработчика.
+    fd24_enabled = models.BooleanField(
+        _('Использовать виджет FrontDesk24'), default=False,
+        help_text=_('Включает внешний модуль бронирования вместо собственной формы поиска.'),
+    )
+    fd24_start_widget_id = models.CharField(
+        _('ID стартового виджета'), max_length=64, blank=True,
+        help_text=_('Форма поиска на главной. Идентификатор выдаёт FrontDesk24.'),
+    )
+    fd24_book_widget_id = models.CharField(
+        _('ID виджета бронирования'), max_length=64, blank=True,
+        help_text=_('Модуль на странице бронирования.'),
+    )
+
     # Всплывающее окно с акциями. Показывается один раз и с задержкой:
     # окно, которое выскакивает сразу и на каждой странице, гости
     # закрывают не читая, а часть уходит с сайта.

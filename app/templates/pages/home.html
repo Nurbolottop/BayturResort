@@ -47,7 +47,11 @@
     {% endif %}
 
     <div class="container hero__booking">
-        {% include 'include/booking_widget.html' %}
+        {% if site.fd24_enabled and site.fd24_start_widget_id %}
+            {% include 'include/fd24_widget.html' with widget='start' %}
+        {% else %}
+            {% include 'include/booking_widget.html' %}
+        {% endif %}
     </div>
 </section>
 
