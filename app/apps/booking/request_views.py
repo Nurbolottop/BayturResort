@@ -86,7 +86,11 @@ class BookingRequestView(View):
             # Номер не задан — возвращаем гостя на контакты, а не в пустоту
             return redirect('contacts:index')
 
-        text = self.build_message(site, category, check_in, check_out, nights, adults, children)
+        # Гость мог прийти прямо из шапки, ничего не выбрав. Тогда в письме
+        # незачем перечислять подставленные по умолчанию цифры.
+        has_details = bool(category) or bool(check_in and check_out)
+        text = self.build_message(site, category, check_in, check_out,
+                                  nights, adults, children, has_details)
         return redirect('https://wa.me/%s?text=%s' % (number, text))
 
     @staticmethod
@@ -97,13 +101,20 @@ class BookingRequestView(View):
         return request.META.get('REMOTE_ADDR')
 
     @staticmethod
-    def build_message(site, category, check_in, check_out, nights, adults, children):
+    def build_message(site, category, check_in, check_out, nights, adults, children, has_details):
         from urllib.parse import quote
 
         lines = [_('Здравствуйте! Хочу забронировать номер в %(name)s.') % {'name': site.site_name}]
 
-        if category:
+        if not has_details:
+            # Ничего не выбрано — короткое сообщение, дальше подскажет ресепшен
             lines.append('')
+            lines.append(_('Подскажите, пожалуйста, свободные даты и цены.'))
+            return quote('\n'.join(lines))
+
+        lines.append('')
+
+        if category:
             lines.append(_('Категория: %(name)s') % {'name': category.name})
 
         if check_in and check_out:
@@ -112,12 +123,15 @@ class BookingRequestView(View):
             if nights:
                 lines.append(_('Ночей: %(n)s') % {'n': nights})
 
-        guests = _('Взрослых: %(a)s') % {'a': adults}
-        if children:
-            guests += ', ' + _('детей: %(c)s') % {'c': children}
-        lines.append(guests)
+            guests = _('Взрослых: %(a)s') % {'a': adults}
+            if children:
+                guests += ', ' + _('детей: %(c)s') % {'c': children}
+            lines.append(guests)
 
         lines.append('')
-        lines.append(_('Подскажите, пожалуйста, свободно ли на эти даты?'))
+        if check_in and check_out:
+            lines.append(_('Подскажите, пожалуйста, свободно ли на эти даты?'))
+        else:
+            lines.append(_('Подскажите, пожалуйста, свободные даты и цены.'))
 
         return quote('\n'.join(lines))
