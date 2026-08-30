@@ -3,7 +3,7 @@
     <div class="header__top">
         <div class="container header__top-inner">
             {% if site.phone %}
-                <a class="header__contact" href="tel:{{ site.phone }}">{{ site.phone }}</a>
+                <a class="header__contact" href="tel:{{ site.phone|phone_href }}">{{ site.phone }}</a>
             {% endif %}
             {% if site.email %}
                 <a class="header__contact header__contact--hide-sm" href="mailto:{{ site.email }}">{{ site.email }}</a>

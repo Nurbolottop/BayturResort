@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n %}
+{% load i18n baitur %}
 
 {% block content %}
     {% translate "Контакты" as head_title %}
@@ -10,8 +10,8 @@
             <div>
                 <h2>{% translate "Как с нами связаться" %}</h2>
                 <ul class="specs">
-                    {% if site.phone %}<li><span>{% translate "Телефон" %}</span><a href="tel:{{ site.phone }}">{{ site.phone }}</a></li>{% endif %}
-                    {% if site.phone_extra %}<li><span>{% translate "Доп. телефон" %}</span><a href="tel:{{ site.phone_extra }}">{{ site.phone_extra }}</a></li>{% endif %}
+                    {% if site.phone %}<li><span>{% translate "Телефон" %}</span><a href="tel:{{ site.phone|phone_href }}">{{ site.phone }}</a></li>{% endif %}
+                    {% if site.phone_extra %}<li><span>{% translate "Доп. телефон" %}</span><a href="tel:{{ site.phone_extra|phone_href }}">{{ site.phone_extra }}</a></li>{% endif %}
                     {% if site.email %}<li><span>E-mail</span><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>{% endif %}
                     {% if site.address %}
                         <li><span>{% translate "Адрес" %}</span>{% include 'include/address.html' %}</li>
@@ -22,7 +22,7 @@
 
                 {% if site.whatsapp %}
                     <a class="btn btn--ghost" target="_blank" rel="noopener"
-                       href="https://wa.me/{{ site.whatsapp|cut:'+'|cut:' '|cut:'-' }}">WhatsApp</a>
+                       href="https://wa.me/{{ site.whatsapp|whatsapp_href }}">WhatsApp</a>
                 {% endif %}
 
                 {% if site.requisites %}

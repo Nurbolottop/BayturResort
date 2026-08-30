@@ -92,7 +92,7 @@
                 {% elif not search_error %}
                     <p class="empty">
                         {% translate "На выбранные даты свободных номеров не найдено. Попробуйте другие даты или позвоните нам." %}
-                        {% if site.phone %}<br><a class="link-more" href="tel:{{ site.phone }}">{{ site.phone }}</a>{% endif %}
+                        {% if site.phone %}<br><a class="link-more" href="tel:{{ site.phone|phone_href }}">{{ site.phone }}</a>{% endif %}
                     </p>
                 {% endif %}
             {% else %}

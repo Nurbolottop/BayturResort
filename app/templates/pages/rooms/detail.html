@@ -70,7 +70,7 @@
                 {% endif %}
 
                 {% if site.phone %}
-                    <a class="btn btn--ghost btn--block" href="tel:{{ site.phone }}" style="margin-top:12px;">
+                    <a class="btn btn--ghost btn--block" href="tel:{{ site.phone|phone_href }}" style="margin-top:12px;">
                         {{ site.phone }}
                     </a>
                 {% endif %}

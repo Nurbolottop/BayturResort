@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n %}
+{% load i18n baitur %}
 
 {% block content %}
 <section class="section">
@@ -20,7 +20,7 @@
 
             <a class="btn btn--primary" href="{% url 'booking:search' %}">{% translate "Попробовать снова" %}</a>
             {% if site.phone %}
-                <a class="btn btn--ghost" href="tel:{{ site.phone }}">{{ site.phone }}</a>
+                <a class="btn btn--ghost" href="tel:{{ site.phone|phone_href }}">{{ site.phone }}</a>
             {% endif %}
         </div>
     </div>

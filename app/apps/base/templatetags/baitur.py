@@ -1,3 +1,4 @@
+import re
 from decimal import Decimal, InvalidOperation
 
 from django import template
@@ -77,3 +78,26 @@ def query_replace(context, **kwargs):
         else:
             params[key] = value
     return params.urlencode()
+
+
+@register.filter
+def phone_href(value):
+    """
+    Номер для ссылки tel: — только цифры и ведущий плюс.
+
+    В админке номер пишут как удобно человеку: «+996 (700) 00-00-00».
+    Часть телефонов и часть браузеров такие скобки и пробелы не набирают,
+    поэтому в href оставляем чистый номер, а на экране — исходный вид.
+    """
+    if not value:
+        return ''
+    digits = re.sub(r'\D', '', str(value))
+    return '+' + digits if digits else ''
+
+
+@register.filter
+def whatsapp_href(value):
+    """Номер для wa.me — только цифры, без плюса: так требует сам сервис."""
+    if not value:
+        return ''
+    return re.sub(r'\D', '', str(value))
