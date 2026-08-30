@@ -23,14 +23,15 @@ urlpatterns = [
 
     path('sitemap.xml', sitemap, {'sitemaps': SITEMAPS}, name='django.contrib.sitemaps.views.sitemap'),
     path('robots.txt', TemplateView.as_view(template_name='seo/robots.txt', content_type='text/plain')),
-
-    # Бронирование — без языкового префикса: сюда же приходит колбэк FreedomPay,
-    # который дергает сервер, а не браузер гостя.
-    path('booking/', include('apps.booking.urls')),
 ]
 
 urlpatterns += i18n_patterns(
     path('', include('apps.base.urls')),
+    # Бронирование раньше стояло вне языковых маршрутов ради колбэка
+    # платёжной системы — из-за этого /en/booking/ отдавал 404, и раздел
+    # выпадал из двух языков. Русский префикс всё равно не добавляется
+    # (prefix_default_language=False), поэтому адрес колбэка не меняется.
+    path('booking/', include('apps.booking.urls')),
     path('rooms/', include('apps.rooms.urls')),
     path('offers/', include('apps.offers.urls')),
     path('gallery/', include('apps.gallery.urls')),
