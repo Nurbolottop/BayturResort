@@ -1,0 +1,177 @@
+{% load i18n %}
+{% comment %}
+    Схемы рассадки зала. Раньше вместимость была списком цифр — по нему
+    не понять разницу между «театром» и «классом». Теперь у каждой
+    расстановки своя схема, и число читается вместе с картинкой.
+
+    SVG инлайновый: схемы одинаковы для всех залов и меняются только
+    подписью, отдельные файлы-картинки тут были бы лишней сущностью.
+{% endcomment %}
+{% if hall.capacity_theatre or hall.capacity_banquet or hall.capacity_classroom or hall.capacity_ushape %}
+    <h2 class="layouts__heading">{% translate "Варианты рассадки" %}</h2>
+    <div class="layouts">
+
+        {% if hall.capacity_theatre %}
+            <figure class="layout">
+                <svg class="layout__scheme" viewBox="0 0 120 80" role="img"
+                     aria-label="{% translate "Театр" %}">
+                        <rect class="layout__stage" x="34" y="6" width="52" height="5" rx="2.5"/>
+                        <circle class="layout__seat" cx="18" cy="26" r="4"/>
+                        <circle class="layout__seat" cx="32" cy="26" r="4"/>
+                        <circle class="layout__seat" cx="46" cy="26" r="4"/>
+                        <circle class="layout__seat" cx="60" cy="26" r="4"/>
+                        <circle class="layout__seat" cx="74" cy="26" r="4"/>
+                        <circle class="layout__seat" cx="88" cy="26" r="4"/>
+                        <circle class="layout__seat" cx="102" cy="26" r="4"/>
+                        <circle class="layout__seat" cx="18" cy="38" r="4"/>
+                        <circle class="layout__seat" cx="32" cy="38" r="4"/>
+                        <circle class="layout__seat" cx="46" cy="38" r="4"/>
+                        <circle class="layout__seat" cx="60" cy="38" r="4"/>
+                        <circle class="layout__seat" cx="74" cy="38" r="4"/>
+                        <circle class="layout__seat" cx="88" cy="38" r="4"/>
+                        <circle class="layout__seat" cx="102" cy="38" r="4"/>
+                        <circle class="layout__seat" cx="18" cy="50" r="4"/>
+                        <circle class="layout__seat" cx="32" cy="50" r="4"/>
+                        <circle class="layout__seat" cx="46" cy="50" r="4"/>
+                        <circle class="layout__seat" cx="60" cy="50" r="4"/>
+                        <circle class="layout__seat" cx="74" cy="50" r="4"/>
+                        <circle class="layout__seat" cx="88" cy="50" r="4"/>
+                        <circle class="layout__seat" cx="102" cy="50" r="4"/>
+                        <circle class="layout__seat" cx="18" cy="62" r="4"/>
+                        <circle class="layout__seat" cx="32" cy="62" r="4"/>
+                        <circle class="layout__seat" cx="46" cy="62" r="4"/>
+                        <circle class="layout__seat" cx="60" cy="62" r="4"/>
+                        <circle class="layout__seat" cx="74" cy="62" r="4"/>
+                        <circle class="layout__seat" cx="88" cy="62" r="4"/>
+                        <circle class="layout__seat" cx="102" cy="62" r="4"/>
+                </svg>
+                <figcaption class="layout__caption">
+                    <span class="layout__name">{% translate "Театр" %}</span>
+                    <span class="layout__count">
+                        {% blocktranslate with n=hall.capacity_theatre %}до {{ n }} чел.{% endblocktranslate %}
+                    </span>
+                </figcaption>
+            </figure>
+        {% endif %}
+
+        {% if hall.capacity_classroom %}
+            <figure class="layout">
+                <svg class="layout__scheme" viewBox="0 0 120 80" role="img"
+                     aria-label="{% translate "Класс" %}">
+                        <rect class="layout__stage" x="34" y="6" width="52" height="5" rx="2.5"/>
+                        <rect class="layout__table" x="12" y="30" width="26" height="6" rx="2"/>
+                        <circle class="layout__seat" cx="19" cy="25" r="3.5"/>
+                        <circle class="layout__seat" cx="31" cy="25" r="3.5"/>
+                        <rect class="layout__table" x="47" y="30" width="26" height="6" rx="2"/>
+                        <circle class="layout__seat" cx="54" cy="25" r="3.5"/>
+                        <circle class="layout__seat" cx="66" cy="25" r="3.5"/>
+                        <rect class="layout__table" x="82" y="30" width="26" height="6" rx="2"/>
+                        <circle class="layout__seat" cx="89" cy="25" r="3.5"/>
+                        <circle class="layout__seat" cx="101" cy="25" r="3.5"/>
+                        <rect class="layout__table" x="12" y="48" width="26" height="6" rx="2"/>
+                        <circle class="layout__seat" cx="19" cy="43" r="3.5"/>
+                        <circle class="layout__seat" cx="31" cy="43" r="3.5"/>
+                        <rect class="layout__table" x="47" y="48" width="26" height="6" rx="2"/>
+                        <circle class="layout__seat" cx="54" cy="43" r="3.5"/>
+                        <circle class="layout__seat" cx="66" cy="43" r="3.5"/>
+                        <rect class="layout__table" x="82" y="48" width="26" height="6" rx="2"/>
+                        <circle class="layout__seat" cx="89" cy="43" r="3.5"/>
+                        <circle class="layout__seat" cx="101" cy="43" r="3.5"/>
+                        <rect class="layout__table" x="12" y="66" width="26" height="6" rx="2"/>
+                        <circle class="layout__seat" cx="19" cy="61" r="3.5"/>
+                        <circle class="layout__seat" cx="31" cy="61" r="3.5"/>
+                        <rect class="layout__table" x="47" y="66" width="26" height="6" rx="2"/>
+                        <circle class="layout__seat" cx="54" cy="61" r="3.5"/>
+                        <circle class="layout__seat" cx="66" cy="61" r="3.5"/>
+                        <rect class="layout__table" x="82" y="66" width="26" height="6" rx="2"/>
+                        <circle class="layout__seat" cx="89" cy="61" r="3.5"/>
+                        <circle class="layout__seat" cx="101" cy="61" r="3.5"/>
+                </svg>
+                <figcaption class="layout__caption">
+                    <span class="layout__name">{% translate "Класс" %}</span>
+                    <span class="layout__count">
+                        {% blocktranslate with n=hall.capacity_classroom %}до {{ n }} чел.{% endblocktranslate %}
+                    </span>
+                </figcaption>
+            </figure>
+        {% endif %}
+
+        {% if hall.capacity_banquet %}
+            <figure class="layout">
+                <svg class="layout__scheme" viewBox="0 0 120 80" role="img"
+                     aria-label="{% translate "Банкет" %}">
+                        <circle class="layout__table" cx="32" cy="26" r="9"/>
+                        <circle class="layout__seat" cx="47.0" cy="26.0" r="3.2"/>
+                        <circle class="layout__seat" cx="42.6" cy="36.6" r="3.2"/>
+                        <circle class="layout__seat" cx="32.0" cy="41.0" r="3.2"/>
+                        <circle class="layout__seat" cx="21.4" cy="36.6" r="3.2"/>
+                        <circle class="layout__seat" cx="17.0" cy="26.0" r="3.2"/>
+                        <circle class="layout__seat" cx="21.4" cy="15.4" r="3.2"/>
+                        <circle class="layout__seat" cx="32.0" cy="11.0" r="3.2"/>
+                        <circle class="layout__seat" cx="42.6" cy="15.4" r="3.2"/>
+                        <circle class="layout__table" cx="88" cy="26" r="9"/>
+                        <circle class="layout__seat" cx="103.0" cy="26.0" r="3.2"/>
+                        <circle class="layout__seat" cx="98.6" cy="36.6" r="3.2"/>
+                        <circle class="layout__seat" cx="88.0" cy="41.0" r="3.2"/>
+                        <circle class="layout__seat" cx="77.4" cy="36.6" r="3.2"/>
+                        <circle class="layout__seat" cx="73.0" cy="26.0" r="3.2"/>
+                        <circle class="layout__seat" cx="77.4" cy="15.4" r="3.2"/>
+                        <circle class="layout__seat" cx="88.0" cy="11.0" r="3.2"/>
+                        <circle class="layout__seat" cx="98.6" cy="15.4" r="3.2"/>
+                        <circle class="layout__table" cx="32" cy="58" r="9"/>
+                        <circle class="layout__seat" cx="47.0" cy="58.0" r="3.2"/>
+                        <circle class="layout__seat" cx="42.6" cy="68.6" r="3.2"/>
+                        <circle class="layout__seat" cx="32.0" cy="73.0" r="3.2"/>
+                        <circle class="layout__seat" cx="21.4" cy="68.6" r="3.2"/>
+                        <circle class="layout__seat" cx="17.0" cy="58.0" r="3.2"/>
+                        <circle class="layout__seat" cx="21.4" cy="47.4" r="3.2"/>
+                        <circle class="layout__seat" cx="32.0" cy="43.0" r="3.2"/>
+                        <circle class="layout__seat" cx="42.6" cy="47.4" r="3.2"/>
+                        <circle class="layout__table" cx="88" cy="58" r="9"/>
+                        <circle class="layout__seat" cx="103.0" cy="58.0" r="3.2"/>
+                        <circle class="layout__seat" cx="98.6" cy="68.6" r="3.2"/>
+                        <circle class="layout__seat" cx="88.0" cy="73.0" r="3.2"/>
+                        <circle class="layout__seat" cx="77.4" cy="68.6" r="3.2"/>
+                        <circle class="layout__seat" cx="73.0" cy="58.0" r="3.2"/>
+                        <circle class="layout__seat" cx="77.4" cy="47.4" r="3.2"/>
+                        <circle class="layout__seat" cx="88.0" cy="43.0" r="3.2"/>
+                        <circle class="layout__seat" cx="98.6" cy="47.4" r="3.2"/>
+                </svg>
+                <figcaption class="layout__caption">
+                    <span class="layout__name">{% translate "Банкет" %}</span>
+                    <span class="layout__count">
+                        {% blocktranslate with n=hall.capacity_banquet %}до {{ n }} чел.{% endblocktranslate %}
+                    </span>
+                </figcaption>
+            </figure>
+        {% endif %}
+
+        {% if hall.capacity_ushape %}
+            <figure class="layout">
+                <svg class="layout__scheme" viewBox="0 0 120 80" role="img"
+                     aria-label="{% translate "П-образно" %}">
+                        <path class="layout__table-line" d="M 32 18 L 32 58 L 88 58 L 88 18"/>
+                        <circle class="layout__seat" cx="18" cy="24" r="3.6"/>
+                        <circle class="layout__seat" cx="102" cy="24" r="3.6"/>
+                        <circle class="layout__seat" cx="18" cy="34" r="3.6"/>
+                        <circle class="layout__seat" cx="102" cy="34" r="3.6"/>
+                        <circle class="layout__seat" cx="18" cy="44" r="3.6"/>
+                        <circle class="layout__seat" cx="102" cy="44" r="3.6"/>
+                        <circle class="layout__seat" cx="18" cy="54" r="3.6"/>
+                        <circle class="layout__seat" cx="102" cy="54" r="3.6"/>
+                        <circle class="layout__seat" cx="40" cy="70" r="3.6"/>
+                        <circle class="layout__seat" cx="54" cy="70" r="3.6"/>
+                        <circle class="layout__seat" cx="68" cy="70" r="3.6"/>
+                        <circle class="layout__seat" cx="82" cy="70" r="3.6"/>
+                </svg>
+                <figcaption class="layout__caption">
+                    <span class="layout__name">{% translate "П-образно" %}</span>
+                    <span class="layout__count">
+                        {% blocktranslate with n=hall.capacity_ushape %}до {{ n }} чел.{% endblocktranslate %}
+                    </span>
+                </figcaption>
+            </figure>
+        {% endif %}
+
+    </div>
+{% endif %}

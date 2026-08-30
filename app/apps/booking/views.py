@@ -8,9 +8,11 @@ string, а цена и наличие пересчитываются из Shelte
 
 import logging
 
+from django.conf import settings
 from django.contrib import messages
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.utils.translation import gettext_lazy as _
 from django.views import View
@@ -33,7 +35,6 @@ from apps.booking.services import (
     start_payment,
 )
 from apps.rooms.models import RoomCategory
-from django.conf import settings
 
 logger = logging.getLogger('baitur.booking')
 
@@ -78,6 +79,20 @@ class BookingCheckoutView(SEOMixin, View):
 
     template_name = 'pages/booking/checkout.html'
     meta_robots = 'noindex, nofollow'
+
+    def dispatch(self, request, *args, **kwargs):
+        """
+        Пока онлайн-оплата выключена, оформление недоступно: гость ушёл бы
+        по старой ссылке в форму, которая создаёт бронь без оплаты, и её
+        никто не увидит. Уводим его в тот же путь, что и с каталога —
+        заявка на WhatsApp ресепшена.
+        """
+        if not settings.FREEDOMPAY.get('ENABLED'):
+            params = request.GET.copy()
+            params['category'] = kwargs.get('slug', '')
+            params['source'] = 'checkout'
+            return redirect('%s?%s' % (reverse('booking:request'), params.urlencode()))
+        return super().dispatch(request, *args, **kwargs)
 
     def get_category(self, slug):
         return get_object_or_404(RoomCategory, slug=slug, is_active=True, is_bookable=True)

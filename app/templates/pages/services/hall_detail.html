@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n %}
+{% load i18n baitur %}
 
 {% block content %}
     {% url 'services:halls' as halls_url %}
@@ -11,6 +11,9 @@
         <div class="container detail">
             <div class="detail__main">
                 <div class="prose">{{ hall.description|safe }}</div>
+
+                {% include 'include/hall_layouts.html' %}
+
                 {% if hall.equipment %}
                     <h2>{% translate "Оборудование" %}</h2>
                     <p class="prose">{{ hall.equipment|linebreaksbr }}</p>
@@ -20,11 +23,7 @@
             <aside class="detail__aside">
                 <ul class="specs">
                     {% if hall.area %}<li><span>{% translate "Площадь" %}</span><span>{{ hall.area }} м²</span></li>{% endif %}
-                    {% if hall.capacity_theatre %}<li><span>{% translate "Театр" %}</span><span>{{ hall.capacity_theatre }}</span></li>{% endif %}
-                    {% if hall.capacity_banquet %}<li><span>{% translate "Банкет" %}</span><span>{{ hall.capacity_banquet }}</span></li>{% endif %}
-                    {% if hall.capacity_classroom %}<li><span>{% translate "Класс" %}</span><span>{{ hall.capacity_classroom }}</span></li>{% endif %}
-                    {% if hall.capacity_ushape %}<li><span>{% translate "П-образно" %}</span><span>{{ hall.capacity_ushape }}</span></li>{% endif %}
-                    {% if hall.price_from %}<li><span>{% translate "Цена от" %}</span><span>{{ hall.price_from }} {% translate "сом" %}</span></li>{% endif %}
+                    {% if hall.price_from %}<li><span>{% translate "Цена от" %}</span><span>{{ hall.price_from|money }} {% translate "сом" %}</span></li>{% endif %}
                 </ul>
                 <a class="btn btn--primary btn--block" href="{% url 'services:halls' %}#request">
                     {% translate "Оставить заявку" %}
