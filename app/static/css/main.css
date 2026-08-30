@@ -1372,32 +1372,6 @@ a.review__source:hover { color: var(--gold); border-color: var(--stroke-gold); b
     .mission__goal { padding: 26px 24px; }
 }
 
-/* ================= ВНЕШНИЙ МОДУЛЬ БРОНИРОВАНИЯ (FD24) ================== */
-
-/* Вёрстку виджета отдаёт провайдер, и она светлая. Наша задача — дать ему
-   светлую подложку, поля и скругление в стиле сайта, внутрь не вмешиваемся:
-   провайдер меняет разметку без предупреждения, и любые правки его классов
-   отвалятся при первом же обновлении. */
-.fd24 {
-    background: #fbf8f3;
-    color: #1d160e;
-    border-radius: var(--r);
-    padding: 20px;
-    box-shadow: var(--shadow-lg);
-    overflow-x: auto;
-}
-
-.fd24--start { padding: 16px; }
-.fd24--book { padding: 24px; min-height: 420px; }
-
-/* Виджет не всегда сам ограничивает ширину */
-.fd24 > div { max-width: 100%; }
-
-@media (max-width: 780px) {
-    .fd24 { padding: 14px; border-radius: var(--r-sm); }
-    .fd24--book { padding: 16px; }
-}
-
 /* ======================= АДРЕС С ВЫБОРОМ КАРТЫ ========================= */
 
 .addr { position: relative; display: inline-block; }

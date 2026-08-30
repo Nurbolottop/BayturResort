@@ -6,17 +6,6 @@
     {% translate "Выберите даты — мы покажем свободные категории и актуальные цены." as head_text %}
     {% include 'include/page_head.html' %}
 
-    {% if site.fd24_enabled and site.fd24_book_widget_id %}
-        {% comment %}
-            Внешний модуль ведёт весь подбор и оплату сам — собственный
-            поиск в этом режиме не выводим, чтобы не было двух форм.
-        {% endcomment %}
-        <section class="section">
-            <div class="container">
-                {% include 'include/fd24_widget.html' with widget='book' %}
-            </div>
-        </section>
-    {% else %}
     <section class="section">
         <div class="container">
             {% include 'include/booking_widget.html' with widget_class='booking-widget--inline' %}
@@ -91,5 +80,4 @@
             {% endif %}
         </div>
     </section>
-    {% endif %}
 {% endblock %}
