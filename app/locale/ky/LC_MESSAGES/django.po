@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-31 00:07+0600\n"
+"POT-Creation-Date: 2026-08-31 00:23+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -773,12 +773,10 @@ msgid "Код услуги в Shelter"
 msgstr ""
 
 #: apps/booking/models.py:66
-#| msgid "%(name)s, спасибо за бронирование!"
 msgid "Заявка на бронирование"
 msgstr "Брондоо арызы"
 
 #: apps/booking/models.py:67
-#| msgid "%(name)s, спасибо за бронирование!"
 msgid "Заявки на бронирование"
 msgstr "Брондоо арыздары"
 
@@ -1126,49 +1124,47 @@ msgstr "Жаңы брон %(number)s (%(category)s)"
 msgid "⚠️ Бронь %(number)s оплачена, но НЕ записана в Shelter"
 msgstr "⚠️ %(number)s брону төлөндү, бирок Shelter'ге жазылган ЖОК"
 
-#: apps/booking/request_views.py:103
+#: apps/booking/request_views.py:107
 #, python-format
-#| msgid "На выбранные даты свободно номеров: %(n)s."
 msgid "Здравствуйте! Хочу забронировать номер в %(name)s."
 msgstr "Салам! %(name)s мейманканасынан бөлмө брондогум келет."
 
-#: apps/booking/request_views.py:107
+#: apps/booking/request_views.py:112 apps/booking/request_views.py:135
+#| msgid "Подскажите, пожалуйста, свободно ли на эти даты?"
+msgid "Подскажите, пожалуйста, свободные даты и цены."
+msgstr "Бош күндөрдү жана бааларды айтып койсоңуз болобу?"
+
+#: apps/booking/request_views.py:118
 #, python-format
-#| msgid "Категория"
 msgid "Категория: %(name)s"
 msgstr "Категория: %(name)s"
 
-#: apps/booking/request_views.py:110
+#: apps/booking/request_views.py:121
 #, python-format
-#| msgid "Заезд"
 msgid "Заезд: %(date)s"
 msgstr "Келүү: %(date)s"
 
-#: apps/booking/request_views.py:111
+#: apps/booking/request_views.py:122
 #, python-format
-#| msgid "Выезд"
 msgid "Выезд: %(date)s"
 msgstr "Кетүү: %(date)s"
 
-#: apps/booking/request_views.py:113
+#: apps/booking/request_views.py:124
 #, python-format
-#| msgid "Ночей"
 msgid "Ночей: %(n)s"
 msgstr "Түн: %(n)s"
 
-#: apps/booking/request_views.py:115
+#: apps/booking/request_views.py:126
 #, python-format
-#| msgid "Взрослых"
 msgid "Взрослых: %(a)s"
 msgstr "Чоңдор: %(a)s"
 
-#: apps/booking/request_views.py:117
+#: apps/booking/request_views.py:128
 #, python-format
-#| msgid "Детей"
 msgid "детей: %(c)s"
 msgstr "балдар: %(c)s"
 
-#: apps/booking/request_views.py:121
+#: apps/booking/request_views.py:133
 msgid "Подскажите, пожалуйста, свободно ли на эти даты?"
 msgstr "Ушул күндөргө бош орун барбы?"
 
@@ -2077,12 +2073,12 @@ msgstr "П-түрүндө"
 msgid "Номера"
 msgstr "Бөлмөлөр"
 
-#: templates/include/header.html:58 templates/pages/home.html:238
+#: templates/include/header.html:65 templates/pages/home.html:239
 #: templates/pages/offers/detail.html:31
 msgid "Забронировать"
 msgstr "Брондоо"
 
-#: templates/include/header.html:60
+#: templates/include/header.html:67
 msgid "Меню"
 msgstr "Меню"
 
@@ -2263,7 +2259,6 @@ msgid "Не хотите выбирать даты — напишите нам, 
 msgstr "Күндөрдү тандагыңыз келбесе — бизге жазыңыз, ылайыгын өзүбүз табабыз."
 
 #: templates/pages/booking/search.html:25
-#| msgid "Записаться"
 msgid "Написать в WhatsApp"
 msgstr "WhatsApp'ка жазуу"
 
@@ -2480,12 +2475,10 @@ msgid "Площадь"
 msgstr "Аянты"
 
 #: templates/pages/rooms/detail.html:62
-#| msgid "Проверить даты и забронировать"
 msgid "Проверить даты"
 msgstr "Күндөрдү текшерүү"
 
 #: templates/pages/rooms/detail.html:66
-#| msgid "Отправить заявку"
 msgid "Отправить заявку в WhatsApp"
 msgstr "WhatsApp аркылуу арыз жөнөтүү"
 
