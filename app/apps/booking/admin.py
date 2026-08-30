@@ -6,7 +6,7 @@ from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 from modeltranslation.admin import TabbedTranslationAdmin
 
-from apps.booking.models import Addon, Booking, BookingAddon, Payment
+from apps.booking.models import BookingRequest, Addon, Booking, BookingAddon, Payment
 
 
 @admin.register(Addon)
@@ -173,4 +173,37 @@ class PaymentAdmin(admin.ModelAdmin):
         return False
 
     def has_change_permission(self, request, obj=None):
+        return False
+
+
+@admin.register(BookingRequest)
+class BookingRequestAdmin(admin.ModelAdmin):
+    """Заявки с сайта. Нужны, чтобы измерить спрос до покупки модуля брони."""
+
+    list_display = ('created_at', 'room_category_name', 'check_in', 'check_out',
+                    'nights', 'adults', 'children', 'estimated_total', 'is_processed')
+    list_filter = ('is_processed', 'created_at', 'room_category', 'language')
+    list_editable = ('is_processed',)
+    search_fields = ('room_category_name', 'comment')
+    date_hierarchy = 'created_at'
+    readonly_fields = ('created_at', 'updated_at', 'room_category', 'room_category_name',
+                       'check_in', 'check_out', 'nights', 'adults', 'children',
+                       'estimated_total', 'source_page', 'language', 'ip_address', 'user_agent')
+
+    fieldsets = (
+        (None, {
+            'fields': ('created_at', 'room_category', 'room_category_name',
+                       'check_in', 'check_out', 'nights', 'adults', 'children',
+                       'estimated_total'),
+        }),
+        ('Обработка', {
+            'fields': ('is_processed', 'comment'),
+        }),
+        ('Технические данные', {
+            'fields': ('source_page', 'language', 'ip_address', 'user_agent', 'updated_at'),
+            'classes': ('collapse',),
+        }),
+    )
+
+    def has_add_permission(self, request):
         return False

@@ -53,6 +53,56 @@ class Addon(SortableModel):
         return (self.price * multiplier * quantity).quantize(Decimal('0.01'))
 
 
+class BookingRequest(TimeStampedModel):
+    """
+    Заявка на бронирование, отправленная в WhatsApp ресепшена.
+
+    Онлайн-оплата и связка с PMS пока не подключены: Заказчик сначала хочет
+    измерить спрос через сайт. Поэтому гость уходит в WhatsApp, а мы
+    сохраняем запрос — по этим записям и считается количество обращений.
+    """
+
+    class Meta:
+        verbose_name = _('Заявка на бронирование')
+        verbose_name_plural = _('Заявки на бронирование')
+        ordering = ('-created_at',)
+
+    room_category = models.ForeignKey(
+        'rooms.RoomCategory', verbose_name=_('Категория'), on_delete=models.SET_NULL,
+        blank=True, null=True, related_name='requests',
+    )
+    room_category_name = models.CharField(
+        _('Категория (снимок)'), max_length=255, blank=True,
+        help_text=_('Сохраняем название на момент заявки — категорию могут переименовать.'),
+    )
+
+    check_in = models.DateField(_('Заезд'), blank=True, null=True)
+    check_out = models.DateField(_('Выезд'), blank=True, null=True)
+    nights = models.PositiveSmallIntegerField(_('Ночей'), default=0)
+    adults = models.PositiveSmallIntegerField(_('Взрослых'), default=2)
+    children = models.PositiveSmallIntegerField(_('Детей'), default=0)
+
+    estimated_total = models.DecimalField(
+        _('Расчётная сумма'), max_digits=12, decimal_places=2, default=0,
+        help_text=_('Цена с сайта на момент заявки, не подтверждённая отелем.'),
+    )
+
+    source_page = models.CharField(_('Откуда отправлена'), max_length=255, blank=True)
+    language = models.CharField(_('Язык сайта'), max_length=5, blank=True)
+    ip_address = models.GenericIPAddressField(_('IP'), blank=True, null=True)
+    user_agent = models.CharField(_('Браузер'), max_length=300, blank=True)
+
+    is_processed = models.BooleanField(
+        _('Обработана'), default=False, db_index=True,
+        help_text=_('Отметка менеджера: с гостем связались.'),
+    )
+    comment = models.TextField(_('Комментарий менеджера'), blank=True)
+
+    def __str__(self):
+        return '%s — %s' % (self.room_category_name or _('без категории'),
+                            self.created_at.strftime('%d.%m.%Y %H:%M'))
+
+
 class Booking(TimeStampedModel):
     """
     Бронь, созданная на сайте (п. 5.1, 6.1 ТЗ).

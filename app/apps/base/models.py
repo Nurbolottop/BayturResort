@@ -116,6 +116,12 @@ class SiteSettings(SEOModel):
         help_text=_('Открывается по клику на адрес.'),
     )
     whatsapp = models.CharField(_('WhatsApp (номер или ссылка)'), max_length=255, blank=True)
+    # Заявки с сайта уходят на ресепшен, а он не обязан совпадать с общим
+    # номером для вопросов — поэтому отдельное поле с запасным вариантом.
+    booking_whatsapp = models.CharField(
+        _('WhatsApp ресепшена для заявок'), max_length=255, blank=True,
+        help_text=_('Куда уходят заявки на бронирование. Если пусто — берётся общий WhatsApp.'),
+    )
     telegram = models.CharField(_('Telegram'), max_length=255, blank=True)
     instagram = models.URLField(_('Instagram'), blank=True)
     facebook = models.URLField(_('Facebook'), blank=True)

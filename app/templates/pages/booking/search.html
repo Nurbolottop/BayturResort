@@ -58,9 +58,14 @@
                                         {{ item.price_per_night|money }} {% translate "сом за ночь" %}
                                     </span>
                                     {% if item.available_rooms > 0 %}
-                                        <a class="btn btn--primary"
-                                           href="{% url 'booking:checkout' item.category.slug %}?check_in={{ params.check_in|date:'Y-m-d' }}&check_out={{ params.check_out|date:'Y-m-d' }}&adults={{ params.adults }}&children={{ params.children }}">
-                                            {% translate "Забронировать" %}
+                                        {% comment %}
+                                            Оплата на сайте пока не подключена: заявка уходит
+                                            на WhatsApp ресепшена, а мы её сохраняем, чтобы
+                                            видеть количество обращений.
+                                        {% endcomment %}
+                                        <a class="btn btn--primary" rel="nofollow"
+                                           href="{% url 'booking:request' %}?category={{ item.category.slug }}&check_in={{ params.check_in|date:'Y-m-d' }}&check_out={{ params.check_out|date:'Y-m-d' }}&adults={{ params.adults }}&children={{ params.children }}&source=search">
+                                            {% translate "Отправить заявку" %}
                                         </a>
                                     {% else %}
                                         <span class="result__note">{% translate "Нет свободных номеров" %}</span>

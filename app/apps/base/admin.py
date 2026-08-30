@@ -32,7 +32,7 @@ class SiteSettingsAdmin(TabbedTranslationAdmin):
                              'выбирает, где открыть — Google Maps или 2ГИС.'),
         }),
         (_('Соцсети и мессенджеры'), {
-            'fields': ('whatsapp', 'telegram', 'instagram', 'facebook', 'youtube', 'tiktok'),
+            'fields': ('whatsapp', 'booking_whatsapp', 'telegram', 'instagram', 'facebook', 'youtube', 'tiktok'),
         }),
         (_('Бронирование'), {
             'fields': ('check_in_time', 'check_out_time', 'booking_rules'),

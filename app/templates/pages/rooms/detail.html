@@ -59,7 +59,11 @@
 
                 {% if room.is_bookable %}
                     <a class="btn btn--primary btn--block" href="{% url 'booking:search' %}">
-                        {% translate "Проверить даты и забронировать" %}
+                        {% translate "Проверить даты" %}
+                    </a>
+                    <a class="btn btn--accent btn--block" rel="nofollow" style="margin-top:12px;"
+                       href="{% url 'booking:request' %}?category={{ room.slug }}&source=room">
+                        {% translate "Отправить заявку в WhatsApp" %}
                     </a>
                 {% else %}
                     <p class="alert alert--info">{% translate "Онлайн-бронирование этой категории временно недоступно. Позвоните нам." %}</p>
