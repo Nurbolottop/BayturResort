@@ -10,6 +10,21 @@
         <div class="container">
             {% include 'include/booking_widget.html' with widget_class='booking-widget--inline' %}
 
+            {% comment %}
+                Оплаты на сайте нет, всё решается перепиской с ресепшеном.
+                Поэтому гостю, который не хочет разбираться с датами,
+                даём написать сразу — без прохода через поиск.
+            {% endcomment %}
+            <div class="booking-direct">
+                <span class="booking-direct__text">
+                    {% translate "Не хотите выбирать даты — напишите нам, подберём вариант сами." %}
+                </span>
+                <a class="btn btn--accent btn--sm" rel="nofollow"
+                   href="{% url 'booking:request' %}?source=booking-direct">
+                    {% translate "Написать в WhatsApp" %}
+                </a>
+            </div>
+
             {% if search_error %}
                 <div class="alert" style="margin-top:28px;">{{ search_error }}</div>
             {% endif %}
