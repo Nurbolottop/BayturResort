@@ -37,7 +37,9 @@ git push -q origin "$BRANCH"
 echo "→ Сервер: git pull и пересборка"
 ssh "$TARGET" "set -e
   cd $REMOTE_DIR
-  git fetch -q origin $BRANCH
+  # protocol.version=1 задан явно: git 2.34 на сервере срывается на
+  # протоколе v2 с GitHub и начинает просить логин к публичному репозиторию.
+  git -c protocol.version=1 fetch -q origin $BRANCH
   git reset -q --hard origin/$BRANCH
   docker compose -f docker/docker-compose.prod.yml up -d --build
   sleep 20
