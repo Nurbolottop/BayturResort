@@ -16,7 +16,7 @@
     /* Шоколадная основа вместо почти чёрной: фон сам по себе коричневый,
        поэтому страница выглядит тёплой и «живой», а не выключенной. */
     --bg: #1e1611;
-    --bg-soft: #261c16;
+    --bg-soft: #2b1f18;
     --surface: rgba(240, 214, 176, .055);
     --surface-2: rgba(240, 214, 176, .1);
     --stroke: rgba(240, 214, 176, .13);
@@ -550,8 +550,19 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover { opacity: 1; }
 .main:has(> .hero), .main:has(> .page-head) { padding-top: 0; }
 
 .section { padding: clamp(64px, 8.5vw, 130px) 0; }
-.section--muted { background: var(--bg-soft); }
 .section--tight { padding: 48px 0; }
+
+/* Чередующиеся полосы отличались слишком слабо: переход между блоками
+   выглядел не границей, а грязью на фоне. Полоса стала светлее, а по
+   краям добавлена волосяная линия — стык теперь читается как решение. */
+.section--muted {
+    background: var(--bg-soft);
+    border-top: 1px solid var(--stroke);
+    border-bottom: 1px solid var(--stroke);
+}
+
+/* Две светлые полосы подряд не должны давать двойную линию */
+.section--muted + .section--muted { border-top: 0; }
 
 .section__head {
     display: flex;
