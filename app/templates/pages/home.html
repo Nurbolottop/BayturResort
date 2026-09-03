@@ -17,7 +17,7 @@
                 <div class="hero__overlay"></div>
                 <div class="container hero__content">
                     <span class="hero__eyebrow">{% translate "Иссык-Куль · с. Бостери" %}</span>
-                    <h1 class="hero__title">{{ slide.title }}</h1>
+                    <h1 class="hero__title">{{ slide.title|default:site.site_name }}</h1>
                     {% if slide.subtitle %}<p class="hero__subtitle">{{ slide.subtitle }}</p>{% endif %}
                     {% if slide.button_text and slide.button_url %}
                         <a class="btn btn--primary btn--lg" href="{{ slide.button_url }}">{{ slide.button_text }}</a>
