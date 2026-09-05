@@ -8,15 +8,29 @@ SPA, рестораны, спорткомплекс, конференц-залы
 Команда идемпотентна: повторный запуск обновляет записи, а не плодит копии.
 """
 
+import json
 from decimal import Decimal
+from pathlib import Path
 
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
 from apps.base.models import Advantage, SiteSettings
+from apps.blog.models import Post
 from apps.cms.models import AboutSection, Mission, MissionGoal
 from apps.rooms.models import Amenity, RoomCategory
 from apps.services.models import ConferenceHall, Service, ServiceCategory
+
+# Полные описания страниц номеров со старого сайта — выгружены отдельно,
+# чтобы не раздувать этот файл текстом на несколько тысяч знаков.
+ROOM_DESCRIPTIONS = json.loads(
+    (Path(__file__).parent / 'data' / 'room_descriptions.json').read_text(encoding='utf-8')
+)
+
+# Три новости со старого сайта
+POSTS = json.loads(
+    (Path(__file__).parent / 'data' / 'posts.json').read_text(encoding='utf-8')
+)
 
 # ─────────────────────────── Настройки сайта ────────────────────────────
 
@@ -146,6 +160,17 @@ SERVICES = [
         ],
     ),
     (
+        'leisure', 'Досуг',
+        'Место, где можно не только расслабиться, но и активно провести время: '
+        'тренажёрные залы, крытый и открытый бассейны, теннисные корты.',
+        [
+            ('Детская площадка', 'Просторная и безопасная площадка для маленьких гостей: '
+                                 'качели, горки и игры на свежем воздухе, пока родители отдыхают рядом.'),
+            ('Пирс и пляж', 'Благоустроенный пляж с пирсом, шезлонгами и зонами отдыха. '
+                            'Чистый воздух, мягкий бриз и прозрачная вода Иссык-Куля.'),
+        ],
+    ),
+    (
         'sport', 'Спортивный комплекс',
         'Уникальное место на Иссык-Куле, где всё необходимое собрано в одном месте — '
         'и для спортсменов, и для семей с детьми.',
@@ -254,6 +279,7 @@ class Command(BaseCommand):
         self.import_halls()
         self.import_advantages()
         self.import_about()
+        self.import_posts()
 
         self.stdout.write(self.style.SUCCESS('Тексты со старого сайта перенесены.'))
         self.stdout.write('Фотографии не загружались — их передаёт Заказчик отдельно.')
@@ -287,6 +313,7 @@ class Command(BaseCommand):
                     'beds': beds,
                     'base_price': Decimal(price),
                     'short_description': description,
+                    'description': ROOM_DESCRIPTIONS.get(slug, ''),
                     'order': order,
                     'show_on_home': order < 3,
                     'is_active': True,
@@ -356,3 +383,25 @@ class Command(BaseCommand):
             )
 
         self.stdout.write('  блок «О нас», миссия и %s цели' % len(GOALS))
+
+    def import_posts(self):
+        from django.utils.dateparse import parse_date
+        from django.utils import timezone
+        import datetime
+
+        for order, item in enumerate(POSTS):
+            day = parse_date(item['published_at'])
+            published = timezone.make_aware(
+                datetime.datetime.combine(day, datetime.time(12, 0))
+            )
+            Post.objects.update_or_create(
+                slug=item['slug'],
+                defaults={
+                    'title': item['title'],
+                    'excerpt': item['excerpt'],
+                    'content': item['content'],
+                    'published_at': published,
+                    'order': order,
+                },
+            )
+        self.stdout.write('  новостей: %s' % len(POSTS))
