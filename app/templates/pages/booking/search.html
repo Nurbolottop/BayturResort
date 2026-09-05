@@ -19,7 +19,7 @@
                 <span class="booking-direct__text">
                     {% translate "Не хотите выбирать даты — напишите нам, подберём вариант сами." %}
                 </span>
-                <a class="btn btn--accent btn--sm" rel="nofollow"
+                <a class="btn btn--accent btn--sm" rel="nofollow noopener" target="_blank"
                    href="{% url 'booking:request' %}?source=booking-direct">
                     {% translate "Написать в WhatsApp" %}
                 </a>
@@ -78,7 +78,7 @@
                                             на WhatsApp ресепшена, а мы её сохраняем, чтобы
                                             видеть количество обращений.
                                         {% endcomment %}
-                                        <a class="btn btn--primary" rel="nofollow"
+                                        <a class="btn btn--primary" rel="nofollow noopener" target="_blank"
                                            href="{% url 'booking:request' %}?category={{ item.category.slug }}&check_in={{ params.check_in|date:'Y-m-d' }}&check_out={{ params.check_out|date:'Y-m-d' }}&adults={{ params.adults }}&children={{ params.children }}&source=search">
                                             {% translate "Отправить заявку" %}
                                         </a>

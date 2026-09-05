@@ -20,7 +20,8 @@
                     <h1 class="hero__title">{{ slide.title|default:site.site_name }}</h1>
                     {% if slide.subtitle %}<p class="hero__subtitle">{{ slide.subtitle }}</p>{% endif %}
                     {% if slide.button_text and slide.button_url %}
-                        <a class="btn btn--primary btn--lg" href="{{ slide.button_url }}">{{ slide.button_text }}</a>
+                        <a class="btn btn--primary btn--lg" href="{{ slide.button_url }}"
+                           target="_blank" rel="noopener">{{ slide.button_text }}</a>
                     {% endif %}
                 </div>
             </div>
@@ -235,7 +236,7 @@
             <h2 class="cta__title">{% translate "Готовы отдохнуть на Иссык-Куле?" %}</h2>
             <p class="cta__text">{% translate "Забронируйте номер онлайн — подтверждение придёт на e-mail сразу после оплаты." %}</p>
         </div>
-        <a class="btn btn--primary btn--lg" rel="nofollow"
+        <a class="btn btn--primary btn--lg" rel="nofollow noopener" target="_blank"
            href="{% url 'booking:request' %}?source=home-cta">{% translate "Забронировать" %}</a>
     </div>
 </section>

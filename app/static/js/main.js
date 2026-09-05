@@ -165,6 +165,91 @@
         });
     });
 
+    // ------------------------------------------ просмотр фотографий
+    // Ссылки в галереях остаются обычными: если скрипт не отработал,
+    // снимок откроется в соседней вкладке, как и раньше.
+    var box = document.querySelector('[data-lightbox-box]');
+    var triggers = Array.prototype.slice.call(document.querySelectorAll('[data-lightbox]'));
+
+    if (box && triggers.length) {
+        var picture = box.querySelector('[data-lightbox-image]');
+        var caption = box.querySelector('[data-lightbox-caption]');
+        var counter = box.querySelector('[data-lightbox-counter]');
+        var prevBtn = box.querySelector('[data-lightbox-prev]');
+        var nextBtn = box.querySelector('[data-lightbox-next]');
+        var activePhoto = 0;   // индекс открытого снимка
+        var returnFocus = null;
+
+        function render(index) {
+            activePhoto = (index + triggers.length) % triggers.length;
+            var link = triggers[activePhoto];
+            picture.src = link.getAttribute('href');
+            picture.alt = link.dataset.caption || '';
+            caption.textContent = link.dataset.caption || '';
+            counter.textContent = (activePhoto + 1) + ' / ' + triggers.length;
+            // При единственном снимке стрелки только мешают
+            var single = triggers.length < 2;
+            prevBtn.hidden = single;
+            nextBtn.hidden = single;
+        }
+
+        function openBox(index, opener) {
+            returnFocus = opener || null;
+            render(index);
+            box.hidden = false;
+            window.requestAnimationFrame(function () {
+                window.requestAnimationFrame(function () { box.classList.add('is-open'); });
+            });
+            document.body.style.overflow = 'hidden';
+            var figure = box.querySelector('.lightbox__figure');
+            if (figure) figure.focus();
+        }
+
+        function closeBox() {
+            box.classList.remove('is-open');
+            document.body.style.overflow = '';
+            window.setTimeout(function () {
+                box.hidden = true;
+                picture.src = '';
+            }, 380);
+            if (returnFocus && returnFocus.focus) returnFocus.focus();
+        }
+
+        triggers.forEach(function (link, index) {
+            link.addEventListener('click', function (event) {
+                // Оставляем привычные способы открыть в новой вкладке
+                if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+                event.preventDefault();
+                openBox(index, link);
+            });
+        });
+
+        box.querySelectorAll('[data-lightbox-close]').forEach(function (el) {
+            el.addEventListener('click', closeBox);
+        });
+        prevBtn.addEventListener('click', function () { render(activePhoto - 1); });
+        nextBtn.addEventListener('click', function () { render(activePhoto + 1); });
+
+        document.addEventListener('keydown', function (event) {
+            if (box.hidden) return;
+            if (event.key === 'Escape') closeBox();
+            if (event.key === 'ArrowLeft') render(activePhoto - 1);
+            if (event.key === 'ArrowRight') render(activePhoto + 1);
+        });
+
+        // Листание пальцем на телефоне
+        var touchStart = null;
+        box.addEventListener('touchstart', function (event) {
+            touchStart = event.changedTouches[0].clientX;
+        }, { passive: true });
+        box.addEventListener('touchend', function (event) {
+            if (touchStart === null) return;
+            var delta = event.changedTouches[0].clientX - touchStart;
+            if (Math.abs(delta) > 50) render(activePhoto + (delta < 0 ? 1 : -1));
+            touchStart = null;
+        }, { passive: true });
+    }
+
     // ------------------------------------ всплывающее окно с акциями
     // Показываем один раз и с задержкой. Кто закрыл — не видит окно
     // заданное число дней; отметка привязана к составу акций, поэтому

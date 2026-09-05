@@ -59,7 +59,7 @@
                 ресепшена. Подбор по датам и ценам остался на /booking/,
                 туда ведёт кнопка «Проверить даты» с карточки номера.
             {% endcomment %}
-            <a class="btn btn--primary header__cta" rel="nofollow"
+            <a class="btn btn--primary header__cta" rel="nofollow noopener" target="_blank"
                href="{% url 'booking:request' %}?source=header">{% translate "Забронировать" %}</a>
 
             <button class="burger" type="button" data-burger aria-label="{% translate 'Меню' %}">

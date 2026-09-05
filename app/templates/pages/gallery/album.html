@@ -13,7 +13,13 @@
                 <div class="gallery-grid">
                     {% for image in album.images.all %}
                         {% if image.is_active %}
-                            <a href="{{ image.image.url }}" target="_blank" rel="noopener">
+                            {% comment %}
+                                target="_blank" остаётся запасным путём: если скрипт
+                                не загрузился, снимок всё равно откроется.
+                            {% endcomment %}
+                            <a href="{{ image.image.url }}" target="_blank" rel="noopener"
+                               data-lightbox="album"
+                               data-caption="{{ image.alt|default:album.title }}">
                                 <img src="{{ image.image.url }}" alt="{{ image.alt|default:album.title }}"
                                      loading="lazy" width="600" height="600">
                             </a>
