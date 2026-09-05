@@ -841,7 +841,10 @@ a.review__source:hover { color: var(--gold); border-color: var(--stroke-gold); b
 .guest__quote::before { content: '«'; }
 .guest__quote::after { content: '»'; }
 
-.guest__caption { padding-top: 20px; border-top: 1px solid var(--stroke); }
+/* Разделитель нужен только когда сверху есть цитата: без неё имя идёт
+   сразу под фотографией, и черта выглядела бы лишней. */
+.guest__caption { padding-top: 4px; }
+.guest__quote + .guest__caption { padding-top: 20px; border-top: 1px solid var(--stroke); }
 .guest__caption strong {
     display: block;
     font-family: var(--font-display);

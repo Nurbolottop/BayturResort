@@ -18,7 +18,9 @@
                                          loading="lazy" width="400" height="400">
                                 {% endif %}
                             </div>
-                            <blockquote class="guest__quote">{{ guest.quote }}</blockquote>
+                            {% if guest.quote %}
+                                <blockquote class="guest__quote">{{ guest.quote }}</blockquote>
+                            {% endif %}
                             <figcaption class="guest__caption">
                                 <strong>{{ guest.full_name }}</strong>
                                 {% if guest.role %}<span>{{ guest.role }}</span>{% endif %}
