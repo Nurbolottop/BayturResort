@@ -16,7 +16,7 @@ from django.core.management.base import BaseCommand
 from django.db import transaction
 
 from apps.base.models import Advantage, SiteSettings
-from apps.blog.models import Post
+from apps.blog.models import Post, Review
 from apps.cms.models import AboutSection, Mission, MissionGoal
 from apps.rooms.models import Amenity, RoomCategory
 from apps.services.models import ConferenceHall, Service, ServiceCategory
@@ -30,6 +30,11 @@ ROOM_DESCRIPTIONS = json.loads(
 # Три новости со старого сайта
 POSTS = json.loads(
     (Path(__file__).parent / 'data' / 'posts.json').read_text(encoding='utf-8')
+)
+
+# Отзывы из блока «Что говорят наши гости» на главной старого сайта
+REVIEWS = json.loads(
+    (Path(__file__).parent / 'data' / 'reviews.json').read_text(encoding='utf-8')
 )
 
 # ─────────────────────────── Настройки сайта ────────────────────────────
@@ -350,6 +355,7 @@ class Command(BaseCommand):
         self.import_advantages()
         self.import_about()
         self.import_posts()
+        self.import_reviews()
 
         self.stdout.write(self.style.SUCCESS('Тексты со старого сайта перенесены.'))
         self.stdout.write('Фотографии не загружались — их передаёт Заказчик отдельно.')
@@ -476,3 +482,19 @@ class Command(BaseCommand):
                 },
             )
         self.stdout.write('  новостей: %s' % len(POSTS))
+
+    def import_reviews(self):
+        """Отзывы настоящие, поэтому сразу одобрены к публикации."""
+        for order, item in enumerate(REVIEWS):
+            Review.objects.update_or_create(
+                author_name=item['author_name'],
+                defaults={
+                    'text': item['text'],
+                    'rating': 5,
+                    'source': Review.Source.MANUAL,
+                    'is_approved': True,
+                    'show_on_home': True,
+                    'order': order,
+                },
+            )
+        self.stdout.write('  отзывов: %s' % len(REVIEWS))
