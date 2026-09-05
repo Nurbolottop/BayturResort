@@ -821,8 +821,8 @@ a.review__source:hover { color: var(--gold); border-color: var(--stroke-gold); b
 /* Квадрат со скруглением: в круге кадр обрезается по краям и теряет
    часть фотографии, квадрат показывает её целиком. */
 .guest__photo {
-    width: 168px;
-    height: 168px;
+    width: 124px;
+    height: 124px;
     margin: 0 auto 24px;
     border-radius: var(--r);
     overflow: hidden;

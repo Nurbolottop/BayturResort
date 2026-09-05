@@ -61,8 +61,10 @@ class Guest(SortableModel):
         help_text=_('Например: «Гость курорта, Алматы» или должность.'),
     )
     photo = ResizedImageField(
-        _('Фото'), size=[800, 800], crop=['middle', 'center'], quality=88,
+        _('Фото'), size=[400, 400], crop=['middle', 'center'], quality=90,
         upload_to='guests/', blank=True, null=True,
+        help_text=_('Квадратное фото. Аватары из соцсетей приходят '
+                    'небольшими — крупный портрет выглядит лучше.'),
     )
     quote = models.TextField(
         _('Цитата'), blank=True,
