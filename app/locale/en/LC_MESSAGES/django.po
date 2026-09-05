@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-31 00:23+0600\n"
+"POT-Creation-Date: 2026-09-05 21:20+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -366,27 +366,27 @@ msgstr ""
 msgid "Иконка (SVG/PNG)"
 msgstr ""
 
-#: apps/base/templatetags/baitur.py:43 apps/base/templatetags/baitur.py:49
+#: apps/base/templatetags/baitur.py:44 apps/base/templatetags/baitur.py:50
 msgid "ночей"
 msgstr "nights"
 
-#: apps/base/templatetags/baitur.py:46
+#: apps/base/templatetags/baitur.py:47
 msgid "ночь"
 msgstr "night"
 
-#: apps/base/templatetags/baitur.py:48
+#: apps/base/templatetags/baitur.py:49
 msgid "ночи"
 msgstr "nights"
 
-#: apps/base/templatetags/baitur.py:60 apps/base/templatetags/baitur.py:66
+#: apps/base/templatetags/baitur.py:61 apps/base/templatetags/baitur.py:67
 msgid "гостей"
 msgstr "guests"
 
-#: apps/base/templatetags/baitur.py:63
+#: apps/base/templatetags/baitur.py:64
 msgid "гость"
 msgstr "guest"
 
-#: apps/base/templatetags/baitur.py:65
+#: apps/base/templatetags/baitur.py:66
 msgid "гостя"
 msgstr "guests"
 
@@ -531,7 +531,7 @@ msgid "Отзыв"
 msgstr ""
 
 #: apps/blog/models.py:85 templates/include/header.html:47
-#: templates/pages/blog/reviews.html:37 templates/pages/home.html:187
+#: templates/pages/blog/reviews.html:37 templates/pages/home.html:188
 msgid "Отзывы"
 msgstr "Reviews"
 
@@ -1128,7 +1128,6 @@ msgid "Здравствуйте! Хочу забронировать номер 
 msgstr "Hello! I would like to book a room at %(name)s."
 
 #: apps/booking/request_views.py:112 apps/booking/request_views.py:135
-#| msgid "Подскажите, пожалуйста, свободно ли на эти даты?"
 msgid "Подскажите, пожалуйста, свободные даты и цены."
 msgstr "Could you tell me the available dates and prices?"
 
@@ -1500,7 +1499,7 @@ msgid "Альбом"
 msgstr ""
 
 #: apps/gallery/models.py:12 templates/include/header.html:46
-#: templates/pages/gallery/album.html:6 templates/pages/home.html:170
+#: templates/pages/gallery/album.html:6 templates/pages/home.html:171
 msgid "Галерея"
 msgstr "Gallery"
 
@@ -1562,7 +1561,7 @@ msgid "Условия применения"
 msgstr ""
 
 #: apps/offers/models.py:19 templates/include/footer.html:28
-#: templates/include/header.html:45 templates/pages/home.html:125
+#: templates/include/header.html:45 templates/pages/home.html:126
 #: templates/pages/offers/detail.html:6 templates/pages/offers/list.html:5
 msgid "Спецпредложения"
 msgstr "Special Offers"
@@ -1704,7 +1703,7 @@ msgid "Удобство"
 msgstr ""
 
 #: apps/rooms/models.py:15 apps/rooms/models.py:75
-#: templates/pages/rooms/detail.html:27 templates/pages/rooms/list.html:72
+#: templates/pages/rooms/detail.html:29 templates/pages/rooms/list.html:72
 msgid "Удобства"
 msgstr "Amenities"
 
@@ -1745,7 +1744,7 @@ msgid "Юрта"
 msgstr "Yurt"
 
 #: apps/rooms/models.py:47 templates/include/footer.html:25
-#: templates/pages/home.html:78 templates/pages/rooms/list.html:5
+#: templates/pages/home.html:79 templates/pages/rooms/list.html:5
 msgid "Номера и жильё"
 msgstr "Rooms & Accommodation"
 
@@ -1765,11 +1764,11 @@ msgstr ""
 msgid "Площадь, м²"
 msgstr ""
 
-#: apps/rooms/models.py:66 templates/pages/rooms/detail.html:54
+#: apps/rooms/models.py:66 templates/pages/rooms/detail.html:56
 msgid "Кровати"
 msgstr "Beds"
 
-#: apps/rooms/models.py:67 templates/pages/rooms/detail.html:55
+#: apps/rooms/models.py:67 templates/pages/rooms/detail.html:57
 msgid "Комнат"
 msgstr "Rooms"
 
@@ -1819,7 +1818,7 @@ msgstr ""
 msgid "Цена"
 msgstr ""
 
-#: apps/services/admin.py:59 templates/pages/rooms/detail.html:51
+#: apps/services/admin.py:59 templates/pages/rooms/detail.html:53
 msgid "Вместимость"
 msgstr "Capacity"
 
@@ -2070,7 +2069,7 @@ msgstr "U-shape"
 msgid "Номера"
 msgstr "Rooms"
 
-#: templates/include/header.html:65 templates/pages/home.html:239
+#: templates/include/header.html:65 templates/pages/home.html:240
 #: templates/pages/offers/detail.html:31
 msgid "Забронировать"
 msgstr "Book Now"
@@ -2079,12 +2078,20 @@ msgstr "Book Now"
 msgid "Меню"
 msgstr "Menu"
 
-#: templates/include/offers_popup.html:20
+#: templates/include/lightbox.html:13 templates/include/offers_popup.html:20
 #: templates/include/offers_popup.html:72
 msgid "Закрыть"
 msgstr "Close"
 
-#: templates/include/offers_popup.html:28 templates/pages/home.html:124
+#: templates/include/lightbox.html:21
+msgid "Предыдущее фото"
+msgstr "Previous photo"
+
+#: templates/include/lightbox.html:34
+msgid "Следующее фото"
+msgstr "Next photo"
+
+#: templates/include/offers_popup.html:28 templates/pages/home.html:125
 msgid "Выгодно"
 msgstr "Best value"
 
@@ -2093,7 +2100,7 @@ msgid "Специальные предложения"
 msgstr "Special Offers"
 
 #: templates/include/offers_popup.html:56 templates/include/room_card.html:21
-#: templates/pages/rooms/detail.html:45 templates/pages/services/halls.html:35
+#: templates/pages/rooms/detail.html:47 templates/pages/services/halls.html:35
 msgid "от"
 msgstr "from"
 
@@ -2103,7 +2110,7 @@ msgstr "from"
 #: templates/pages/booking/checkout.html:157
 #: templates/pages/booking/checkout.html:164
 #: templates/pages/booking/checkout.html:170
-#: templates/pages/booking/search.html:72 templates/pages/home.html:148
+#: templates/pages/booking/search.html:72 templates/pages/home.html:149
 #: templates/pages/offers/detail.html:21 templates/pages/offers/list.html:34
 #: templates/pages/services/category.html:29
 #: templates/pages/services/detail.html:31
@@ -2112,7 +2119,7 @@ msgstr "from"
 msgid "сом"
 msgstr "KGS"
 
-#: templates/include/offers_popup.html:70 templates/pages/home.html:127
+#: templates/include/offers_popup.html:70 templates/pages/home.html:128
 msgid "Все акции"
 msgstr "All offers"
 
@@ -2130,11 +2137,11 @@ msgstr "Open on %(name)s"
 msgid "до %(n)s гостей"
 msgstr "up to %(n)s guests"
 
-#: templates/include/room_card.html:23 templates/pages/rooms/detail.html:47
+#: templates/include/room_card.html:23 templates/pages/rooms/detail.html:49
 msgid "сом / ночь"
 msgstr "KGS / night"
 
-#: templates/include/room_card.html:25 templates/pages/home.html:151
+#: templates/include/room_card.html:25 templates/pages/home.html:152
 #: templates/pages/offers/list.html:37
 #: templates/pages/services/category.html:32
 #: templates/pages/services/halls.html:40 templates/pages/services/list.html:18
@@ -2162,7 +2169,7 @@ msgstr "Full gallery"
 msgid "Читайте также"
 msgstr "Read also"
 
-#: templates/pages/blog/list.html:5 templates/pages/home.html:207
+#: templates/pages/blog/list.html:5 templates/pages/home.html:208
 msgid "Новости и статьи"
 msgstr "News & Articles"
 
@@ -2324,7 +2331,7 @@ msgstr "Second phone"
 msgid "Ресепшен"
 msgstr "Reception"
 
-#: templates/pages/contacts.html:20 templates/pages/rooms/detail.html:56
+#: templates/pages/contacts.html:20 templates/pages/rooms/detail.html:58
 msgid "Заезд / выезд"
 msgstr "Check-in / Check-out"
 
@@ -2362,7 +2369,7 @@ msgid ""
 msgstr ""
 "We already know about the issue and are fixing it. Please try again shortly."
 
-#: templates/pages/gallery/album.html:24
+#: templates/pages/gallery/album.html:31
 msgid "В альбоме пока нет фотографий."
 msgstr "This album has no photos yet."
 
@@ -2391,59 +2398,59 @@ msgstr "Photo albums"
 msgid "Фотографии скоро появятся."
 msgstr "Photos are coming soon."
 
-#: templates/pages/home.html:19 templates/pages/home.html:31
+#: templates/pages/home.html:19 templates/pages/home.html:32
 msgid "Иссык-Куль · с. Бостери"
 msgstr "Issyk-Kul · Bosteri"
 
-#: templates/pages/home.html:33
+#: templates/pages/home.html:34
 msgid "Курорт на берегу Иссык-Куля"
 msgstr "A resort on the shore of Issyk-Kul"
 
-#: templates/pages/home.html:77
+#: templates/pages/home.html:78
 msgid "Размещение"
 msgstr "Accommodation"
 
-#: templates/pages/home.html:80
+#: templates/pages/home.html:81
 msgid "Все категории"
 msgstr "All categories"
 
-#: templates/pages/home.html:97
+#: templates/pages/home.html:98
 msgid "Инфраструктура"
 msgstr "Facilities"
 
-#: templates/pages/home.html:98 templates/pages/services/list.html:5
+#: templates/pages/home.html:99 templates/pages/services/list.html:5
 msgid "Услуги курорта"
 msgstr "Resort Services"
 
-#: templates/pages/home.html:100
+#: templates/pages/home.html:101
 msgid "Все услуги"
 msgstr "All services"
 
-#: templates/pages/home.html:167
+#: templates/pages/home.html:168
 msgid "Виртуальная прогулка"
 msgstr "Virtual tour"
 
-#: templates/pages/home.html:186
+#: templates/pages/home.html:187
 msgid "Гости о нас"
 msgstr "Guests about us"
 
-#: templates/pages/home.html:189
+#: templates/pages/home.html:190
 msgid "Все отзывы"
 msgstr "All reviews"
 
-#: templates/pages/home.html:206
+#: templates/pages/home.html:207
 msgid "Журнал"
 msgstr "Journal"
 
-#: templates/pages/home.html:209
+#: templates/pages/home.html:210
 msgid "Все материалы"
 msgstr "All posts"
 
-#: templates/pages/home.html:235
+#: templates/pages/home.html:236
 msgid "Готовы отдохнуть на Иссык-Куле?"
 msgstr "Ready for a break at Issyk-Kul?"
 
-#: templates/pages/home.html:236
+#: templates/pages/home.html:237
 msgid ""
 "Забронируйте номер онлайн — подтверждение придёт на e-mail сразу после "
 "оплаты."
@@ -2461,25 +2468,25 @@ msgstr "Packages, seasonal rates and resort offers."
 msgid "Сейчас активных акций нет — загляните позже."
 msgstr "No active offers right now — check back later."
 
-#: templates/pages/rooms/detail.html:53
+#: templates/pages/rooms/detail.html:55
 #: templates/pages/services/hall_detail.html:25
 msgid "Площадь"
 msgstr "Area"
 
-#: templates/pages/rooms/detail.html:62
+#: templates/pages/rooms/detail.html:64
 msgid "Проверить даты"
 msgstr "Check dates"
 
-#: templates/pages/rooms/detail.html:66
+#: templates/pages/rooms/detail.html:68
 msgid "Отправить заявку в WhatsApp"
 msgstr "Send request via WhatsApp"
 
-#: templates/pages/rooms/detail.html:69
+#: templates/pages/rooms/detail.html:71
 msgid "Онлайн-бронирование этой категории временно недоступно. Позвоните нам."
 msgstr ""
 "Online booking for this category is temporarily unavailable. Please call us."
 
-#: templates/pages/rooms/detail.html:85
+#: templates/pages/rooms/detail.html:87
 msgid "Похожие варианты"
 msgstr "Similar options"
 
