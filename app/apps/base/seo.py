@@ -47,8 +47,13 @@ class SEOMixin:
                 image = request.build_absolute_uri(og_image.url)
 
         if not image:
-            site = context.get('site')
-            if site and site.og_image:
+            # Настройки берём напрямую: context-процессоры добавляются к контексту
+            # только при отрисовке, а здесь мы ещё внутри get_context_data —
+            # из-за этого запасная картинка для соцсетей не подставлялась вовсе.
+            from apps.base.models import SiteSettings
+
+            site = SiteSettings.get_solo()
+            if site.og_image:
                 image = request.build_absolute_uri(site.og_image.url)
 
         return PageMeta(
