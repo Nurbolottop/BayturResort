@@ -37,6 +37,11 @@ class SiteSettingsAdmin(TabbedTranslationAdmin):
         (_('Бронирование'), {
             'fields': ('check_in_time', 'check_out_time', 'booking_rules'),
         }),
+        (_('Мероприятия'), {
+            'fields': ('events_extras',),
+            'description': _('Питание и аренда оборудования — блок внизу страницы '
+                             'конференц-залов.'),
+        }),
         (_('3D-тур'), {
             'fields': ('tour_url',),
             'description': _('Кнопка «3D-тур» в шапке, подвале и галерее появляется, '

@@ -23,4 +23,4 @@ class ServiceImageTranslationOptions(TranslationOptions):
 
 @register(ConferenceHall)
 class ConferenceHallTranslationOptions(SEOTranslationOptions):
-    fields = SEOTranslationOptions.fields + ('name', 'description', 'equipment')
+    fields = SEOTranslationOptions.fields + ('name', 'description', 'equipment', 'included')

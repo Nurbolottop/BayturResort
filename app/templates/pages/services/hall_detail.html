@@ -23,8 +23,34 @@
             <aside class="detail__aside">
                 <ul class="specs">
                     {% if hall.area %}<li><span>{% translate "Площадь" %}</span><span>{{ hall.area }} м²</span></li>{% endif %}
-                    {% if hall.price_from %}<li><span>{% translate "Цена от" %}</span><span>{{ hall.price_from|money }} {% translate "сом" %}</span></li>{% endif %}
+                    {% if hall.capacity_min and hall.capacity_max %}
+                        <li><span>{% translate "Вместимость" %}</span>
+                            <span>{{ hall.capacity_min }}–{{ hall.capacity_max }} {% translate "чел." %}</span></li>
+                    {% endif %}
+                    {% if hall.price_day %}
+                        <li><span>{% translate "Аренда за день" %}</span>
+                            <span>{{ hall.price_day|money }} {% translate "сом" %}</span></li>
+                    {% endif %}
+                    {% if hall.price_half_day %}
+                        <li><span>{% translate "За полдня" %}</span>
+                            <span>{{ hall.price_half_day|money }} {% translate "сом" %}</span></li>
+                    {% endif %}
+                    {% if hall.price_hour %}
+                        <li><span>{% translate "За час" %}</span>
+                            <span>{{ hall.price_hour|money }} {% translate "сом" %}</span></li>
+                    {% endif %}
+                    {% if hall.is_year_round %}
+                        <li><span>{% translate "Режим работы" %}</span>
+                            <span>{% translate "круглогодично" %}</span></li>
+                    {% endif %}
                 </ul>
+
+                {% if hall.included %}
+                    <p class="hall__included">
+                        {% translate "В стоимость входит" %}: {{ hall.included }}
+                    </p>
+                {% endif %}
+
                 <a class="btn btn--primary btn--block" href="{% url 'services:halls' %}#request">
                     {% translate "Оставить заявку" %}
                 </a>

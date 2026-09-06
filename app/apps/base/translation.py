@@ -13,6 +13,7 @@ class SEOTranslationOptions(TranslationOptions):
 class SiteSettingsTranslationOptions(SEOTranslationOptions):
     fields = SEOTranslationOptions.fields + (
         'site_name', 'tagline', 'address', 'working_hours', 'legal_name', 'requisites', 'booking_rules',
+        'events_extras',
     )
 
 

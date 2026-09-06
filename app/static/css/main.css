@@ -1453,6 +1453,49 @@ a.review__source:hover { color: var(--gold); border-color: var(--stroke-gold); b
 .layout__name { font-weight: 600; font-size: .95rem; color: var(--text); }
 .layout__count { font-size: .85rem; color: var(--text-dim); }
 
+/* ============== ПИТАНИЕ И ОБОРУДОВАНИЕ ДЛЯ МЕРОПРИЯТИЙ ================= */
+
+.extras {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    columns: 2;
+    column-gap: 44px;
+}
+
+.extras__item {
+    break-inside: avoid;
+    padding: 11px 0 11px 20px;
+    position: relative;
+    color: var(--text-soft);
+    font-size: .95rem;
+    border-bottom: 1px solid var(--stroke);
+}
+.extras__item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 21px;
+    width: 6px; height: 1px;
+    background: var(--gold);
+}
+
+/* Строка с двоеточием на конце — заголовок группы */
+.extras__item--head {
+    padding-left: 0;
+    margin-top: 18px;
+    color: var(--gold);
+    font-weight: 600;
+    font-size: .78rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    border-bottom-color: var(--stroke-gold);
+}
+.extras__item--head::before { display: none; }
+
+@media (max-width: 780px) {
+    .extras { columns: 1; }
+}
+
 /* ======================= АДРЕС С ВЫБОРОМ КАРТЫ ========================= */
 
 .addr { position: relative; display: inline-block; }

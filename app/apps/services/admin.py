@@ -47,7 +47,7 @@ class ServiceAdmin(TabbedTranslationAdmin):
 
 @admin.register(ConferenceHall)
 class ConferenceHallAdmin(TabbedTranslationAdmin):
-    list_display = ('name', 'area', 'capacity_theatre', 'capacity_banquet', 'price_from', 'order', 'is_active')
+    list_display = ('name', 'area', 'capacity_min', 'capacity_max', 'price_day', 'order', 'is_active')
     list_editable = ('order', 'is_active')
     prepopulated_fields = {'slug': ('name',)}
     search_fields = ('name',)
@@ -56,10 +56,16 @@ class ConferenceHallAdmin(TabbedTranslationAdmin):
         (None, {
             'fields': ('name', 'slug', 'cover', 'description', 'equipment'),
         }),
+        (_('Стоимость аренды'), {
+            'fields': ('price_day', 'price_half_day', 'price_hour',
+                       'price_from', 'included', 'is_year_round'),
+        }),
         (_('Вместимость'), {
             'fields': (
-                'area', 'capacity_theatre', 'capacity_banquet',
-                'capacity_classroom', 'capacity_ushape', 'price_from',
+                'area', 'capacity_min', 'capacity_max',
+                'capacity_theatre', 'capacity_classroom', 'capacity_banquet',
+                'capacity_ushape', 'capacity_conference', 'capacity_square',
+                'capacity_amphitheatre', 'capacity_cabaret',
             ),
         }),
         (_('Отображение'), {

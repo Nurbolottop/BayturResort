@@ -97,9 +97,34 @@ class ConferenceHall(SortableModel, SEOModel, TimeStampedModel):
     capacity_banquet = models.PositiveSmallIntegerField(_('Банкет, чел.'), blank=True, null=True)
     capacity_classroom = models.PositiveSmallIntegerField(_('Класс, чел.'), blank=True, null=True)
     capacity_ushape = models.PositiveSmallIntegerField(_('П-образно, чел.'), blank=True, null=True)
+    capacity_conference = models.PositiveSmallIntegerField(
+        _('Конференц-стол, чел.'), blank=True, null=True)
+    capacity_square = models.PositiveSmallIntegerField(
+        _('Квадрат, чел.'), blank=True, null=True)
+    capacity_amphitheatre = models.PositiveSmallIntegerField(
+        _('Амфитеатр, чел.'), blank=True, null=True)
+    capacity_cabaret = models.PositiveSmallIntegerField(
+        _('Кабаре, чел.'), blank=True, null=True)
+
+    capacity_min = models.PositiveSmallIntegerField(
+        _('Вместимость от, чел.'), blank=True, null=True,
+        help_text=_('Нижняя граница: с какого числа гостей зал имеет смысл брать.'))
+    capacity_max = models.PositiveSmallIntegerField(
+        _('Вместимость до, чел.'), blank=True, null=True)
 
     equipment = models.TextField(_('Оборудование'), blank=True)
     price_from = models.DecimalField(_('Цена от, сом'), max_digits=10, decimal_places=2, blank=True, null=True)
+    price_day = models.DecimalField(
+        _('Аренда за день, сом'), max_digits=10, decimal_places=2, blank=True, null=True)
+    price_half_day = models.DecimalField(
+        _('Аренда за полдня, сом'), max_digits=10, decimal_places=2, blank=True, null=True)
+    price_hour = models.DecimalField(
+        _('Аренда за час, сом'), max_digits=10, decimal_places=2, blank=True, null=True)
+
+    included = models.CharField(
+        _('Что входит в стоимость'), max_length=500, blank=True,
+        help_text=_('Например: вода, ручка, бумага, столы, стулья с чехлами.'))
+    is_year_round = models.BooleanField(_('Работает круглогодично'), default=True)
 
     def __str__(self):
         return str(self.name)

@@ -25,15 +25,17 @@
                                 <h3 class="card__title"><a href="{{ hall.get_absolute_url }}">{{ hall.name }}</a></h3>
                                 <p class="card__meta">
                                     {% if hall.area %}{{ hall.area|floatformat:"-1" }} м²{% endif %}
-                                    {% if hall.capacity_theatre %} · {% translate "театр" %} {{ hall.capacity_theatre }}{% endif %}
-                                    {% if hall.capacity_banquet %} · {% translate "банкет" %} {{ hall.capacity_banquet }}{% endif %}
+                                    {% if hall.capacity_min and hall.capacity_max %}
+                                        · {{ hall.capacity_min }}–{{ hall.capacity_max }} {% translate "чел." %}
+                                    {% elif hall.capacity_theatre %}
+                                        · {% translate "театр" %} {{ hall.capacity_theatre }}
+                                    {% endif %}
                                 </p>
                                 <div class="card__footer">
-                                    {% if hall.price_from %}
+                                    {% if hall.price_day %}
                                         <span class="price">
-                                            <span class="price__from">{% translate "от" %}</span>
-                                            <span class="price__value">{{ hall.price_from|money }}</span>
-                                            <span class="price__unit">{% translate "сом" %}</span>
+                                            <span class="price__value">{{ hall.price_day|money }}</span>
+                                            <span class="price__unit">{% translate "сом / день" %}</span>
                                         </span>
                                     {% endif %}
                                     <a class="btn btn--ghost btn--sm" href="{{ hall.get_absolute_url }}">{% translate "Подробнее" %}</a>
@@ -48,7 +50,33 @@
         </div>
     </section>
 
-    <section class="section section--muted">
+    {% if site.events_extras %}
+        <section class="section section--muted">
+            <div class="container">
+                <header class="section__head">
+                    <div>
+                        <span class="section__eyebrow">{% translate "Дополнительно" %}</span>
+                        <h2 class="section__title">{% translate "Питание и оборудование" %}</h2>
+                    </div>
+                </header>
+                {% comment %}
+                    Строка, оканчивающаяся двоеточием, — подзаголовок группы;
+                    так заказчик правит список в админке обычным текстом.
+                {% endcomment %}
+                <ul class="extras">
+                    {% for line in site.events_extras.splitlines %}
+                        {% if line.strip %}
+                            <li class="extras__item{% if line.strip|slice:'-1:' == ':' %} extras__item--head{% endif %}">
+                                {{ line.strip }}
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+    {% endif %}
+
+    <section class="section">
         <div class="container" style="max-width:820px;">
             <header class="section__head">
                 <div>

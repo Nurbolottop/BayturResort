@@ -261,33 +261,110 @@ SERVICE_DETAILS = {
 }
 
 # ──────────────────────────── Конференц-залы ────────────────────────────
-# (slug, название, вместимость театром, описание)
+# Данные предоставлены Заказчиком. Ключи вместимости — по видам рассадки;
+# None означает, что такой расстановки в зале нет.
+
+INCLUDED = 'вода, ручка, бумага, столы, стулья с чехлами'
 
 HALLS = [
-    (
-        'grand-baytur', 'Гранд Байтур', 600,
-        'Сердце больших событий — пространство, где собираются сотни гостей. '
-        'Современное оснащение и элегантный интерьер делают зал идеальной площадкой '
-        'для свадеб, концертов, форумов и корпоративов.',
-    ),
-    (
-        'yurt-village', 'Юрточный городок', None,
-        'Уникальные юрты, олицетворяющие национальный колорит и культуру Кыргызстана. '
-        'Вместимость адаптирована под корпоративные встречи, конференции, банкеты и свадьбы. '
-        'Сочетание уникального дизайна и современного комфорта.',
-    ),
-    (
-        'suusamyr-too-ashuu', 'Суусамыр и Тоо-Ашуу', None,
-        'Элегантные и функциональные конференц-залы. Современные технологии, '
-        'комфортабельные помещения и профессиональный персонал.',
-    ),
-    (
-        'business-center', 'Бизнес-центр', None,
-        'Комфортное пространство для работы: современное оборудование, удобная мебель, '
-        'высокоскоростной интернет и техническая поддержка для встреч, конференций '
-        'и презентаций.',
-    ),
+    {
+        'slug': 'too-ashuu', 'name': 'Зал Тоо-Ашуу', 'area': 80,
+        'capacity_min': 40, 'capacity_max': 100,
+        'price_day': 65000, 'price_half_day': 45000,
+        'theatre': 82, 'classroom': 42, 'banquet': 64, 'ushape': 30,
+        'conference': 28, 'square': 32,
+        'description': '<p>Зал на 80 квадратных метров для конференций, семинаров '
+                       'и банкетов. Вмещает от 40 до 100 гостей в зависимости '
+                       'от расстановки. Работает круглогодично.</p>',
+    },
+    {
+        'slug': 'suusamyr', 'name': 'Зал Суусамыр', 'area': 80,
+        'capacity_min': 40, 'capacity_max': 100,
+        'price_day': 65000, 'price_half_day': 45000,
+        'description': '<p>Зал-трансформер: акустические панели с шумоизоляцией 35 дБ '
+                       'делят его на два самостоятельных зала — Суусамыр-Восток '
+                       'и Суусамыр-Запад. Можно взять целиком или половину.</p>'
+                       '<p>Общая площадь — 80 квадратных метров, от 40 до 100 гостей. '
+                       'Работает круглогодично.</p>',
+    },
+    {
+        'slug': 'suusamyr-east', 'name': 'Суусамыр-Восток', 'area': 40,
+        'capacity_min': 20, 'capacity_max': 50,
+        'price_day': 35000, 'price_half_day': 25000,
+        'theatre': 24, 'classroom': 10, 'banquet': 24, 'ushape': 14,
+        'conference': 12, 'square': 16,
+        'description': '<p>Половина зала Суусамыр — 40 квадратных метров, '
+                       'от 20 до 50 гостей. Отделяется акустическими панелями, '
+                       'поэтому мероприятия в двух половинах не мешают друг другу.</p>',
+    },
+    {
+        'slug': 'suusamyr-west', 'name': 'Суусамыр-Запад', 'area': 40,
+        'capacity_min': 20, 'capacity_max': 50,
+        'price_day': 35000, 'price_half_day': 25000,
+        'theatre': 32, 'classroom': 18, 'banquet': 24, 'ushape': 18,
+        'conference': 16, 'square': 20,
+        'description': '<p>Половина зала Суусамыр — 40 квадратных метров, '
+                       'от 20 до 50 гостей. Отделяется акустическими панелями, '
+                       'поэтому мероприятия в двух половинах не мешают друг другу.</p>',
+    },
+    {
+        'slug': 'grand-baytur', 'name': 'Гранд Байтур', 'area': 648,
+        'capacity_min': 100, 'capacity_max': 500,
+        'price_day': 350000, 'price_half_day': 250000,
+        'description': '<p>Самая большая площадка курорта — 648 квадратных метров '
+                       'и до 500 гостей. Подходит для свадеб, концертов, форумов '
+                       'и корпоративов: современное оснащение и элегантный интерьер.</p>',
+    },
+    {
+        'slug': 'grand-yurt', 'name': 'Гранд Юрта', 'area': 160,
+        'capacity_min': 60, 'capacity_max': 130,
+        'price_day': 65000, 'price_half_day': 45000,
+        'theatre': 130, 'classroom': 64, 'banquet': 72, 'ushape': 36,
+        'conference': 32, 'square': 36, 'amphitheatre': 86, 'cabaret': 48,
+        'description': '<p>Юрта на 160 квадратных метров — национальный колорит '
+                       'и современный комфорт в одном пространстве. От 60 до 130 гостей, '
+                       'восемь вариантов рассадки. Работает круглогодично.</p>',
+    },
+    {
+        'slug': 'small-yurt', 'name': 'Малая Юрта', 'area': 32,
+        'capacity_min': 20, 'capacity_max': 40,
+        'price_day': 30000, 'price_half_day': 20000,
+        'description': '<p>Небольшая юрта на 32 квадратных метра для камерных встреч '
+                       'и переговоров — от 20 до 40 гостей. Работает круглогодично.</p>',
+    },
+    {
+        'slug': 'vip-lounge', 'name': 'ВИП-лаундж', 'area': 32,
+        'capacity_min': 20, 'capacity_max': 40,
+        'price_day': 30000, 'price_half_day': 20000,
+        'description': '<p>Отдельная лаунж-зона на 32 квадратных метра — '
+                       'от 20 до 40 гостей. Подходит для приватных встреч '
+                       'и небольших приёмов. Работает круглогодично.</p>',
+    },
+    {
+        'slug': 'business-center', 'name': 'Бизнес-центр', 'area': 20,
+        'capacity_min': 10, 'capacity_max': 12,
+        'price_day': 30000, 'price_half_day': 20000, 'price_hour': 5000,
+        'description': '<p>Переговорная на 20 квадратных метров для 10–12 человек. '
+                       'Единственная площадка, которую можно взять на час. '
+                       'Современное оборудование, высокоскоростной интернет '
+                       'и техническая поддержка.</p>',
+    },
 ]
+
+EVENTS_EXTRAS = '''Питание:
+Кофе-брейк, 30 минут — 1 000 сом с человека: два вида сладкой и два вида несладкой выпечки, кофе, чай, сахар, мёд, молоко
+Шведский стол, завтрак — 2 000 сом
+Шведский стол, обед — 2 500 сом
+Шведский стол, ужин — 3 000 сом
+Аудио и видео:
+Доска для флипчарта — 2 000 сом в день, бумага 50 сом за страницу
+Белая маркерная доска с набором маркеров — 2 000 сом в день за штуку
+Техника и интернет:
+Ноутбук — 5 000 сом в день
+Печать: принтер, сканер, чёрно-белая печать — 7 000 сом в день
+Цветная печать — 160 сом за страницу
+Интернет — 500 сом в час или 1 000 сом в день'''
+
 
 # ───────────────────────────── Преимущества ─────────────────────────────
 
@@ -420,16 +497,39 @@ class Command(BaseCommand):
         self.stdout.write('  категорий услуг: %s, услуг: %s' % (len(SERVICES), total))
 
     def import_halls(self):
-        for order, (slug, name, capacity, description) in enumerate(HALLS):
+        from decimal import Decimal as D
+
+        for order, item in enumerate(HALLS):
             ConferenceHall.objects.update_or_create(
-                slug=slug,
+                slug=item['slug'],
                 defaults={
-                    'name': name,
-                    'description': '<p>%s</p>' % description,
-                    'capacity_theatre': capacity,
+                    'name': item['name'],
+                    'description': item['description'],
+                    'area': D(str(item['area'])),
+                    'capacity_min': item.get('capacity_min'),
+                    'capacity_max': item.get('capacity_max'),
+                    'capacity_theatre': item.get('theatre'),
+                    'capacity_classroom': item.get('classroom'),
+                    'capacity_banquet': item.get('banquet'),
+                    'capacity_ushape': item.get('ushape'),
+                    'capacity_conference': item.get('conference'),
+                    'capacity_square': item.get('square'),
+                    'capacity_amphitheatre': item.get('amphitheatre'),
+                    'capacity_cabaret': item.get('cabaret'),
+                    'price_day': D(str(item['price_day'])),
+                    'price_half_day': D(str(item['price_half_day'])),
+                    'price_hour': D(str(item['price_hour'])) if item.get('price_hour') else None,
+                    'price_from': D(str(item['price_half_day'])),
+                    'included': INCLUDED,
+                    'is_year_round': True,
                     'order': order,
                 },
             )
+
+        site = SiteSettings.get_solo()
+        site.events_extras = EVENTS_EXTRAS
+        site.save(update_fields=['events_extras'])
+
         self.stdout.write('  конференц-залов: %s' % len(HALLS))
 
     def import_advantages(self):
