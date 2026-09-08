@@ -12,6 +12,20 @@ CSRF_COOKIE_SECURE = env_bool('SECURE_COOKIES', True)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 USE_X_FORWARDED_HOST = True
 
+# Редирект на https делает и nginx, но он не спасает от перехвата самого
+# первого запроса по http. HSTS говорит браузеру ходить на домен только по
+# https ещё до отправки запроса — за той же переменной, что и secure-куки,
+# чтобы сайт можно было поднять по голому IP без сертификата.
+SECURE_SSL_REDIRECT = env_bool('SECURE_COOKIES', True)
+SECURE_HSTS_SECONDS = 31536000  # год
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
+# Страницы сайта не должны открываться внутри чужого фрейма: так подделывают
+# клики по кнопкам в админке. Исключение сделано только для файлового
+# менеджера CKEditor (см. core/urls.py) — он сам работает во фрейме.
+X_FRAME_OPTIONS = 'DENY'
+
 # nginx кеширует статику на 30 дней. Без хеша в имени файла браузер держит
 # старый CSS после каждой правки дизайна — именно так «поменянные цвета»
 # не доезжали до пользователя. ManifestStaticFilesStorage подставляет в имя

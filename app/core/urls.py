@@ -6,19 +6,30 @@
 Так у каждой версии свой корректный URL, как требует п. 5.4 и 9 ТЗ.
 """
 
+from ckeditor_uploader import views as ckeditor_views
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
+from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.sitemaps.views import sitemap
 from django.urls import include, path
+from django.views.decorators.cache import never_cache
+from django.views.decorators.clickjacking import xframe_options_sameorigin
 from django.views.generic import TemplateView
 
 from apps.base.sitemaps import SITEMAPS
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
+    # Маршруты CKEditor объявлены вручную, а не через include: сайт целиком
+    # запрещает открывать себя во фрейме (X_FRAME_OPTIONS = DENY), а файловый
+    # менеджер редактора работает именно во фрейме админки. Разрешаем фрейм
+    # только ему и только со своего же домена.
+    path('ckeditor/upload/', staff_member_required(ckeditor_views.upload), name='ckeditor_upload'),
+    path('ckeditor/browse/',
+         never_cache(staff_member_required(xframe_options_sameorigin(ckeditor_views.browse))),
+         name='ckeditor_browse'),
     path('i18n/', include('django.conf.urls.i18n')),
 
     path('sitemap.xml', sitemap, {'sitemaps': SITEMAPS}, name='django.contrib.sitemaps.views.sitemap'),
