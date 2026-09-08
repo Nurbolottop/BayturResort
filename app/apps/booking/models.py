@@ -89,7 +89,9 @@ class BookingRequest(TimeStampedModel):
 
     source_page = models.CharField(_('Откуда отправлена'), max_length=255, blank=True)
     language = models.CharField(_('Язык сайта'), max_length=5, blank=True)
-    ip_address = models.GenericIPAddressField(_('IP'), blank=True, null=True)
+    # Индекс нужен не для отчётов, а для почасового счётчика заявок:
+    # без него каждая заявка перебирала бы всю таблицу.
+    ip_address = models.GenericIPAddressField(_('IP'), blank=True, null=True, db_index=True)
     user_agent = models.CharField(_('Браузер'), max_length=300, blank=True)
 
     is_processed = models.BooleanField(

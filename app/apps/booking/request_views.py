@@ -6,8 +6,9 @@
 а мы сохраняем запрос — по этим записям считается количество обращений.
 """
 
+import ipaddress
 import re
-from datetime import date
+from datetime import date, timedelta
 from decimal import Decimal
 
 from django.shortcuts import redirect
@@ -40,6 +41,13 @@ def parse_int(value, default=0):
         return default
 
 
+# Заявку создаёт и обычная ссылка (GET), поэтому адрес открывается
+# скриптом и база забивается мусором за минуты — а именно по этим записям
+# Заказчик считает спрос. Держим потолок обращений с одного адреса за час:
+# живому гостю восьми хватает с запасом, бот упирается в предел.
+REQUESTS_PER_HOUR = 8
+
+
 class BookingRequestView(View):
     """Сохраняет заявку и уводит гостя в WhatsApp с заполненным сообщением."""
 
@@ -66,20 +74,24 @@ class BookingRequestView(View):
         if category and nights:
             total = category.base_price * nights
 
-        BookingRequest.objects.create(
-            room_category=category,
-            room_category_name=str(category.name) if category else '',
-            check_in=check_in,
-            check_out=check_out,
-            nights=nights,
-            adults=adults,
-            children=children,
-            estimated_total=total,
-            source_page=data.get('source', '')[:255],
-            language=translation.get_language() or '',
-            ip_address=self.client_ip(request),
-            user_agent=request.META.get('HTTP_USER_AGENT', '')[:300],
-        )
+        # Гостя в WhatsApp уводим в любом случае: лимит защищает статистику,
+        # а не мешает человеку написать.
+        ip = self.client_ip(request)
+        if not self.is_flood(ip):
+            BookingRequest.objects.create(
+                room_category=category,
+                room_category_name=str(category.name) if category else '',
+                check_in=check_in,
+                check_out=check_out,
+                nights=nights,
+                adults=adults,
+                children=children,
+                estimated_total=total,
+                source_page=data.get('source', '')[:255],
+                language=translation.get_language() or '',
+                ip_address=ip,
+                user_agent=request.META.get('HTTP_USER_AGENT', '')[:300],
+            )
 
         number = whatsapp_number(site)
         if not number:
@@ -94,10 +106,28 @@ class BookingRequestView(View):
         return redirect('https://wa.me/%s?text=%s' % (number, text))
 
     @staticmethod
+    def is_flood(ip):
+        if not ip:
+            return False
+        since = timezone.now() - timedelta(hours=1)
+        return BookingRequest.objects.filter(
+            ip_address=ip, created_at__gte=since,
+        ).count() >= REQUESTS_PER_HOUR
+
+    @staticmethod
     def client_ip(request):
+        # nginx дописывает реальный адрес в конец X-Forwarded-For, а начало
+        # списка подставляет сам клиент. По первому элементу нельзя ни считать
+        # лимит (подделал заголовок — обошёл), ни писать в базу: поле inet
+        # не принимает произвольную строку и запрос падает с ошибкой.
         forwarded = request.META.get('HTTP_X_FORWARDED_FOR', '')
         if forwarded:
-            return forwarded.split(',')[0].strip()
+            candidate = forwarded.rsplit(',', 1)[-1].strip()
+            try:
+                ipaddress.ip_address(candidate)
+                return candidate
+            except ValueError:
+                pass
         return request.META.get('REMOTE_ADDR')
 
     @staticmethod
