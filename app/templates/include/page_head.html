@@ -1,5 +1,5 @@
 {% load i18n %}
-<section class="page-head">
+<section class="page-head{% if not head_image %} page-head--plain{% endif %}">
     {% if head_image %}<img class="page-head__img" src="{{ head_image.url }}" alt="" width="1920" height="600">{% endif %}
     <div class="container page-head__inner">
         <nav class="breadcrumbs">
