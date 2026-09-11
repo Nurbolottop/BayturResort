@@ -59,6 +59,19 @@
         // Задержка внутри одного контейнера — эффект «набегания» карточек.
         // Ключ — сам DOM-узел, поэтому Map, а не объект: у объекта все
         // родители схлопнулись бы в одну строку "[object HTMLDivElement]".
+        // Порог 0.06 — это доля площади самого элемента. Оферта и политика
+        // конфиденциальности выше экрана в двадцать раз, шести процентов их
+        // площади в окно физически не помещается — наблюдатель не срабатывал
+        // никогда, и текст договора оставался невидимым. Тому, что выше
+        // экрана, анимация появления всё равно ничего не даёт.
+        revealTargets = revealTargets.filter(function (el) {
+            if (el.offsetHeight > window.innerHeight * 0.9) {
+                el.classList.add('is-visible');
+                return false;
+            }
+            return true;
+        });
+
         var groups = new Map();
         revealTargets.forEach(function (el) {
             el.setAttribute('data-reveal', '');
