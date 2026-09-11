@@ -943,6 +943,9 @@ a.review__source:hover { color: var(--gold); border-color: var(--stroke-gold); b
 .amenities img { width: 17px; height: 17px; }
 
 .prose { color: var(--text-soft); font-size: 1.02rem; }
+/* Оферта и политика — сплошной текст на семь страниц. Без свободного
+   межстрочника и отбивки между абзацами такой документ не читается. */
+.prose p { line-height: 1.75; margin-bottom: 1.1em; }
 .prose h2, .prose h3 { color: var(--text); margin-top: 1.6em; }
 .prose a { color: var(--gold); border-bottom: 1px solid var(--stroke-gold); }
 .prose img { margin: 1.5em 0; border-radius: var(--r-full); }
