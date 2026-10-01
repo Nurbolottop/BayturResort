@@ -13,7 +13,7 @@
 
 set -e
 
-TARGET="${DEPLOY_TARGET:-root@213.171.15.215}"
+TARGET="${DEPLOY_TARGET:-root@129.101.124.198}"
 REMOTE_DIR="${DEPLOY_DIR:-/root/Baitur}"
 BRANCH="${DEPLOY_BRANCH:-main}"
 MESSAGE="${1:-}"

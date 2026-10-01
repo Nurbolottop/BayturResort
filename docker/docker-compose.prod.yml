@@ -43,7 +43,7 @@ services:
       db_baitur:
         condition: service_healthy
     ports:
-      - "127.0.0.1:8091:8000"
+      - "127.0.0.1:8092:8000"
     networks:
       - baitur_network
     deploy:
