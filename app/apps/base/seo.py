@@ -51,15 +51,21 @@ class SEOMixin:
             if og_image:
                 image = self.absolute(og_image.url)
 
-        if not image:
-            # Настройки берём напрямую: context-процессоры добавляются к контексту
-            # только при отрисовке, а здесь мы ещё внутри get_context_data —
-            # из-за этого запасная картинка для соцсетей не подставлялась вовсе.
-            from apps.base.models import SiteSettings
+        # Настройки берём напрямую: context-процессоры добавляются к контексту
+        # только при отрисовке, а здесь мы ещё внутри get_context_data —
+        # из-за этого запасная картинка для соцсетей не подставлялась вовсе.
+        from apps.base.models import SiteSettings
 
-            site = SiteSettings.get_solo()
-            if site.og_image:
-                image = self.absolute(site.og_image.url)
+        site = SiteSettings.get_solo()
+
+        if not image and site.og_image:
+            image = self.absolute(site.og_image.url)
+
+        # Ключевые слова страницы — частные; общие для сайта берём из настроек,
+        # иначе тег не выводился ни на одной странице, кроме тех, где их
+        # прописали вручную.
+        if not keywords:
+            keywords = site.seo_keywords
 
         return PageMeta(
             title=str(title),
