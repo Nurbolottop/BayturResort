@@ -1,4 +1,4 @@
-{% load i18n static baitur %}<!DOCTYPE html>
+{% load i18n l10n static baitur %}<!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
@@ -51,8 +51,8 @@
     <meta name="geo.region" content="KG-Y">
     <meta name="geo.placename" content="{% translate 'Бостери, Иссык-Куль' %}">
     {% if site.latitude and site.longitude %}
-        <meta name="geo.position" content="{{ site.latitude }};{{ site.longitude }}">
-        <meta name="ICBM" content="{{ site.latitude }}, {{ site.longitude }}">
+        <meta name="geo.position" content="{{ site.latitude|unlocalize }};{{ site.longitude|unlocalize }}">
+        <meta name="ICBM" content="{{ site.latitude|unlocalize }}, {{ site.longitude|unlocalize }}">
     {% endif %}
 
     {% if site.google_site_verification %}

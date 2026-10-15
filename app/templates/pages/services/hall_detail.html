@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
-{% load i18n baitur %}
+{% load i18n l10n baitur %}
 
-{% block schema_extra %}{% spaceless %}
+{% block schema_extra %}{% spaceless %}{% localize off %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -39,7 +39,7 @@
   ]
 }
 </script>
-{% endspaceless %}{% endblock %}
+{% endlocalize %}{% endspaceless %}{% endblock %}
 
 {% block content %}
     {% url 'services:halls' as halls_url %}

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n %}
+{% load i18n l10n %}
 
 {% block og_type %}article{% endblock %}
 
@@ -8,7 +8,7 @@
     {% if post.updated_at %}<meta property="article:modified_time" content="{{ post.updated_at|date:'c' }}">{% endif %}
 {% endblock %}
 
-{% block schema_extra %}{% spaceless %}
+{% block schema_extra %}{% spaceless %}{% localize off %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -40,7 +40,7 @@
   ]
 }
 </script>
-{% endspaceless %}{% endblock %}
+{% endlocalize %}{% endspaceless %}{% endblock %}
 
 {% block content %}
     {% url 'blog:list' as blog_url %}

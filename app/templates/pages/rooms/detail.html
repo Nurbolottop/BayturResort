@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-{% load i18n baitur %}
+{% load i18n l10n baitur %}
 
 {% block og_type %}product{% endblock %}
 
-{% block schema_extra %}{% spaceless %}
+{% block schema_extra %}{% spaceless %}{% localize off %}
 {% comment %}
     Номер отдельной сущностью: с ценой, вместимостью и площадью. Из этого
     собирается расширенный сниппет с ценой в выдаче, и это же читают
@@ -63,7 +63,7 @@
   ]
 }
 </script>
-{% endspaceless %}{% endblock %}
+{% endlocalize %}{% endspaceless %}{% endblock %}
 
 {% block content %}
     {% url 'rooms:list' as rooms_url %}
