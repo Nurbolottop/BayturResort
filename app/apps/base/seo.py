@@ -29,6 +29,11 @@ class SEOMixin:
     def get_meta_object(self):
         return getattr(self, 'object', None)
 
+    @staticmethod
+    def absolute(url):
+        """Ссылка на основной домен, а не на тот, через который зашли."""
+        return settings.SITE_URL.rstrip('/') + url
+
     def get_page_meta(self, context):
         obj = self.get_meta_object()
         request = self.request
@@ -44,7 +49,7 @@ class SEOMixin:
             keywords = getattr(obj, 'seo_keywords', '') or keywords
             og_image = getattr(obj, 'og_image', None) or getattr(obj, 'cover', None)
             if og_image:
-                image = request.build_absolute_uri(og_image.url)
+                image = self.absolute(og_image.url)
 
         if not image:
             # Настройки берём напрямую: context-процессоры добавляются к контексту
@@ -54,7 +59,7 @@ class SEOMixin:
 
             site = SiteSettings.get_solo()
             if site.og_image:
-                image = request.build_absolute_uri(site.og_image.url)
+                image = self.absolute(site.og_image.url)
 
         return PageMeta(
             title=str(title),
@@ -67,7 +72,7 @@ class SEOMixin:
             # домен объявлял оригиналом себя, поисковик видел четыре копии
             # сайта и выбирал главный сам — вразрез с hreflang, который всегда
             # указывает на resort.baytur.kg.
-            canonical=settings.SITE_URL.rstrip('/') + request.path,
+            canonical=self.absolute(request.path),
             robots=self.meta_robots,
         )
 
