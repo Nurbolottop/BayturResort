@@ -1,29 +1,112 @@
-{% load i18n %}{% spaceless %}
-{# Микроразметка Schema.org — тип LodgingBusiness/Resort (п. 9 ТЗ) #}
+{% load i18n baitur %}{% spaceless %}
+{% comment %}
+    Микроразметка Schema.org одним связанным графом.
+
+    Раньше здесь был одиночный объект Resort. Проблема в том, что поисковик и
+    языковые модели не понимали, кто публикует сайт, какой объект описан и как
+    они связаны. Теперь три сущности с постоянными @id ссылаются друг на друга:
+    Organization — юридическое лицо, WebSite — сам сайт, Resort — сам курорт.
+    По таким ссылкам нас опознают как одну организацию, а не как три страницы.
+
+    Пустые поля в разметку не попадают: выдуманные координаты или звёздность
+    хуже, чем их отсутствие — за это понижают в выдаче.
+{% endcomment %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Resort",
-  "name": "{{ site.site_name|escapejs }}",
-  "url": "{{ site_url }}",
-  {% if site.logo %}"logo": "{{ site_url }}{{ site.logo.url }}",{% endif %}
-  {% if meta.image %}"image": "{{ meta.image }}",{% endif %}
-  "description": "{{ meta.description|default:site.seo_description|escapejs }}",
-  {% if site.phone %}"telephone": "{{ site.phone|escapejs }}",{% endif %}
-  {% if site.email %}"email": "{{ site.email|escapejs }}",{% endif %}
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "{{ site.address|escapejs }}",
-    "addressRegion": "Issyk-Kul",
-    "addressCountry": "KG"
-  },
-  "checkinTime": "{{ site.check_in_time }}",
-  "checkoutTime": "{{ site.check_out_time }}",
-  "priceRange": "$$",
-  "sameAs": [
-    {% if site.instagram %}"{{ site.instagram }}"{% if site.facebook or site.youtube %},{% endif %}{% endif %}
-    {% if site.facebook %}"{{ site.facebook }}"{% if site.youtube %},{% endif %}{% endif %}
-    {% if site.youtube %}"{{ site.youtube }}"{% endif %}
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "{{ site_url }}/#organization",
+      "name": "{{ site.legal_name|default:site.site_name|escapejs }}",
+      "alternateName": "{{ site.site_name|escapejs }}",
+      "url": "{{ site_url }}/",
+      {% if site.logo %}"logo": {
+        "@type": "ImageObject",
+        "url": "{{ site_url }}{{ site.logo.url }}"
+      },{% endif %}
+      {% if site.phone %}"telephone": "{{ site.phone|escapejs }}",{% endif %}
+      {% if site.email %}"email": "{{ site.email|escapejs }}",{% endif %}
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "{{ site.address|escapejs }}",
+        "addressLocality": "{% translate 'Бостери' %}",
+        "addressRegion": "Issyk-Kul",
+        "postalCode": "722103",
+        "addressCountry": "KG"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "reservations",
+        {% if site.phone %}"telephone": "{{ site.phone|escapejs }}",{% endif %}
+        "availableLanguage": ["ru", "en", "ky"]
+      }{% if site|social_links %},
+      "sameAs": {{ site|social_links|json_list }}{% endif %}
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ site_url }}/#website",
+      "url": "{{ site_url }}/",
+      "name": "{{ site.site_name|escapejs }}",
+      "description": "{{ site.seo_description|escapejs }}",
+      "inLanguage": ["ru", "en", "ky"],
+      "publisher": {"@id": "{{ site_url }}/#organization"}
+    },
+    {
+      "@type": ["Resort", "LodgingBusiness"],
+      "@id": "{{ site_url }}/#resort",
+      "name": "{{ site.site_name|escapejs }}",
+      "description": "{{ site.seo_description|escapejs }}",
+      "url": "{{ site_url }}/",
+      {% if meta.image %}"image": "{{ meta.image }}",{% endif %}
+      "parentOrganization": {"@id": "{{ site_url }}/#organization"},
+      "isPartOf": {"@id": "{{ site_url }}/#website"},
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "{{ site.address|escapejs }}",
+        "addressLocality": "{% translate 'Бостери' %}",
+        "addressRegion": "Issyk-Kul",
+        "postalCode": "722103",
+        "addressCountry": "KG"
+      },
+      {% if site.latitude and site.longitude %}"geo": {
+        "@type": "GeoCoordinates",
+        "latitude": {{ site.latitude }},
+        "longitude": {{ site.longitude }}
+      },{% endif %}
+      {% if site.map_google_url %}"hasMap": "{{ site.map_google_url }}",{% endif %}
+      {% if site.phone %}"telephone": "{{ site.phone|escapejs }}",{% endif %}
+      {% if site.email %}"email": "{{ site.email|escapejs }}",{% endif %}
+      "checkinTime": "{{ site.check_in_time }}",
+      "checkoutTime": "{{ site.check_out_time }}",
+      "priceRange": "{{ price_range|default:'$$' }}",
+      "currenciesAccepted": "KGS",
+      "availableLanguage": ["ru", "en", "ky"],
+      {% if site.star_rating %}"starRating": {
+        "@type": "Rating",
+        "ratingValue": {{ site.star_rating }},
+        "bestRating": 5
+      },{% endif %}
+      {% if site.rooms_total %}"numberOfRooms": {{ site.rooms_total }},{% endif %}
+      {% if schema_rating %}"aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "{{ schema_rating.value }}",
+        "reviewCount": {{ schema_rating.count }},
+        "bestRating": 5,
+        "worstRating": 1
+      },{% endif %}
+      {% if site.amenities %}"amenityFeature": [
+        {% for item in site.amenities|lines %}{
+          "@type": "LocationFeatureSpecification",
+          "name": "{{ item|escapejs }}",
+          "value": true
+        }{% if not forloop.last %},{% endif %}{% endfor %}
+      ],{% endif %}
+      {% if site.seo_keywords %}"keywords": "{{ site.seo_keywords|escapejs }}",{% endif %}
+      "petsAllowed": true,
+      "smokingAllowed": false{% if site|social_links %},
+      "sameAs": {{ site|social_links|json_list }}{% endif %}
+    }
   ]
 }
 </script>

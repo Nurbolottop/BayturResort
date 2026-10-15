@@ -17,7 +17,48 @@ def site_settings(request):
         'footer_pages': StaticPage.objects.filter(is_active=True, show_in_footer=True),
         'menu_pages': StaticPage.objects.filter(is_active=True, show_in_menu=True),
         'popup_offers': _popup_offers(request, site),
+        'schema_rating': _rating(),
+        'price_range': _price_range(),
     }
+
+
+def _rating():
+    """
+    Средняя оценка по опубликованным отзывам — свойство aggregateRating.
+
+    Отдаём только то, что гость видит на странице отзывов: выдуманный или
+    скрытый от посетителя рейтинг Google считает нарушением и снимает
+    расширенный сниппет целиком.
+    """
+    from django.db.models import Avg, Count
+
+    from apps.blog.models import Review
+
+    agg = (Review.objects
+           .filter(is_approved=True, rating__isnull=False)
+           .aggregate(value=Avg('rating'), count=Count('id')))
+    if not agg['count']:
+        return None
+    return {'value': round(agg['value'], 1), 'count': agg['count']}
+
+
+def _price_range():
+    """Вилка цен значками валюты — как её ожидает Schema.org."""
+    from apps.rooms.models import RoomCategory
+
+    prices = list(RoomCategory.objects
+                  .filter(is_active=True, base_price__gt=0)
+                  .values_list('base_price', flat=True))
+    if not prices:
+        return '$$'
+    # Ориентир по минимальной цене за ночь в сомах: до 10 000 — недорого,
+    # до 30 000 — средний уровень, выше — премиальный.
+    low = min(prices)
+    if low < 10000:
+        return '$'
+    if low < 30000:
+        return '$$'
+    return '$$$'
 
 
 def _popup_offers(request, site):

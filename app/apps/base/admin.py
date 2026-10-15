@@ -27,7 +27,8 @@ class SiteSettingsAdmin(TabbedTranslationAdmin):
         }),
         (_('Контакты'), {
             'fields': ('phone', 'phone_extra', 'email', 'address', 'working_hours',
-                       'map_embed', 'map_google_url', 'map_2gis_url'),
+                       'map_embed', 'map_google_url', 'map_2gis_url',
+                       'latitude', 'longitude'),
             'description': _('Если заданы обе ссылки на карты, по клику на адрес гость '
                              'выбирает, где открыть — Google Maps или 2ГИС.'),
         }),
@@ -61,6 +62,11 @@ class SiteSettingsAdmin(TabbedTranslationAdmin):
         (_('Аналитика'), {
             'fields': ('google_analytics_id', 'google_site_verification', 'yandex_metrika_id'),
             'classes': ('collapse',),
+        }),
+        (_('Характеристики для поиска'), {
+            'fields': ('star_rating', 'rooms_total', 'amenities'),
+            'description': _('Попадают в микроразметку: по ним курорт узнают '
+                             'поисковики, карты и ИИ-поиск.'),
         }),
         (_('SEO'), {
             'fields': ('seo_title', 'seo_description', 'seo_keywords', 'og_image'),

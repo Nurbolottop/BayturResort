@@ -3,6 +3,7 @@ from decimal import Decimal, InvalidOperation
 
 from django import template
 from django.urls import translate_url as django_translate_url
+from django.utils.safestring import mark_safe
 from django.utils.translation import gettext as _
 
 register = template.Library()
@@ -101,3 +102,37 @@ def whatsapp_href(value):
     if not value:
         return ''
     return re.sub(r'\D', '', str(value))
+
+
+@register.filter
+def lines(value):
+    """Непустые строки многострочного поля — для списков в микроразметке."""
+    if not value:
+        return []
+    return [line.strip() for line in str(value).splitlines() if line.strip()]
+
+
+@register.filter
+def social_links(site):
+    """
+    Ссылки на профили курорта для свойства sameAs.
+
+    По ним поисковик и языковые модели связывают сайт, соцсети и карточку
+    организации в один объект — без этого курорт выглядит как несколько
+    не связанных между собой упоминаний.
+    """
+    out = []
+    for field in ('instagram', 'facebook', 'youtube', 'tiktok',
+                  'map_google_url', 'map_2gis_url'):
+        value = (getattr(site, field, '') or '').strip()
+        if value.startswith('http'):
+            out.append(value)
+    return out
+
+
+@register.filter
+def json_list(value):
+    """Список строк как корректный JSON — внутри тега ld+json."""
+    import json
+
+    return mark_safe(json.dumps(list(value), ensure_ascii=False))

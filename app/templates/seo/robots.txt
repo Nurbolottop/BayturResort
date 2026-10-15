@@ -5,6 +5,44 @@ Disallow: /admin/
 Disallow: /ckeditor/
 Disallow: /booking/checkout/
 Disallow: /booking/payment/
+Disallow: /booking/request/
 Disallow: /media/uploads/
+Disallow: /docs/
+
+# Роботы ИИ-поиска. Пускаем осознанно: именно по этим обходам курорт
+# попадает в ответы ИИ-помощников, когда у них спрашивают про отдых
+# на Иссык-Куле. Google-Extended отвечает за показ в AI Overviews.
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: YandexBot
+Allow: /
 
 Sitemap: {{ site_url }}/sitemap.xml

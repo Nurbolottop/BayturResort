@@ -18,6 +18,7 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.clickjacking import xframe_options_sameorigin
 from django.views.generic import TemplateView
 
+from apps.base.llms import LLMsTxtView
 from apps.base.sitemaps import SITEMAPS
 
 urlpatterns = [
@@ -34,6 +35,9 @@ urlpatterns = [
 
     path('sitemap.xml', sitemap, {'sitemaps': SITEMAPS}, name='django.contrib.sitemaps.views.sitemap'),
     path('robots.txt', TemplateView.as_view(template_name='seo/robots.txt', content_type='text/plain')),
+    # Выжимка о курорте для ИИ-поисковиков — вне языковых маршрутов,
+    # как robots.txt и sitemap.xml.
+    path('llms.txt', LLMsTxtView.as_view(), name='llms_txt'),
 ]
 
 urlpatterns += i18n_patterns(

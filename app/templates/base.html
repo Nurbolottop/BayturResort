@@ -16,15 +16,44 @@
         {% switch_lang_url code as lang_path %}
         <link rel="alternate" hreflang="{{ code }}" href="{{ site_url }}{{ lang_path }}">
     {% endfor %}
+    {% comment %}
+        x-default — куда отправлять гостя, чей язык не русский, не английский
+        и не кыргызский. Без этой строки поисковик выбирает версию наугад.
+    {% endcomment %}
+    {% switch_lang_url 'ru' as default_path %}
+    <link rel="alternate" hreflang="x-default" href="{{ site_url }}{{ default_path }}">
 
     {# Open Graph #}
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
     <meta property="og:site_name" content="{{ site.site_name }}">
     <meta property="og:title" content="{{ meta.title|default:site.site_name }}">
     <meta property="og:description" content="{{ meta.description|default:site.seo_description }}">
     <meta property="og:url" content="{{ meta.canonical }}">
-    {% if meta.image %}<meta property="og:image" content="{{ meta.image }}">{% endif %}
+    <meta property="og:locale" content="{% if LANGUAGE_CODE == 'en' %}en_US{% elif LANGUAGE_CODE == 'ky' %}ky_KG{% else %}ru_RU{% endif %}">
+    {% for code, name in LANGUAGES %}{% if code != LANGUAGE_CODE %}
+        <meta property="og:locale:alternate" content="{% if code == 'en' %}en_US{% elif code == 'ky' %}ky_KG{% else %}ru_RU{% endif %}">
+    {% endif %}{% endfor %}
+    {% if meta.image %}
+        <meta property="og:image" content="{{ meta.image }}">
+        <meta property="og:image:alt" content="{{ meta.title|default:site.site_name }}">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+    {% endif %}
+    {% block og_extra %}{% endblock %}
+
+    {# Twitter: без явных title/description карточка собирается из og, но не везде #}
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ meta.title|default:site.site_name }}">
+    <meta name="twitter:description" content="{{ meta.description|default:site.seo_description }}">
+    {% if meta.image %}<meta name="twitter:image" content="{{ meta.image }}">{% endif %}
+
+    {# Геопривязка: помогает локальной выдаче и картам #}
+    <meta name="geo.region" content="KG-Y">
+    <meta name="geo.placename" content="{% translate 'Бостери, Иссык-Куль' %}">
+    {% if site.latitude and site.longitude %}
+        <meta name="geo.position" content="{{ site.latitude }};{{ site.longitude }}">
+        <meta name="ICBM" content="{{ site.latitude }}, {{ site.longitude }}">
+    {% endif %}
 
     {% if site.google_site_verification %}
         <meta name="google-site-verification" content="{{ site.google_site_verification }}">
@@ -35,6 +64,7 @@
     {% block extra_css %}{% endblock %}
 
     {% include 'seo/schema.html' %}
+    {% block schema_extra %}{% endblock %}
 </head>
 <body class="{% block body_class %}{% endblock %}">
 

@@ -70,6 +70,32 @@ class SiteSettings(SEOModel):
     address = models.CharField(_('Адрес'), max_length=255, blank=True)
     working_hours = models.CharField(_('Часы работы ресепшена'), max_length=255, blank=True)
 
+    # Координаты и характеристики курорта. Нужны поисковикам и языковым
+    # моделям: по ним курорт попадает в карты, в локальную выдачу и в ответы
+    # ИИ-поиска как конкретное место, а не как набор слов. Пустые поля в
+    # разметку не выводятся — выдумывать координаты нельзя.
+    latitude = models.DecimalField(
+        _('Широта'), max_digits=9, decimal_places=6, blank=True, null=True,
+        help_text=_('Из Google Maps: правый клик по точке — первое число. Например 42.631234'),
+    )
+    longitude = models.DecimalField(
+        _('Долгота'), max_digits=9, decimal_places=6, blank=True, null=True,
+        help_text=_('Второе число из той же подсказки. Например 77.152345'),
+    )
+    star_rating = models.PositiveSmallIntegerField(
+        _('Звёздность'), blank=True, null=True,
+        help_text=_('Официальная категория. Если не присвоена — оставьте пустым.'),
+    )
+    rooms_total = models.PositiveSmallIntegerField(
+        _('Всего номеров'), blank=True, null=True,
+        help_text=_('Общее количество номеров на курорте.'),
+    )
+    amenities = models.TextField(
+        _('Удобства курорта'), blank=True,
+        help_text=_('По одному в строке: бассейн, пляж, SPA, Wi-Fi, парковка. '
+                    'Выводятся в разметку для поисковиков и ИИ-поиска.'),
+    )
+
     # Всплывающее окно с акциями. Показывается один раз и с задержкой:
     # окно, которое выскакивает сразу и на каждой странице, гости
     # закрывают не читая, а часть уходит с сайта.
