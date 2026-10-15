@@ -61,7 +61,13 @@ class SEOMixin:
             description=str(description),
             keywords=str(keywords),
             image=image,
-            canonical=request.build_absolute_uri(request.path),
+            # Домен берём из настроек, а не из запроса: сайт отвечает на
+            # нескольких именах (baytur.kg, www-варианты, служебный поддомен),
+            # и build_absolute_uri подставлял тот, через который зашли. Каждый
+            # домен объявлял оригиналом себя, поисковик видел четыре копии
+            # сайта и выбирал главный сам — вразрез с hreflang, который всегда
+            # указывает на resort.baytur.kg.
+            canonical=settings.SITE_URL.rstrip('/') + request.path,
             robots=self.meta_robots,
         )
 
